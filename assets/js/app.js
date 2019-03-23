@@ -1,3 +1,5 @@
+$(document).ready(function () {
+  M.AutoInit();
 // FIREBASE CONFIG
 // 
 //     /* <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script> */
@@ -109,3 +111,4 @@ $.ajax({
 
 // --------------------------------------------------------------------------------------------
 // Possibilities to expand: Include a feature to add hike event to Google calendar 
+});
