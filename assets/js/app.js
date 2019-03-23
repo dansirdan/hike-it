@@ -59,13 +59,19 @@ $.ajax({
     for (let i = 0; i < 10; i++) {
         var img = $("<img>");
         img.addClass("src", hikeResult[i].imgMedium);
-
+        createCard();
+$("#SomeDivID").append(createCard())
 
 
     }
 
 })
-
+function createCard(img, body, rating) {
+    var card = $("<div>")
+    card.attr("class", "card")
+    card.attr("src", img)
+    
+}
 // REQUIREMENTS REMINDER: 2 new technologies
 //      (1) Materialize: Dates-> Under Pickers
 //      (2) Google Fonts (for making it pretty :) )
