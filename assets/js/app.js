@@ -1,7 +1,7 @@
 // FIREBASE CONFIG
-{
-    /* <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script> */
-}
+// 
+//     /* <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script> */
+//
 // var config = {
 //     apiKey: "AIzaSyD6vRPaTQwhxm4Zs-oa7Rw8eyS2mnnCR84",
 //     authDomain: "hikeit-34330.firebaseapp.com",
@@ -27,6 +27,44 @@
 // 
 // 4. local data snapshot at page load and other value changes
 // 
+
+// GOOGLE API INFORMATION
+var GEOcity;
+var GEOkey = "AIzaSyCRZmQJcBVO85oD5CSKZSc80BAtfvqD9HU";
+var GEOquery = `https://maps.googleapis.com/maps/api/geocode/json?address=${GEOcity}&key=${GEOkey}`;
+
+$.ajax({
+    url: GEOquery,
+    method: "GET"
+}).then(function (response) {
+    var GEOresult = response.data;
+    console.log(GEOresult);
+    cityLat = GEOresult.geometry.location.lat;
+    cityLon = GEOresult.geometry.location.lng;
+});
+
+// HIKEPROJECT API INFORMATION
+var cityLat;
+var cityLon;
+var HIKEkey = "";
+var HIKEquery = `https://www.hikingproject.com/data/get-trails?lat=${cityLat}&lon=${cityLon}&key=${HIKEkey}`;
+
+$.ajax({
+    url: HIKEquery,
+    method: "GET"
+}).then(function (response) {
+    var hikeResult = response.data;
+    console.log(hikeResult);
+
+    for (let i = 0; i < 10; i++) {
+        var img = $("<img>");
+        img.addClass("src", hikeResult[i].imgMedium);
+
+
+
+    }
+
+})
 
 // REQUIREMENTS REMINDER: 2 new technologies
 //      (1) Materialize: Dates-> Under Pickers
