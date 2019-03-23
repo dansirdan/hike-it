@@ -1,3 +1,5 @@
+$(document).ready(function () {
+  M.AutoInit();
 // FIREBASE CONFIG
 // 
 //     /* <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script> */
@@ -115,3 +117,4 @@ function createCard(img, body, rating) {
 
 // --------------------------------------------------------------------------------------------
 // Possibilities to expand: Include a feature to add hike event to Google calendar 
+});
