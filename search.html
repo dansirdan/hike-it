@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>hiki It</title>
+  <link href="https://fonts.googleapis.com/css?family=BioRhyme" rel="stylesheet">
+  <!-- Materialize -->
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <link rel='stylesheet' href='assets/css/style.css'>
+
+
+</head>
+
+<body>
+
+  <div class='container'>
+
+    <!-- Info Submission Panel -->
+    <div class='row'>
+
+      <h4>Search Trails</h4>
+      <form>
+        <div class="input-field  col s12">
+          <input type="text" class="validate" id="trail-search">
+          <label for="">City, State</label>
+          <button type="submit">Search</button>
+        </div>
+      </form>
+
+      <!-- EVERTHING BELOW IS HIDDEN UNTIL SEARCH IS CLICKED -->
+
+      <!-- result- list of ten hikes that include: -->
+      <div id="search-results">
+
+        <!-- this div created dynamically using jquery -->
+        <div class="result">
+          <!-- img -->
+          <img class="result-img" src="" alt="result-img">
+          <!-- name -->
+          <h4 class="result-name">name</h4>
+          <!-- distance -->
+          <p class="result-distance">distance</p>
+          <!-- difficulty -->
+          <p class="result-difficulty">difficulty</p>
+          <!-- host hike -->
+          <button class="host">Create a Hiking Party</button>
+        </div>
+
+      </div>
+
+      <!-- EVERTHING BELOW IS HIDDEN UNTIL A HIKE IS SELECTED -->
+      <!-- host a hike -->
+      <div>
+        <h3>Hike it Together!</h3>
+        <input id="hike-date" type="text" class="datepicker">
+        <form>
+          <div class="col s12">
+            <img src="" alt="result-img">
+            <h5>result-name - pupulated by hike selection</h5>
+          </div>
+          <div class="input-field col s12">
+            <input id="hike-date" type="text" class="datepicker">
+            <label for="hike-date">Date</label>
+          </div>
+          <div class="input-field col s12">
+            <input id="hike-time" type="text" class="timepicker">
+            <label for="hike-time">Time</label>
+          </div>
+          <div class="input-field col s12">
+            <input id="group-size" type="number" class="validate">
+            <label for="">Group Size</label>
+          </div>
+          <div class="input-field col s12">
+            <input type="time" class="validate" id="hike-comments">
+            <label class='active' for=""></label>
+          </div>
+          <div class="input-field col s12">
+            <input type="number" class="validate" id="frequencyInput">
+            <label for="">Frequency (minutes)</label>
+          </div>
+          <button type="submit" class="btn orange accent-3" id="addTrainBtn">Submit</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  </div>
+
+
+  <!-- JavaScript -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+  <script type='text/javascript' src='assets/js/app.js'></script>
+</body>
+
+</html>
