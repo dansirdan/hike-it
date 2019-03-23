@@ -2,16 +2,70 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="/assets/css/style.css">
-  <title>Hike It!</title>
+    <meta charset="UTF-8">
+    <title>hiki It</title>
+    <link href="https://fonts.googleapis.com/css?family=BioRhyme" rel="stylesheet">
+    <!-- Materialize -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+    <link rel='stylesheet' href='style.css'>
+    <script src='https://code.jquery.com/jquery.js'></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 </head>
 
 <body>
-
-  <script src="/assets/js/app.js"></script>
+    <div class='container'>
+        <div class='row'>
+            <div class='card-panel z-depth-2 yellow accent-3 white-text'>
+                <h3 class='center-align'>hiking apps</h3></div>
+        </div>
+        <div class='row'>
+            <!-- Display Panel -->
+            <div class='card-panel trainInfo'>
+                <h4 class='center-align'>Current Train Schedule</h4>
+                <table class="table striped center bordered responsive-table" id='trainTable'>
+                    <thead>
+                        <tr>
+                            <th> Name</th>
+                            <th>Destination</th>
+                            <th>Frequency (minutes)</th>
+                            <th>Next Arrival</th>
+                            <th>Minutes Away</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- Info Submission Panel -->
+        <div class='row'>
+            <div class='card-panel'>
+                <h4 class='center-align'>Add Your Train</h4>
+                <form>
+                    <div class="input-field col s12">
+                        <input type="text" class="validate" id="trainNameInput">
+                        <label for="">Train Name</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input type="text" class="validate" id="destinationInput">
+                        <label for="">Destination</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input type="time" class="validate" id="firstInput">
+                        <label class='active' for="">First Train (HH:mm Military Time)</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input type="number" class="validate" id="frequencyInput">
+                        <label for="">Frequency (minutes)</label>
+                    </div>
+                    <button type="submit" class="btn orange accent-3" id="addTrainBtn">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script type='text/javascript' src='app.js'></script>
 </body>
 
 </html>
