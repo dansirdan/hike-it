@@ -71,3 +71,4 @@
 
 // --------------------------------------------------------------------------------------------
 // Possibilities to expand: Include a feature to add hike event to Google calendar 
+// Google calendar apiKey = AIzaSyBBtB6jSwzA56kq_8H6kxqA-T9xTz_ofDQ
