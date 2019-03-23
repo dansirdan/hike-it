@@ -31,10 +31,11 @@
           <button type="submit">Search</button>
         </div>
       </form>
+    </div>
+    <!-- EVERTHING BELOW IS HIDDEN UNTIL SEARCH IS CLICKED -->
 
-      <!-- EVERTHING BELOW IS HIDDEN UNTIL SEARCH IS CLICKED -->
-
-      <!-- result- list of ten hikes that include: -->
+    <!-- result- list of ten hikes that include: -->
+    <div class="row">
       <div id="search-results">
 
         <!-- this div created dynamically using jquery -->
@@ -52,9 +53,11 @@
         </div>
 
       </div>
+    </div>
 
-      <!-- EVERTHING BELOW IS HIDDEN UNTIL A HIKE IS SELECTED -->
-      <!-- host a hike -->
+    <!-- EVERTHING BELOW IS HIDDEN UNTIL A HIKE IS SELECTED -->
+    <!-- host a hike -->
+    <div class="row">
       <div>
         <h3>Hike it Together!</h3>
         <input id="hike-date" type="text" class="datepicker">
@@ -76,22 +79,14 @@
             <label for="">Group Size</label>
           </div>
           <div class="input-field col s12">
-            <input type="time" class="validate" id="hike-comments">
-            <label class='active' for=""></label>
+            <input type="text" class="validate" id="hike-comments">
+            <label class='active' for="hike-comments">Commets:</label>
           </div>
-          <div class="input-field col s12">
-            <input type="number" class="validate" id="frequencyInput">
-            <label for="">Frequency (minutes)</label>
-          </div>
-          <button type="submit" class="btn orange accent-3" id="addTrainBtn">Submit</button>
+          <button type="submit" class="btn orange accent-3" id="hike-submit">Submit</button>
         </form>
       </div>
     </div>
-
   </div>
-
-  </div>
-
 
   <!-- JavaScript -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
