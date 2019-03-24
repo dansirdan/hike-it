@@ -20,13 +20,28 @@
 <body>
 
   <div class='container'>
+    <!-- Nav - show on login -->
+    <nav class="logged-in" style="display: none">
+      <ul>
+        <li>
+          <a href="index.html">Upcoming Hikes</a>
+        </li>
+        <li>
+          <a href="search.html">Host a Hike</a>
+        </li>
+        <li>
+          <a href="index.html" id="logout">Logout</a>
+        </li>
+      </ul>
+    </nav>
+
 
     <!-- Info Submission Panel -->
     <div class='row'>
 
       <h4>Search Trails</h4>
       <form>
-        <div class="input-field  col s12">
+        <div class="input-field col s12">
           <input type="text" class="validate" id="trail-search">
           <label for="">City, State</label>
           <button type="submit">Search</button>
@@ -42,15 +57,16 @@
         <!-- this div created dynamically using jquery -->
         <div class="result">
           <!-- img -->
-          <img class="result-img" src="" alt="result-img">
+          <img class="result-img" src="https://cdn-files.apstatic.com/hike/7005382_sqsmall_1435421346.jpg"
+            alt="result-img">
           <!-- name -->
-          <h4 class="result-name">name</h4>
+          <h4 class="result-name">Bear Peak</h4>
           <!-- distance -->
-          <p class="result-distance">distance</p>
+          <p class="result-distance">Distance: <span>5.7</span></p>
           <!-- difficulty -->
-          <p class="result-difficulty">difficulty</p>
+          <p class="result-difficulty">Difficulty: <span>blueBlack</span></p>
           <!-- host hike -->
-          <button class="host">Create a Hiking Party</button>
+          <button class="host-btn">Create a Hiking Party</button>
         </div>
 
       </div>
@@ -58,14 +74,15 @@
 
     <!-- EVERTHING BELOW IS HIDDEN UNTIL A HIKE IS SELECTED -->
     <!-- host a hike -->
-    <div class="row">
+    <div class="row" id="host-form" style="display: none">
       <div>
         <h3>Hike it Together!</h3>
         <input id="hike-date" type="text" class="datepicker">
         <form>
           <div class="col s12">
-            <img src="" alt="result-img">
-            <h5>result-name - pupulated by hike selection</h5>
+            <img class="result-img" src="https://cdn-files.apstatic.com/hike/7005382_sqsmall_1435421346.jpg"
+              alt="result-img">
+            <h5>Bear Peak - pupulated by hike selection</h5>
           </div>
           <div class="input-field col s12">
             <input id="hike-date" type="text" class="datepicker">
@@ -93,6 +110,7 @@
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
   <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
   <script type='text/javascript' src='assets/js/app.js'></script>
+  <script type='text/javascript' src='assets/js/ui.js'></script>
 </body>
 
 </html>

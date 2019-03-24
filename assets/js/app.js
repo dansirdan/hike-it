@@ -28,47 +28,7 @@ $(document).ready(function () {
   // 
   // 4. local data snapshot at page load and other value changes
 
-  // LOG IN ON CLICK
-  $("#login-btn").on("click", function (e) {
-    e.preventDefault();
-    console.log("logged in");
 
-
-    // user info
-    const email = $("#email").val().trim();
-    const password = $("#pass").val().trim();
-
-    // user login
-    auth.signInWithEmailAndPassword(email, password).then(function (credentials) {
-      console.log(credentials)
-
-    }).catch(function (error) {
-      console.log(error)
-    });
-
-    $("#email, #pass").val("");
-  });
-
-  // CREATE ACCOUNT ON CLICK
-  $("#reg-btn").on("click", function (e) {
-    e.preventDefault();
-    console.log("registered");
-
-
-    // user info
-    const email = $("#regemail").val().trim();
-    const password = $("#regpass").val().trim();
-
-    // user registration
-    auth.createUserWithEmailAndPassword(email, password).then(function (credentials) {
-      console.log(credentials)
-
-    }).catch(function (error) {
-      console.log(error)
-    });
-
-    $("#regemail, #regpass").val("");
-  });
 
   // GOOGLE API INFORMATION
   var GEOcity;
@@ -113,12 +73,77 @@ $(document).ready(function () {
   //      (2) Google Fonts (for making it pretty :) )
 
   // FORM FOR CREATING ACCOUNT
-  // input # or . :
-  // on submit click grab input .val().trim() = username & password/email
-  // submit button listener
-  // ("SUBMIT-BTN").on("click", function(){
 
-  // CODE GOES HERE 
+  // TODO: email needs validation before passed to sign in method
+  // LOG IN ON CLICK
+  $("#login-btn").on("click", function (e) {
+    e.preventDefault();
+    console.log("logged in");
+
+    // user info from inputs
+    const email = $("#email").val().trim();
+    const password = $("#pass").val().trim();
+
+    // user login
+    auth.signInWithEmailAndPassword(email, password).then(function (credentials) {
+      console.log(credentials)
+
+    }).catch(function (error) {
+      console.log(error)
+    });
+
+    $("#email, #pass").val("");
+  });
+
+  // CREATE ACCOUNT ON CLICK
+  $("#reg-btn").on("click", function (e) {
+    e.preventDefault();
+    console.log("registered");
+
+    // user info from inputs
+    const email = $("#regemail").val().trim();
+    const password = $("#regpass").val().trim();
+
+    // user registration
+    auth.createUserWithEmailAndPassword(email, password).then(function (credentials) {
+      console.log(credentials)
+
+    }).catch(function (error) {
+      console.log(error)
+    });
+
+    $("#regemail, #regpass").val("");
+  });
+
+  if (auth.currentUser) {
+    console.log("currentUser")
+    $(".logged-in").show();
+    $(".logged-out").hide();
+
+  };
+
+  auth.onAuthStateChanged(function (user) {
+    console.log(user);
+    if (user) {
+      $(".logged-in").show();
+      $(".logged-out").hide();
+    } else {
+      console.log("not logged in")
+      $(".logged-in").hide();
+      $(".logged-out").show();
+    }
+  });
+
+  $("#logout").on("click", function (e) {
+    e.stopPropagation();
+
+    auth.signOut().then(function () {
+      console.log("logout worked");
+    }).catch(function (error) {
+      console.log(error);
+    });
+  });
+
 
   // })
 

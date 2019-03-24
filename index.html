@@ -19,65 +19,90 @@
 
 <body>
   <div class="materialContainer">
+    <!-- Nav - show on login -->
+    <nav class="logged-in" style="display: none">
+      <ul>
+        <li>
+          <a href="index.html">Upcoming Hikes</a>
+        </li>
+        <li>
+          <a href="search.html">Host a Hike</a>
+        </li>
+        <li>
+          <a href="index.html" id="logout">Logout</a>
+        </li>
+      </ul>
+    </nav>
 
+    <!-- Register/Login - hide after sign in  -->
+    <div class="logged-out" style="display: none">
 
-    <div class="box">
+      <div class="box">
 
-      <div class="title">LOGIN</div>
+        <div class="title">LOGIN</div>
 
-      <div class="input">
-        <label for="name">Email</label>
-        <input type="text" name="name" id="email">
-        <span class="spin"></span>
+        <div class="input">
+          <label for="name">Email</label>
+          <input type="text" name="name" id="email">
+          <span class="spin"></span>
+        </div>
+
+        <div class="input">
+          <label for="pass">Password</label>
+          <input type="password" name="pass" id="pass">
+          <span class="spin"></span>
+        </div>
+
+        <div class="button login">
+          <button type="submit" id="login-btn"><span>GO</span> <i class="fa fa-check"></i></button>
+        </div>
+
+        <a href="" class="pass-forgot">Forgot your password?</a>
+
       </div>
 
-      <div class="input">
-        <label for="pass">Password</label>
-        <input type="password" name="pass" id="pass">
-        <span class="spin"></span>
+      <div class="overbox">
+        <div class="material-button alt-2"><span class="shape"></span></div>
+
+        <div class="title">REGISTER</div>
+
+        <div class="input">
+          <label for="regname">Email</label>
+          <input type="text" name="regname" id="regemail">
+          <span class="spin"></span>
+        </div>
+
+        <div class="input">
+          <label for="regpass">Password</label>
+          <input type="password" name="regpass" id="regpass">
+          <span class="spin"></span>
+        </div>
+
+        <div class="input">
+          <label for="reregpass">Repeat Password</label>
+          <input type="password" name="reregpass" id="reregpass">
+          <span class="spin"></span>
+        </div>
+
+        <div class="button">
+          <button type="submit" id="reg-btn"><span>NEXT</span></button>
+        </div>
       </div>
-
-      <div class="button login">
-        <button type="submit" id="login-btn"><span>GO</span> <i class="fa fa-check"></i></button>
-      </div>
-
-      <a href="" class="pass-forgot">Forgot your password?</a>
-
     </div>
 
-    <div class="overbox">
-      <div class="material-button alt-2"><span class="shape"></span></div>
-
-      <div class="title">REGISTER</div>
-
-      <div class="input">
-        <label for="regname">Email</label>
-        <input type="text" name="regname" id="regemail">
-        <span class="spin"></span>
-      </div>
-
-      <div class="input">
-        <label for="regpass">Password</label>
-        <input type="password" name="regpass" id="regpass">
-        <span class="spin"></span>
-      </div>
-
-      <div class="input">
-        <label for="reregpass">Repeat Password</label>
-        <input type="password" name="reregpass" id="reregpass">
-        <span class="spin"></span>
-      </div>
-
-      <div class="button">
-        <button type="submit" id="reg-btn"><span>NEXT</span></button>
-      </div>
+    <div class="logged-in">
+      <p>this div will display active hiking groups</p>
     </div>
+
   </div>
+
+
 
   <!-- JavaScript -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
   <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
   <script type='text/javascript' src='assets/js/app.js'></script>
+  <script type='text/javascript' src='assets/js/ui.js'></script>
 </body>
 
 </html>
