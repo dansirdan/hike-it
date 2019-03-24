@@ -14,14 +14,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <link rel='stylesheet' href='assets/css/style.css'>
 
-
 </head>
 
 <body>
 
   <div class='container'>
     <!-- Nav - show on login -->
-    <nav class="logged-in" style="display: none">
+    <nav class="logged-in">
       <ul>
         <li>
           <a href="index.html">Upcoming Hikes</a>
@@ -35,15 +34,14 @@
       </ul>
     </nav>
 
-
     <!-- Info Submission Panel -->
     <div class='row'>
 
       <h4>Search Trails</h4>
       <form>
         <div class="input-field col s12">
-          <input type="text" class="validate" id="trail-search">
-          <label for="">City, State</label>
+          <input type="text" class="validate" id="trail-search" placeholder="City, State">
+          <!-- <label for="">City, State</label> -->
           <button type="submit">Search</button>
         </div>
       </form>
@@ -55,19 +53,20 @@
       <div id="search-results">
 
         <!-- this div created dynamically using jquery -->
-        <div class="result">
+        <div class="row result">
           <!-- img -->
-          <img class="result-img" src="https://cdn-files.apstatic.com/hike/7005382_sqsmall_1435421346.jpg"
+          <img class="result-img col s2" src="https://cdn-files.apstatic.com/hike/7005382_sqsmall_1435421346.jpg"
             alt="result-img">
           <!-- name -->
-          <h4 class="result-name">Bear Peak</h4>
+          <h4 class="result-name col s5">Bear Peak</h4>
           <!-- distance -->
-          <p class="result-distance">Distance: <span>5.7</span></p>
+          <p class="result-distance col s2">Distance: <span>5.7</span></p>
           <!-- difficulty -->
-          <p class="result-difficulty">Difficulty: <span>blueBlack</span></p>
+          <p class="result-difficulty col s3">Difficulty: <span>blueBlack</span></p>
           <!-- host hike -->
-          <button class="host-btn">Create a Hiking Party</button>
         </div>
+        <button class="host-btn col s3">Create Group</button>
+        <div class="divider"></div>
 
       </div>
     </div>
@@ -82,7 +81,7 @@
           <div class="col s12">
             <img class="result-img" src="https://cdn-files.apstatic.com/hike/7005382_sqsmall_1435421346.jpg"
               alt="result-img">
-            <h5>Bear Peak - pupulated by hike selection</h5>
+            <h5><span>Bear Peak</span></h5>
           </div>
           <div class="input-field col s12">
             <input id="hike-date" type="text" class="datepicker">
