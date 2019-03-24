@@ -1,114 +1,154 @@
 $(document).ready(function () {
   M.AutoInit();
-// FIREBASE CONFIG
-// 
-//     /* <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script> */
-//
-// var config = {
-//     apiKey: "AIzaSyD6vRPaTQwhxm4Zs-oa7Rw8eyS2mnnCR84",
-//     authDomain: "hikeit-34330.firebaseapp.com",
-//     databaseURL: "https://hikeit-34330.firebaseio.com",
-//     projectId: "hikeit-34330",
-//     storageBucket: "",
-//     messagingSenderId: "956706165596"
-// };
-// firebase.initializeApp(config);
+  // FIREBASE CONFIG
 
-// DATABASE VARIABLES
-// var database = firebase.database();
-// var chatData = database.ref("/chat/");
-// var connectionsRef = database.ref("/connections");
-// var connectedRef = database.ref(".info/connected");
+  var config = {
+    apiKey: "AIzaSyD6vRPaTQwhxm4Zs-oa7Rw8eyS2mnnCR84",
+    authDomain: "hikeit-34330.firebaseapp.com",
+    databaseURL: "https://hikeit-34330.firebaseio.com",
+    projectId: "hikeit-34330",
+    storageBucket: "",
+    messagingSenderId: "956706165596"
+  };
+  firebase.initializeApp(config);
 
-// LISTENERS FOR FIREBASE
-// 1. client connection changes
-// 
-// 2. disconnection events
-// 
-// 3. chat snapshot
-// 
-// 4. local data snapshot at page load and other value changes
-// 
+  // DATABASE VARIABLES
+  var database = firebase.database();
+  var auth = firebase.auth();
+  // var chatData = database.ref("/chat/");
+  // var connectionsRef = database.ref("/connections");
+  // var connectedRef = database.ref(".info/connected");
 
-// GOOGLE API INFORMATION
-var GEOcity;
-var GEOkey = "AIzaSyCRZmQJcBVO85oD5CSKZSc80BAtfvqD9HU";
-var GEOquery = `https://maps.googleapis.com/maps/api/geocode/json?address=${GEOcity}&key=${GEOkey}`;
+  // LISTENERS FOR FIREBASE
+  // 1. client connection changes
+  // 
+  // 2. disconnection events
+  // 
+  // 3. chat snapshot
+  // 
+  // 4. local data snapshot at page load and other value changes
 
-$.ajax({
+  // LOG IN ON CLICK
+  $("#login-btn").on("click", function (e) {
+    e.preventDefault();
+    console.log("logged in");
+
+
+    // user info
+    const email = $("#email").val().trim();
+    const password = $("#pass").val().trim();
+
+    // user login
+    auth.signInWithEmailAndPassword(email, password).then(function (credentials) {
+      console.log(credentials)
+
+    }).catch(function (error) {
+      console.log(error)
+    });
+
+    $("#email, #pass").val("");
+  });
+
+  // CREATE ACCOUNT ON CLICK
+  $("#reg-btn").on("click", function (e) {
+    e.preventDefault();
+    console.log("registered");
+
+
+    // user info
+    const email = $("#regemail").val().trim();
+    const password = $("#regpass").val().trim();
+
+    // user registration
+    auth.createUserWithEmailAndPassword(email, password).then(function (credentials) {
+      console.log(credentials)
+
+    }).catch(function (error) {
+      console.log(error)
+    });
+
+    $("#regemail, #regpass").val("");
+  });
+
+  // GOOGLE API INFORMATION
+  var GEOcity;
+  var GEOkey = "AIzaSyCRZmQJcBVO85oD5CSKZSc80BAtfvqD9HU";
+  var GEOquery = `https://maps.googleapis.com/maps/api/geocode/json?address=${GEOcity}&key=${GEOkey}`;
+
+  $.ajax({
     url: GEOquery,
     method: "GET"
-}).then(function (response) {
+  }).then(function (response) {
     var GEOresult = response.data;
     console.log(GEOresult);
     cityLat = GEOresult.geometry.location.lat;
     cityLon = GEOresult.geometry.location.lng;
-});
+  });
 
-// HIKEPROJECT API INFORMATION
-var cityLat;
-var cityLon;
-var HIKEkey = "";
-var HIKEquery = `https://www.hikingproject.com/data/get-trails?lat=${cityLat}&lon=${cityLon}&key=${HIKEkey}`;
+  // HIKEPROJECT API INFORMATION
+  var cityLat;
+  var cityLon;
+  var HIKEkey = "";
+  var HIKEquery = `https://www.hikingproject.com/data/get-trails?lat=${cityLat}&lon=${cityLon}&key=${HIKEkey}`;
 
-$.ajax({
+  $.ajax({
     url: HIKEquery,
     method: "GET"
-}).then(function (response) {
+  }).then(function (response) {
     var hikeResult = response.data;
     console.log(hikeResult);
 
     for (let i = 0; i < 10; i++) {
-        var img = $("<img>");
-        img.addClass("src", hikeResult[i].imgMedium);
+      var img = $("<img>");
+      img.addClass("src", hikeResult[i].imgMedium);
 
 
 
     }
 
-})
+  })
 
-// REQUIREMENTS REMINDER: 2 new technologies
-//      (1) Materialize: Dates-> Under Pickers
-//      (2) Google Fonts (for making it pretty :) )
+  // REQUIREMENTS REMINDER: 2 new technologies
+  //      (1) Materialize: Dates-> Under Pickers
+  //      (2) Google Fonts (for making it pretty :) )
 
-// FORM FOR CREATING ACCOUNT
-// input # or . :
-// on submit click grab input .val().trim() = username & password/email
-// submit button listener
-// ("SUBMIT-BTN").on("click", function(){
+  // FORM FOR CREATING ACCOUNT
+  // input # or . :
+  // on submit click grab input .val().trim() = username & password/email
+  // submit button listener
+  // ("SUBMIT-BTN").on("click", function(){
 
-// CODE GOES HERE 
+  // CODE GOES HERE 
 
-// })
+  // })
 
-// Form for searching for hike: 
-// Enter:
-//      Zipcode 
-//      Date
-//      maxDistance
-//      Sort by quality or distance - toggle 
-//          (TODO: How does this actually work? Should this feature be included in initial form or results?)
-//              (perhaps it could be a checkbox?)
-//      minLength
-//      minStars
-//      
-// 
+  // Form for searching for hike: 
+  // Enter:
+  //      Zipcode 
+  //      Date
+  //      maxDistance
+  //      Sort by quality or distance - toggle 
+  //          (TODO: How does this actually work? Should this feature be included in initial form or results?)
+  //              (perhaps it could be a checkbox?)
+  //      minLength
+  //      minStars
+  //      
+  // 
 
-// Select on-click
-//      api call 
-// variables from form: zip, date, distance, (sort?), minlength, stars
-// include method(s) for: conditions, 
-// variables for weatherAPI: zip && date
-// variables for hikingAPI: distance, (sort?), minlength, stars
-// var apiKEY = ????
-// var queryURL = https://www.hikingproject.com/data/get-trails?
+  // Select on-click
+  //      api call 
+  // variables from form: zip, date, distance, (sort?), minlength, stars
+  // include method(s) for: conditions, 
+  // variables for weatherAPI: zip && date
+  // variables for hikingAPI: distance, (sort?), minlength, stars
+  // var apiKEY = ????
+  // var queryURL = https://www.hikingproject.com/data/get-trails?
 
-// 
-
-
+  // 
 
 
-// --------------------------------------------------------------------------------------------
-// Possibilities to expand: Include a feature to add hike event to Google calendar 
+
+
+  // --------------------------------------------------------------------------------------------
+  // Possibilities to expand: Include a feature to add hike event to Google calendar 
 });
