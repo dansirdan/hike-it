@@ -23,10 +23,10 @@
     <nav class="logged-in" style="display: none">
       <ul>
         <li>
-          <a href="index.html">Upcoming Hikes</a>
+          <a href="index.html">Hike it</a>
         </li>
         <li>
-          <a href="search.html">Host a Hike</a>
+          <a href="search.html">Search</a>
         </li>
         <li>
           <a href="index.html" id="logout">Logout</a>
@@ -77,7 +77,7 @@
           <input type="text" name="regemail" id="regemail">
           <span class="spin"></span>
         </div>
-                                                
+
         <div class="input">
           <label for="regpass">Password</label>
           <input type="password" name="regpass" id="regpass">
@@ -97,18 +97,61 @@
     </div>
 
     <div class="logged-in">
-      <p>this div will display active hiking groups</p>
+
+      <div>
+        <h4>Hike it</h4>
+
+        <ul class="result collapsible expandable">
+          <li>
+            <div class="row collapsible-header">
+              <!-- img -->
+              <img class="result-img col s1" src="https://cdn-files.apstatic.com/hike/7005382_sqsmall_1435421346.jpg"
+                alt="result-img">
+              <!-- name -->
+              <h4 class="result-name col s5">Bear Peak</h4>
+              <!-- day and time -->
+              <p>Day/time</p>
+              <!-- distance -->
+              <p class="result-distance col s3">Distance: <span>5.7</span></p>
+              <!-- difficulty -->
+              <p class="result-difficulty col s3">Difficulty: <span>blueBlack</span></p>
+            </div>
+
+            <div class="row summery collapsible-body">
+              <div class="col s5">
+                <p id="result-summery">A must-do hike for Boulder locals and visitors alike!</p>
+                <p><strong>Conditions: </strong><span id="result-conditions">Muddy, Snowy, Icy - start is muddy up to
+                    Mesa\nchanges to
+                    slush covered
+                    ice\nhigher up is ice and snowpack\ndefinitely
+                    recommend using microspikes</span></p>
+              </div>
+              <div class="col s4">
+                <p>WEATHER</p>
+              </div>
+              <div class="col s3">
+                <!-- <button type="submit" class="btn orange accent-3" id="hike-submit">Create Group</button> -->
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h4>Hike it, together</h4>
+        <div class="input-field col s4">
+          <input type="text" class="validate" id="trail-search">
+          <label for="">City, State</label>
+          <button type="submit" class="btn orange accent-3" id="">Browse</button>
+        </div>
+      </div>
+
     </div>
 
-  </div>
-
-
-
-  <!-- JavaScript -->
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
-  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-  <script type='text/javascript' src='assets/js/app.js'></script>
-  <script type='text/javascript' src='assets/js/ui.js'></script>
+    <!-- JavaScript -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <script type='text/javascript' src='assets/js/app.js'></script>
+    <script type='text/javascript' src='assets/js/ui.js'></script>
 </body>
 
 </html>

@@ -103,24 +103,20 @@ $(document).ready(function () {
     // user info from inputs
     const email = $("#regemail").val().trim();
     const password = $("#regpass").val().trim();
+    const passConfirm = $("#reregpass").val().trim();
 
     // user registration
-    auth.createUserWithEmailAndPassword(email, password).then(function (credentials) {
-      console.log(credentials)
+    if (password === passConfirm) {
+      auth.createUserWithEmailAndPassword(email, password).then(function (credentials) {
+        console.log(credentials)
 
-    }).catch(function (error) {
-      console.log(error)
-    });
+      }).catch(function (error) {
+        console.log(error)
+      });
 
-    $("#regemail, #regpass").val("");
+      $("#regemail, #regpass, reregpass").val("");
+    }
   });
-
-  if (auth.currentUser) {
-    console.log("currentUser")
-    $(".logged-in").show();
-    $(".logged-out").hide();
-
-  };
 
   auth.onAuthStateChanged(function (user) {
     console.log(user);
@@ -138,7 +134,7 @@ $(document).ready(function () {
     e.stopPropagation();
 
     auth.signOut().then(function () {
-      console.log("logout worked");
+      console.log("logged out");
     }).catch(function (error) {
       console.log(error);
     });

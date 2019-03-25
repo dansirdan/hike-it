@@ -1,12 +1,19 @@
-// show login form 
-$("#loggin-in").hide();
-/* login form is hidden by default to avoid
-* a flash of the div when pages are loading
-*/
+$(document).ready(function () {
+  // init materialize 
+  M.AutoInit();
 
-// Display form to start hike group on click
-$("#search-results").on("click", ".host-btn", function (e) {
-  e.stopPropagation();
-  $("#host-form").show();
-  $("#search-results").hide();
+  // show login form 
+  $("#logged-in").hide();
+
+  $(document).ready(function () {
+    $('.collapsible').collapsible();
+  });
+
+  // Display form to start hike group on click
+  $("#search-results").on("click", ".host-btn", function (e) {
+    e.stopPropagation();
+    $("#host-form").show();
+  });
 });
+
+
