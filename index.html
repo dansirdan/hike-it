@@ -8,6 +8,7 @@
 
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- firebase -->
   <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
   <!-- Compiled and minified JavaScript -->
@@ -18,23 +19,55 @@
 </head>
 
 <body>
-  <div class="materialContainer">
-    <!-- Nav - show on login -->
-    <nav class="logged-in" style="display: none">
-      <ul>
-        <li>
-          <a href="index.html">Hike it</a>
-        </li>
-        <li>
-          <a href="search.html">Search</a>
-        </li>
-        <li>
-          <a href="index.html" id="logout">Logout</a>
-        </li>
-      </ul>
-    </nav>
+  <div class="navbar-fixed">
+    <nav class="teal logged-in" style="display: none">
+      <div class="container">
+        <div class="nav-wrapper">
+          <a href="#!" class="brand-logo"><i class="material-icons">landscape</i>Hike it</a>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul class="right hide-on-med-and-down">
+            <li>
+              <a href="index.html">My Hikes</a>
+            </li>
+            <li>
+              <a href="search.html">Search</a>
+            </li>
+            <li>
+              <a href="index.html" id="logout">Logout</a>
+            </li>
+            <!-- <li>
+              <a href="#popular">Popular Places</a>
+            </li>
+            <li>
+              <a href="#gallery">Gallery</a>
+            </li> -->
 
-    <!-- Register/Login - hide after sign in  -->
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <ul class="sidenav" id="mobile-demo">
+    <li>
+      <a href="index.html">Hike it</a>
+    </li>
+    <li>
+      <a href="search.html">Search</a>
+    </li>
+    <li>
+      <a href="index.html" id="logout">Logout</a>
+    </li>
+    <!-- <li>
+      <a href="#popular">Popular Places</a>
+    </li>
+    <li>
+      <a href="#gallery">Gallery</a>
+    </li> -->
+  </ul>
+  <br>
+
+  <div class="materialContainer">
+
     <div class="logged-out" style="display: none">
 
       <div class="box">
@@ -42,8 +75,8 @@
         <div class="title">LOGIN</div>
 
         <div class="input">
-          <label for="name">Email</label>
-          <input type="text" name="name" id="email">
+          <label for="email">Email</label>
+          <input type="text" name="email" id="email">
           <span class="spin"></span>
         </div>
 
@@ -84,23 +117,24 @@
           <span class="spin"></span>
         </div>
 
-        <div class="input">
+        <!-- <div class="input">
           <label for="reregpass">Repeat Password</label>
           <input type="password" name="reregpass" id="reregpass">
           <span class="spin"></span>
-        </div>
+        </div> -->
 
         <div class="button">
           <button type="submit" id="reg-btn"><span>NEXT</span></button>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="logged-in">
+  <section class="section center logged-in">
+    <div class="container">
+
 
       <div>
-        <h4>Hike it</h4>
-
         <ul class="result collapsible expandable">
           <li>
             <div class="row collapsible-header">
@@ -129,29 +163,31 @@
               <div class="col s4">
                 <p>WEATHER</p>
               </div>
-              <div class="col s3">
-                <!-- <button type="submit" class="btn orange accent-3" id="hike-submit">Create Group</button> -->
+              <div class="col s1">
+                <i class="material-icons small teal-text">location_on</i>
               </div>
+
             </div>
           </li>
         </ul>
       </div>
-      <div>
-        <h4>Hike it, together</h4>
-        <div class="input-field col s4">
-          <input type="text" class="validate" id="trail-search">
-          <label for="">City, State</label>
-          <button type="submit" class="btn orange accent-3" id="">Browse</button>
-        </div>
+      <!-- <div>
+      <h4>Hike it, together</h4>
+      <div class="input-field col s4">
+        <input type="text" class="validate" id="trail-search">
+        <label for="">City, State</label>
+        <button type="submit" class="btn orange accent-3" id="">Browse</button>
       </div>
+    </div> -->
 
     </div>
+  </section>
 
-    <!-- JavaScript -->
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
-    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-    <script type='text/javascript' src='assets/js/app.js'></script>
-    <script type='text/javascript' src='assets/js/ui.js'></script>
+  <!-- JavaScript -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+  <script type='text/javascript' src='assets/js/app.js'></script>
+  <script type='text/javascript' src='assets/js/ui.js'></script>
 </body>
 
 </html>

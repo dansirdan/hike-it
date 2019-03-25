@@ -106,16 +106,23 @@ $(document).ready(function () {
     const passConfirm = $("#reregpass").val().trim();
 
     // user registration
-    if (password === passConfirm) {
-      auth.createUserWithEmailAndPassword(email, password).then(function (credentials) {
-        console.log(credentials)
+    auth.createUserWithEmailAndPassword(email, password).then(function (credentials) {
+      console.log(credentials)
 
-      }).catch(function (error) {
-        console.log(error)
-      });
+    }).catch(function (error) {
+      console.log(error)
+    });
 
-      $("#regemail, #regpass, reregpass").val("");
-    }
+    // if (password === passConfirm) {
+    //   auth.createUserWithEmailAndPassword(email, password).then(function (credentials) {
+    //     console.log(credentials)
+
+    //   }).catch(function (error) {
+    //     console.log(error)
+    //   });
+
+    $("#regemail, #regpass, reregpass").val("");
+
   });
 
   auth.onAuthStateChanged(function (user) {
