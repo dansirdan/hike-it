@@ -68,9 +68,25 @@ $(document).ready(function () {
 
     })
 
+    //TOFINISH: Google Calendar API info: 
+    // var;
+    // var googleCalendarkey = "AIzaSyCRZmQJcBVO85oD5CSKZSc80BAtfvqD9HU";
+    // var goocalquery = `https://${GEOkey}`;
+
+    // $.ajax({
+    //     url: goocalquery,
+    //     method: "GET"
+    // }).then(function (response) {
+    //     var gooCalResult = response.data;
+    //     console.log(gooCalResult);
+
+    // });
+
+    // ----------------------------------------------------------------------------------------------
     // REQUIREMENTS REMINDER: 2 new technologies
-    //      (1) Materialize: Dates-> Under Pickers
-    //      (2) Google Fonts (for making it pretty :) )
+    //      (1) DOING: Materialize: Dates-> Under Pickers
+    //      (2) TODO: Google Fonts (for making it pretty :) 
+    //              (I, brandon, am willing to take charge of this if no one objects)
 
     // FORM FOR CREATING ACCOUNT
     // input # or . :
