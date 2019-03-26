@@ -5,93 +5,240 @@
   <meta charset="UTF-8">
   <title>hiki It</title>
   <link href="https://fonts.googleapis.com/css?family=BioRhyme" rel="stylesheet">
-  <!-- Materialize -->
+
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- firebase -->
+  <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <link rel='stylesheet' href='assets/css/style.css'>
-
-
 </head>
 
 <body>
+  <div class="navbar-fixed">
+    <nav class="teal logged-in" style="display: none">
+      <div class="container">
+        <div class="nav-wrapper">
+          <a href="#!" class="brand-logo"><i class="material-icons">landscape</i>Hike it</a>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul class="right hide-on-med-and-down">
+            <li>
+              <a href="index.html">My Hikes</a>
+            </li>
+            <li>
+              <a href="search.html">Search</a>
+            </li>
+            <li>
+              <a href="index.html" id="logout">Logout</a>
+            </li>
+            <!-- <li>
+                <a href="#popular">Popular Places</a>
+              </li>
+              <li>
+                <a href="#gallery">Gallery</a>
+              </li> -->
 
-  <div class='container'>
-
-    <!-- Info Submission Panel -->
-    <div class='row'>
-
-      <h4>Search Trails</h4>
-      <form>
-        <div class="input-field  col s12">
-          <input type="text" class="validate" id="trail-search">
-          <label for="">City, State</label>
-          <button type="submit">Search</button>
+          </ul>
         </div>
-      </form>
-    </div>
-    <!-- EVERTHING BELOW IS HIDDEN UNTIL SEARCH IS CLICKED -->
-
-    <!-- result- list of ten hikes that include: -->
-    <div class="row">
-      <div id="search-results">
-
-        <!-- this div created dynamically using jquery -->
-        <div class="result">
-          <!-- img -->
-          <img class="result-img" src="" alt="result-img">
-          <!-- name -->
-          <h4 class="result-name">name</h4>
-          <!-- distance -->
-          <p class="result-distance">distance</p>
-          <!-- difficulty -->
-          <p class="result-difficulty">difficulty</p>
-          <!-- host hike -->
-          <button class="host">Create a Hiking Party</button>
-        </div>
-
       </div>
-    </div>
+    </nav>
+  </div>
+  <ul class="sidenav" id="mobile-demo">
+    <li>
+      <a href="index.html">Hike it</a>
+    </li>
+    <li>
+      <a href="search.html">Search</a>
+    </li>
+    <li>
+      <a href="index.html" id="logout">Logout</a>
+    </li>
+    <!-- <li>
+        <a href="#popular">Popular Places</a>
+      </li>
+      <li>
+        <a href="#gallery">Gallery</a>
+      </li> -->
+  </ul>
+  <br>
 
-    <!-- EVERTHING BELOW IS HIDDEN UNTIL A HIKE IS SELECTED -->
-    <!-- host a hike -->
-    <div class="row">
-      <div>
-        <h3>Hike it Together!</h3>
-        <input id="hike-date" type="text" class="datepicker">
+  <!-- Info Submission Panel -->
+  <section class="section center">
+    <div class="container">
+      <div class='row search-container'>
+
+        <h4>Search Trails</h4>
         <form>
-          <div class="col s12">
-            <img src="" alt="result-img">
-            <h5>result-name - pupulated by hike selection</h5>
-          </div>
           <div class="input-field col s12">
-            <input id="hike-date" type="text" class="datepicker">
-            <label for="hike-date">Date</label>
+            <div class="input-field col s4">
+              <input type="text" class="validate" id="trail-search">
+              <label for="">City, State</label>
+            </div>
+            <div class="input-field col s4">
+              <input id="hike-date" type="text" class="datepicker">
+              <label for="hike-date">Date</label>
+            </div>
+            <div class="input-field col s4">
+              <input id="hike-time" type="text" class="timepicker">
+              <label for="hike-time">Time</label>
+            </div>
+            <button class="btn pink accent-3" type="submit">Search</button>
           </div>
-          <div class="input-field col s12">
-            <input id="hike-time" type="text" class="timepicker">
-            <label for="hike-time">Time</label>
-          </div>
-          <div class="input-field col s12">
-            <input id="group-size" type="number" class="validate">
-            <label for="">Group Size</label>
-          </div>
-          <div class="input-field col s12">
-            <input type="text" class="validate" id="hike-comments">
-            <label class='active' for="hike-comments">Commets:</label>
-          </div>
-          <button type="submit" class="btn orange accent-3" id="hike-submit">Submit</button>
         </form>
       </div>
     </div>
+  </section>
+  <!-- EVERTHING BELOW IS HIDDEN UNTIL SEARCH IS CLICKED -->
+
+  <!-- result- list of ten hikes that include: -->
+  <!-- <section class="section section-icons grey lighten-4 center"> -->
+  <section class="section center">
+    <div class="container">
+      <div class="row">
+        <div id="search-results">
+
+          <!-- this div created dynamically using jquery -->
+          <ul class="result collapsible expandable">
+            <li>
+              <div class="row collapsible-header">
+                <!-- img -->
+                <img class="result-img col s1" src="https://cdn.apstatic.com/img/diff/green.svg" alt="result-img">
+                <!-- name -->
+                <h4 class="result-name col s5">Bear Peak</h4>
+                <!-- distance -->
+                <p class="result-distance col s3">Distance: <span>5.7</span></p>
+                <!-- difficulty -->
+                <div class="col s3">
+                  <button type="submit" class="btn orange accent-3" id="hike-submit">Add Hike</button>
+                </div>
+              </div>
+
+              <div class="row summery collapsible-body">
+                <div class="col s5">
+                  <p id="result-summery">A must-do hike for Boulder locals and visitors alike!</p>
+                  <p><strong>Conditions:</strong><span id="result-conditions">Muddy, Snowy, Icy - start is muddy up to
+                      Mesa\nchanges to
+                      slush covered
+                      ice\nhigher up is ice and snowpack\ndefinitely
+                      recommend using microspikes</span></p>
+                </div>
+                <div class="col s4">
+                  <p>Weather API results</p>
+                </div>
+                <div class="col s1">
+                  <i class="material-icons small teal-text">location_on</i>
+                </div>
+
+              </div>
+            </li>
+          </ul>
+
+          <!-- this div created dynamically using jquery -->
+          <ul class="result collapsible expandable">
+            <li>
+              <div class="row collapsible-header">
+                <!-- img -->
+                <img class="result-img col s1" src="https://cdn-files.apstatic.com/hike/7005382_sqsmall_1435421346.jpg"
+                  alt="result-img">
+                <!-- name -->
+                <h4 class="result-name col s5">Bear Peak</h4>
+                <!-- distance -->
+                <p class="result-distance col s3"><span>5.7</span> Miles</p>
+                <!-- difficulty -->
+                <p class="result-difficulty col s3">Difficulty: <span>blueBlack</span></p>
+              </div>
+
+              <div class="row summery collapsible-body">
+                <div class="col s5">
+                  <p id="result-summery">A must-do hike for Boulder locals and visitors alike!</p>
+                  <p><strong>Conditions:</strong><span id="result-conditions">Muddy, Snowy, Icy - start is muddy up to
+                      Mesa\nchanges to
+                      slush covered
+                      ice\nhigher up is ice and snowpack\ndefinitely
+                      recommend using microspikes</span></p>
+                </div>
+                <div class="col s4">
+                  <p>Weather API results</p>
+                </div>
+                <div class="col s3">
+                  <button type="submit" class="btn orange accent-3" id="hike-submit">Add Hike</button>
+                </div>
+              </div>
+            </li>
+          </ul>
+
+          <!-- this div created dynamically using jquery -->
+          <ul class="result collapsible expandable">
+            <li>
+              <div class="row collapsible-header">
+                <!-- img -->
+                <img class="result-img col s2" src="https://cdn-files.apstatic.com/hike/7005382_small_1435421346.jpg"
+                  alt="result-img">
+                <!-- name -->
+                <h4 class="result-name col s5">Bear Peak</h4>
+                <!-- distance -->
+                <p class="result-distance col s2">Distance: <span>5.7</span></p>
+                <!-- difficulty -->
+                <p class="result-difficulty col s3">Difficulty: <span>blueBlack</span></p>
+              </div>
+
+              <div class="row summery collapsible-body">
+                <div class="col s5">
+                  <p id="result-summery">A must-do hike for Boulder locals and visitors alike!</p>
+                  <p><strong>Conditions:</strong><span id="result-conditions">Muddy, Snowy, Icy - start is muddy up to
+                      Mesa\nchanges to slush covered ice\nhigher up is ice and snowpack\ndefinitelyrecommend using
+                      microspikes</span></p>
+                </div>
+                <div class="col s4">
+                  <p>Weather API results</p>
+                </div>
+                <div class="col s3">
+                  <button type="submit" class="btn orange accent-3" id="hike-submit">Add Hike</button>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- EVERTHING BELOW IS HIDDEN UNTIL A HIKE IS SELECTED -->
+  <!-- host a hike -->
+  <div class="row" id="host-form" style="display: none">
+    <div>
+      <h3>Hike it Together!</h3>
+      <input id="hike-date" type="text" class="datepicker">
+      <div class="col s12">
+        <img class="result-img" src="https://cdn-files.apstatic.com/hike/7005382_sqsmall_1435421346.jpg"
+          alt="result-img">
+        <h5><span>Bear Peak</span></h5>
+      </div>
+
+      <form>
+        <div class="input-field col s4">
+          <input id="group-size" type="number" class="validate">
+          <label for="">Group Size</label>
+        </div>
+        <div class="input-field col s8">
+          <input type="text" class="validate" id="hike-comments">
+          <label class='active' for="hike-comments">Commets:</label>
+        </div>
+        <button type="submit" class="btn orange accent-3" id="hike-submit">Submit</button>
+      </form>
+    </div>
+  </div>
   </div>
 
   <!-- JavaScript -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
   <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
   <script type='text/javascript' src='assets/js/app.js'></script>
+  <script type='text/javascript' src='assets/js/ui.js'></script>
 </body>
 
 </html>
