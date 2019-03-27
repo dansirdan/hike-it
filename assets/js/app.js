@@ -19,6 +19,8 @@ $(document).ready(function () {
   // var connectionsRef = database.ref("/connections");
   // var connectedRef = database.ref(".info/connected");
 
+  // NOTE: -- "auth.currentUser.uid" -- THIS IS THE THING THAT POINTS YOU TO THE IN THE DATABASE
+
   // LISTENERS FOR FIREBASE
   // 1. client connection changes
   // 
@@ -101,28 +103,23 @@ $(document).ready(function () {
     console.log("registered");
 
     // user info from inputs
+    const username = $("#regname").val().trim();
     const email = $("#regemail").val().trim();
     const password = $("#regpass").val().trim();
-    const passConfirm = $("#reregpass").val().trim();
 
     // user registration
     auth.createUserWithEmailAndPassword(email, password).then(function (credentials) {
       console.log(credentials)
+      database.ref('users/' + credentials.user.uid).set({ 
+        username: username
+        // 
+      });
 
     }).catch(function (error) {
       console.log(error)
     });
 
-    // if (password === passConfirm) {
-    //   auth.createUserWithEmailAndPassword(email, password).then(function (credentials) {
-    //     console.log(credentials)
-
-    //   }).catch(function (error) {
-    //     console.log(error)
-    //   });
-
-    $("#regemail, #regpass, reregpass").val("");
-
+    $("#regname, regemail, #regpass").val("");
   });
 
   auth.onAuthStateChanged(function (user) {

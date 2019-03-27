@@ -16,6 +16,14 @@
   .section-contact h5 {
     margin-bottom: 30px;
   } */
+  
+   .box input,
+   .box input:focus,
+   .overbox input,
+   .overbox input:focus {
+     border-bottom: none !important; 
+     box-shadow: none !important;
+  }
   .box {
     position: relative;
     top: 0;
@@ -426,7 +434,7 @@
     background-color: #f5f5f5;
 
  }
- .search-container {
+ .banner {
     background-color: rgba(245,245,245,.7);
     max-width: 1200;
     margin: 0 auto;
