@@ -118,7 +118,7 @@ $(function () {
   });
 
 
-  $('.collapsible').collapsible();
+  // $('.collapsible').collapsible();
 
 
 });
@@ -140,5 +140,3 @@ $(function () {
 //     $("#host-form").show();
 //   });
 // });
-
-
