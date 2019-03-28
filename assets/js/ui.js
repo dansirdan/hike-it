@@ -117,26 +117,29 @@ $(function () {
 
   });
 
-
-  // $('.collapsible').collapsible();
-
-
+  // Auto Complete
+  const ac = document.querySelector('.autocomplete');
+  M.Autocomplete.init(ac, {
+    data: {
+      "Salt Lake City": null,
+      "West Valley City": null,
+      "Provo": null,
+      "West Jordan": null,
+      "Orem": null,
+      "Sandy": null,
+      "Ogden": null,
+      "St. George": null,
+      "Layton": null,
+      "Taylorsville": null,
+      "South Jordan": null,
+      "Lehi": null,
+      "Logan": null,
+      "Murray": null,
+      "Draper": null,
+      "Bountiful": null,
+      "Riverton": null,
+      "Roy": null
+    }
+  });
 });
 
-// $(document).ready(function () {
-//   // init materialize 
-//   M.AutoInit();
-
-//   // show login form 
-//   $("#logged-in").hide();
-
-//   $(document).ready(function () {
-//     $('.collapsible').collapsible();
-//   });
-
-//   // Display form to start hike group on click
-//   $("#search-results").on("click", ".host-btn", function (e) {
-//     e.stopPropagation();
-//     $("#host-form").show();
-//   });
-// });

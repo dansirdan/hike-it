@@ -1,5 +1,4 @@
 M.AutoInit();
-//
 // FIREBASE CONFIG
 
 var config = {
@@ -154,62 +153,112 @@ function createHikes(image, name, distance, summary, conditions) {
 $("#hike-submit").on("click", function () {
   // appends the chosen hike to the favorites page and to the current hikes page
   // save to the database
+  
+  // NOTE: -- "auth.currentUser.uid" -- this points you to the currently signed in user
 
 
-})
+    // **************** CHAT FUNCTION:start ***********************
+    //   var user = firebase.auth().signInAnonymously();
+    //   firebase.auth().onAuthStateChanged(function (user) {
+    //       if (user) {
+    //           // User is signed in.
+    //           var isAnonymous = user.isAnonymous;
+    //           user_id = user.uid;
+    //       } else {
+    //           // User is signed out.
+    //       }
+    //   });
 
-////////////////////////////
-// FORM FOR CREATING ACCOUNT
+    //   // get firebase database reference...
+    //   var db_ref = firebase.database().ref('/');
+    //   db_ref.on('child_added', function (data) {
+    //       var type;
+    //       if (data.val().user_id == user_id) {
+    //           type = "sent";
+    //       } else {
+    //           type = "replies";
+    //       }
+    //       $('<li class="' + type + '"><p>' + data.val().message + '</p></li>').appendTo($(
+    //           '.messages ul'));
+    //       $('.message-input input').val(null);
+    //       $('.contact.active .preview').html('<span>You: </span>' + data.val().message);
+    //       $(".messages").animate({
+    //           scrollTop: $(".messages")[0].scrollHeight
+    //       }, 0);
+    //   });
 
-// TODO: email needs validation before passed to sign in method
-// LOG IN ON CLICK
-$("#login-btn").on("click", function (e) {
-  e.preventDefault();
-  console.log("logged in");
+    //   function writeUserData(message) {
+    //       db_ref.push({
+    //           user_id: user_id,
+    //           message: message
+    //       });
+    //   }
+    // **************** CHAT FUNCTION:end ***********************    
 
-  // user info from inputs
-  const email = $("#email").val().trim();
-  const password = $("#pass").val().trim();
+    // LOG IN ON CLICK
+    $("#login-btn").on("click", function (e) {
+        e.preventDefault();
+        console.log("logged in");
 
-  // user login
-  auth.signInWithEmailAndPassword(email, password).then(function (credentials) {
-    console.log(credentials)
+        // user info from inputs
+        const email = $("#email").val().trim();
+        const password = $("#pass").val().trim();
 
-  }).catch(function (error) {
-    console.log(error)
+        // user login
+        auth.signInWithEmailAndPassword(email, password).then(function (credentials) {
+            console.log(credentials)
+
+        }).catch(function (error) {
+            console.log(error)
+        });
+
+        $("#email, #pass").val("");
+
+    });
+
+    // CREATE ACCOUNT ON CLICK
+    $("#reg-btn").on("click", function (e) {
+        e.preventDefault();
+        console.log("registered");
+
+        // user info from inputs
+        const email = $("#regemail").val().trim();
+        const password = $("#regpass").val().trim();
+        const passConfirm = $("#reregpass").val().trim();
+
+        // user registration
+        auth.createUserWithEmailAndPassword(email, password).then(function (credentials) {
+            console.log(credentials)
+
+        }).catch(function (error) {
+            console.log(error)
+        });
+
+    // user info from inputs
+    const username = $("#regname").val().trim();
+    const email = $("#regemail").val().trim();
+    const password = $("#regpass").val().trim();
+
+    // user registration
+    auth.createUserWithEmailAndPassword(email, password).then(function (credentials) {
+      console.log(credentials)
+      database.ref('users/' + credentials.user.uid).set({ 
+        username: username
+        
+      });
+    });
+
+    $("#regname, regemail, #regpass").val("");
   });
 
-  $("#email, #pass").val("");
-});
+$("#logout").on("click", function (e) {
+  e.stopPropagation();
 
-// CREATE ACCOUNT ON CLICK
-$("#reg-btn").on("click", function (e) {
-  e.preventDefault();
-  console.log("registered");
-
-  // user info from inputs
-  const email = $("#regemail").val().trim();
-  const password = $("#regpass").val().trim();
-  const passConfirm = $("#reregpass").val().trim();
-
-  // user registration
-  auth.createUserWithEmailAndPassword(email, password).then(function (credentials) {
-    console.log(credentials)
-
+  auth.signOut().then(function () {
+    console.log("logged out");
   }).catch(function (error) {
-    console.log(error)
+    console.log(error);
   });
-
-  // if (password === passConfirm) {
-  //   auth.createUserWithEmailAndPassword(email, password).then(function (credentials) {
-  //     console.log(credentials)
-
-  //   }).catch(function (error) {
-  //     console.log(error)
-  //   });
-
-  $("#regemail, #regpass, reregpass").val("");
-
 });
 
 auth.onAuthStateChanged(function (user) {
@@ -234,5 +283,8 @@ $("#logout").on("click", function (e) {
   });
 });
 
-// --------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------
 // Possibilities to expand: Include a feature to add hike event to Google calendar 
+
+
+

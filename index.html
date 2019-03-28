@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
   <meta charset="UTF-8">
   <title>Hike It</title>
@@ -27,6 +28,9 @@
           <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
             <li>
+              <a href="social.html">Upcoming Hikes</a>
+            </li>
+            <li>
               <a href="index.html">My Hikes</a>
             </li>
             <li>
@@ -35,19 +39,15 @@
             <li>
               <a href="index.html" id="logout">Logout</a>
             </li>
-            <!-- <li>
-              <a href="#popular">Popular Places</a>
-            </li>
-            <li>
-              <a href="#gallery">Gallery</a>
-            </li> -->
-
           </ul>
         </div>
       </div>
     </nav>
   </div>
   <ul class="sidenav" id="mobile-demo">
+    <li>
+      <a href="social.html">Upcoming Hikes</a>
+    </li>
     <li>
       <a href="index.html">Hike it</a>
     </li>
@@ -57,71 +57,58 @@
     <li>
       <a href="index.html" id="logout">Logout</a>
     </li>
-    <!-- <li>
-      <a href="#popular">Popular Places</a>
-    </li>
-    <li>
-      <a href="#gallery">Gallery</a>
-    </li> -->
   </ul>
   <br>
+    <div class="materialContainer">
 
-  <div class="materialContainer">
+      <div class="logged-out" style="display: none">
 
-    <div class="logged-out" style="display: none">
+        <div class="box">
 
-      <div class="box">
+          <div class="title">LOGIN</div>
 
-        <div class="title">LOGIN</div>
+          <div class="input">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email">
+            <span class="spin"></span>
+          </div>
 
-        <div class="input">
-          <label for="email">Email</label>
-          <input type="text" name="email" id="email">
-          <span class="spin"></span>
+          <div class="input">
+            <label for="pass">Password</label>
+            <input type="password" name="pass" id="pass">
+            <span class="spin"></span>
+          </div>
+
+          <div class="button login">
+            <button type="submit" id="login-btn"><span>GO</span> <i class="fa fa-check"></i></button>
+          </div>
+
+          <a href="" class="pass-forgot">Forgot your password?</a>
+
         </div>
 
-        <div class="input">
-          <label for="pass">Password</label>
-          <input type="password" name="pass" id="pass">
-          <span class="spin"></span>
-        </div>
+        <div class="overbox">
+          <div class="material-button alt-2"><span class="shape"></span></div>
 
-        <div class="button login">
-          <button type="submit" id="login-btn"><span>GO</span> <i class="fa fa-check"></i></button>
-        </div>
+          <div class="title">REGISTER</div>
 
-        <a href="" class="pass-forgot">Forgot your password?</a>
+          <div class="input">
+            <label for="regname">Username</label>
+            <input type="text" name="regname" id="regname">
+            <span class="spin"></span>
+          </div>
 
-      </div>
+          <div class="input">
+            <label for="regemail">Email</label>
+            <input type="text" name="regemail" id="regemail">
+            <span class="spin"></span>
+          </div>
 
-      <div class="overbox">
-        <div class="material-button alt-2"><span class="shape"></span></div>
-
-        <div class="title">REGISTER</div>
-
-        <div class="input">
-          <label for="regname">Username</label>
-          <input type="text" name="regname" id="regname">
-          <span class="spin"></span>
-        </div>
-
-        <div class="input">
-          <label for="regemail">Email</label>
-          <input type="text" name="regemail" id="regemail">
-          <span class="spin"></span>
-        </div>
-
-        <div class="input">
-          <label for="regpass">Password</label>
-          <input type="password" name="regpass" id="regpass">
-          <span class="spin"></span>
-        </div>
-
-        <!-- <div class="input">
-          <label for="reregpass">Repeat Password</label>
-          <input type="password" name="reregpass" id="reregpass">
-          <span class="spin"></span>
-        </div> -->
+          <div class="input">
+            <label for="regpass">Password</label>
+            <input type="password" name="regpass" id="regpass">
+            <span class="spin"></span>
+          </div>
 
         <div class="button">
           <button type="submit" id="reg-btn"><span>NEXT</span></button>
@@ -130,9 +117,19 @@
     </div>
   </div>
 
+  <!--  -->
   <section class="section center logged-in">
     <div class="container">
+      <div class='row banner'>
 
+        <h4>A header</h4>
+        <p>I'm terrible at writing content. Something should be writting here</p>
+
+      </div>
+    </div>
+  </section>
+  <section class="section center logged-in">
+    <div class="container">
 
       <div>
         <ul class="result collapsible expandable">
@@ -165,29 +162,37 @@
               </div>
               <div class="col s1">
                 <i class="material-icons small teal-text">location_on</i>
+
               </div>
 
-            </div>
-          </li>
-        </ul>
-      </div>
-      <!-- <div>
-      <h4>Hike it, together</h4>
-      <div class="input-field col s4">
-        <input type="text" class="validate" id="trail-search">
-        <label for="">City, State</label>
-        <button type="submit" class="btn orange accent-3" id="">Browse</button>
-      </div>
-    </div> -->
+              <div class="row summery collapsible-body">
+                <div class="col s5">
+                  <p id="result-summery">A must-do hike for Boulder locals and visitors alike!</p>
+                  <p><strong>Conditions: </strong><span id="result-conditions">Muddy, Snowy, Icy - start is muddy up to
+                      Mesa\nchanges to
+                      slush covered
+                      ice\nhigher up is ice and snowpack\ndefinitely
+                      recommend using microspikes</span></p>
+                </div>
+                <div class="col s4">
+                  <p>WEATHER</p>
+                </div>
+                <div class="col s1">
+                  <i class="material-icons small teal-text">location_on</i>
+                </div>
 
-    </div>
-  </section>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-  <!-- JavaScript -->
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
-  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-  <script type='text/javascript' src='assets/js/app.js'></script>
-  <script type='text/javascript' src='assets/js/ui.js'></script>
-</body>
+    <!-- JavaScript -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <script type='text/javascript' src='assets/js/app.js'></script>
+    <script type='text/javascript' src='assets/js/ui.js'></script>
+  </body>
 
 </html>
