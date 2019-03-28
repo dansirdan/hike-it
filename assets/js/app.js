@@ -96,12 +96,12 @@ function createHikes(image, name, distance, summary, conditions) {
   divHeader.addClass("row collapsible-header");
 
   var hikeImage = $("<img>");
-  hikeImage.addClass("result-img col s1");
+  hikeImage.addClass("result-img col s3");
   hikeImage.attr("src", image);
   hikeImage.attr("alt", image);
 
   var hikeTitle = $("<h4>");
-  hikeTitle.addClass("result-name col s5");
+  hikeTitle.addClass("result-name col s6");
   hikeTitle.text(name);
 
   var p1 = $("<p>");
