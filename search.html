@@ -1,90 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <title>hiki It</title>
-    <link href="https://fonts.googleapis.com/css?family=BioRhyme" rel="stylesheet">
+<head>
+  <meta charset="UTF-8">
+  <title>hiki It</title>
+  <link href="https://fonts.googleapis.com/css?family=BioRhyme" rel="stylesheet">
 
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- firebase -->
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <link rel='stylesheet' href='assets/css/style.css'>
-  </head>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- firebase -->
+  <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <link rel='stylesheet' href='assets/css/style.css'>
+</head>
 
-  <body>
-    <div class="navbar-fixed">
-      <nav class="teal logged-in" style="display: none">
-        <div class="container">
-          <div class="nav-wrapper">
-            <a href="#!" class="brand-logo"><i class="material-icons">landscape</i>Hike it</a>
-            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-            <ul class="right hide-on-med-and-down">
-              <li>
-                <a href="index.html">My Hikes</a>
-              </li>
-              <li>
-                <a href="search.html">Search</a>
-              </li>
-              <li>
-                <a href="index.html" id="logout">Logout</a>
-              </li>
-              <!-- <li>
-                <a href="#popular">Popular Places</a>
-              </li>
-              <li>
-                <a href="#gallery">Gallery</a>
-              </li> -->
-
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </div>
-    <ul class="sidenav" id="mobile-demo">
-      <li>
-        <a href="index.html">Hike it</a>
-      </li>
-      <li>
-        <a href="search.html">Search</a>
-      </li>
-      <li>
-        <a href="index.html" id="logout">Logout</a>
-      </li>
-      <!-- <li>
-        <a href="#popular">Popular Places</a>
-      </li>
-      <li>
-        <a href="#gallery">Gallery</a>
-      </li> -->
-    </ul>
-    <br>
-
-    <!-- Info Submission Panel -->
-    <section class="section center">
+<body>
+  <div class="navbar-fixed">
+    <nav class="teal logged-in" style="display: none">
       <div class="container">
-        <div class='row search-container'>
+        <div class="nav-wrapper">
+          <a href="#!" class="brand-logo"><span id="logo"><i class="material-icons">landscape</i>Hike it</span></a>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul class="right hide-on-med-and-down">
+            <li>
+              <a href="social.html">Upcoming Hikes</a>
+            </li>
+            <li>
+              <a href="index.html">My Hikes</a>
+            </li>
+            <li>
+              <a href="search.html">Search</a>
+            </li>
+            <li>
+              <a href="index.html" id="logout">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <ul class="sidenav" id="mobile-demo">
+    <li>
+      <a href="social.html">Upcoming Hikes</a>
+    </li>
+    <li>
+      <a href="index.html">Hike it</a>
+    </li>
+    <li>
+      <a href="search.html">Search</a>
+    </li>
+    <li>
+      <a href="index.html" id="logout">Logout</a>
+    </li>
+  </ul>
+  <br>
 
-          <h4>Search Trails</h4>
-          <form>
-            <div class="input-field col s12">
-              <div class="input-field col s4">
-                <input type="text" class="validate" id="trail-search">
-                <label for="">City, State</label>
-              </div>
-              <div class="input-field col s4">
-                <input id="hike-date" type="text" class="datepicker">
-                <label for="hike-date">Date</label>
-              </div>
-              <div class="input-field col s4">
-                <input id="hike-time" type="text" class="timepicker">
-                <label for="hike-time">Time</label>
-              </div>
-              <button class="btn pink accent-3" type="submit">Search</button>
+  <!-- Info Submission Panel -->
+  <section class="section center">
+    <div class="container">
+      <div class='row banner'>
+
+        <h4>Search Trails</h4>
+        <form>
+          <div class="input-field col s12">
+            <div class="input-field col s4">
+              <input type="text" class="autocomplete" id="trail-search">
+              <label for="">City, State</label>
+            </div>
+            <div class="input-field col s4">
+              <input id="hike-date" type="text" class="datepicker">
+              <label for="hike-date">Date</label>
+            </div>
+            <div class="input-field col s4">
+              <input id="hike-time" type="text" class="timepicker">
+              <label for="hike-time">Time</label>
             </div>
           </form>
         </div>
@@ -206,33 +197,6 @@
       </div>
       </div>
     </section>
-
-    <!-- EVERTHING BELOW IS HIDDEN UNTIL A HIKE IS SELECTED -->
-    <!-- host a hike -->
-    <div class="row" id="host-form" style="display: none">
-      <div>
-        <h3>Hike it Together!</h3>
-        <input id="hike-date" type="text" class="datepicker">
-        <div class="col s12">
-          <img class="result-img" src="https://cdn-files.apstatic.com/hike/7005382_sqsmall_1435421346.jpg"
-            alt="result-img">
-          <h5><span>Bear Peak</span></h5>
-        </div>
-
-        <form>
-          <div class="input-field col s4">
-            <input id="group-size" type="number" class="validate">
-            <label for="">Group Size</label>
-          </div>
-          <div class="input-field col s8">
-            <input type="text" class="validate" id="hike-comments">
-            <label class='active' for="hike-comments">Commets:</label>
-          </div>
-          <button type="submit" class="btn orange accent-3" id="hike-submit">Submit</button>
-        </form>
-      </div>
-    </div>
-    </div>
 
     <!-- JavaScript -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>

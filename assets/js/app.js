@@ -1,7 +1,6 @@
 $(document).ready(function () {
     M.AutoInit();
     // FIREBASE CONFIG
-
     var config = {
         apiKey: "AIzaSyD6vRPaTQwhxm4Zs-oa7Rw8eyS2mnnCR84",
         authDomain: "hikeit-34330.firebaseapp.com",
@@ -10,7 +9,16 @@ $(document).ready(function () {
         storageBucket: "",
         messagingSenderId: "956706165596"
     };
+      
     firebase.initializeApp(config);
+     // DATABASE VARIABLES
+    var database = firebase.database();
+    var auth = firebase.auth();
+    // var chatData = database.ref("/chat/");
+    // var connectionsRef = database.ref("/connections");
+    // var connectedRef = database.ref(".info/connected");
+
+  // NOTE: -- "auth.currentUser.uid" -- THIS IS THE THING THAT POINTS YOU TO THE IN THE DATABASE
 
     // **************** CHAT FUNCTION:start ***********************
     //   var user = firebase.auth().signInAnonymously();
@@ -49,10 +57,6 @@ $(document).ready(function () {
     //       });
     //   }
     // **************** CHAT FUNCTION:end ***********************
-
-
-
-
 
     // GOOGLE API INFORMATION
     var GEOcity;
@@ -117,6 +121,7 @@ $(document).ready(function () {
         });
 
         $("#email, #pass").val("");
+
     });
 
     // CREATE ACCOUNT ON CLICK
@@ -137,38 +142,42 @@ $(document).ready(function () {
             console.log(error)
         });
 
-        // if (password === passConfirm) {
-        //   auth.createUserWithEmailAndPassword(email, password).then(function (credentials) {
-        //     console.log(credentials)
+    // user info from inputs
+    const username = $("#regname").val().trim();
+    const email = $("#regemail").val().trim();
+    const password = $("#regpass").val().trim();
 
-        //   }).catch(function (error) {
-        //     console.log(error)
-        //   });
-
-        $("#regemail, #regpass, reregpass").val("");
-
+    // user registration
+    auth.createUserWithEmailAndPassword(email, password).then(function (credentials) {
+      console.log(credentials)
+      database.ref('users/' + credentials.user.uid).set({ 
+        username: username
+        
+      });
     });
 
-    auth.onAuthStateChanged(function (user) {
-        console.log(user);
-        if (user) {
-            $(".logged-in").show();
-            $(".logged-out").hide();
-        } else {
-            console.log("not logged in")
-            $(".logged-in").hide();
-            $(".logged-out").show();
-        }
-    });
+    $("#regname, regemail, #regpass").val("");
+  });
 
-    $("#logout").on("click", function (e) {
-        e.stopPropagation();
+  auth.onAuthStateChanged(function (user) {
+    console.log(user);
+    if (user) {
+      $(".logged-in").show();
+      $(".logged-out").hide();
+    } else {
+      console.log("not logged in")
+      $(".logged-in").hide();
+      $(".logged-out").show();
+    }
+  });
 
-        auth.signOut().then(function () {
-            console.log("logged out");
-        }).catch(function (error) {
-            console.log(error);
-        });
+  $("#logout").on("click", function (e) {
+    e.stopPropagation();
+
+    auth.signOut().then(function () {
+      console.log("logged out");
+    }).catch(function (error) {
+      console.log(error);
     });
 
 
