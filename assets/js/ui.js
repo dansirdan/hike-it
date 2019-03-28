@@ -117,7 +117,6 @@ $(function () {
 
   });
 
-
   // Auto Complete
   const ac = document.querySelector('.autocomplete');
   M.Autocomplete.init(ac, {
@@ -143,3 +142,4 @@ $(function () {
     }
   });
 });
+
