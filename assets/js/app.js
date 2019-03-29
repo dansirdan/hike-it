@@ -150,10 +150,10 @@ function createHikes(image, name, distance, summary, conditions) {
 
 };
 
-$("#hike-submit").on("click", function () {
-  // appends the chosen hike to the favorites page and to the current hikes page
-  // save to the database
-});
+// $("#hike-submit").on("click", function () {
+// appends the chosen hike to the favorites page and to the current hikes page
+// save to the database
+
 // NOTE: -- "auth.currentUser.uid" -- this points you to the currently signed in user
 
 
@@ -249,7 +249,7 @@ $("#logout").on("click", function (e) {
 });
 
 auth.onAuthStateChanged(function (user) {
-  console.log(user);
+  // console.log(user);
   if (user) {
     $(".logged-in").show();
     $(".logged-out").hide();
@@ -270,4 +270,5 @@ $("#logout").on("click", function (e) {
   });
 });
 
+  //--------------------------------------------------------------------------------------------
 // Possibilities to expand: Include a feature to add hike event to Google calendar 
