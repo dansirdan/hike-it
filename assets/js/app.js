@@ -15,6 +15,7 @@ firebase.initializeApp(config);
 // DATABASE VARIABLES
 var database = firebase.database();
 var auth = firebase.auth();
+var joinHike = database.ref("join-a-hike/");
 var connectionsRef = database.ref("/connections");
 var connectedRef = database.ref(".info/connected");
 
@@ -26,15 +27,108 @@ connectedRef.on("value", function (snapshot) {
   };
 });
 
+// NEEDED FOR JOINHIKE
+var activeHikeArr = [];
+
+// DATABASE REFERENCE TO PUSH ACTIVE HIKES TO PAGE ON LOAD
+joinHike.once("value", function (snap) {
+
+  // EMPTY THE ARRAY LOCALLY TO PULL IN FROM FIREBASE
+  activeHikeArr = [];
+
+  // FOR EACH LOOPS THROUGH THE ARRAY OF DATA
+  snap.forEach(function (childSnap) {
+    var childData = childSnap.val();
+    activeHikeArr.push(childData);
+  })
+
+  console.log(activeHikeArr);
+
+  // ADDS ALL ACTIVE HIKE CARDS TO THE PAGE ONCE (REFRESH HACK)
+  for (let i = 0; i < activeHikeArr.length; i++) {
+    image = activeHikeArr[i].image;
+    hikeID = activeHikeArr[i].hikeID;
+    image = activeHikeArr[i].image;
+    name = activeHikeArr[i].name;
+    distance = activeHikeArr[i].distance;
+    summary = activeHikeArr[i].summary;
+    conditions = activeHikeArr[i].conditions;
+    date = activeHikeArr[i].date;
+    time = activeHikeArr[i].date;
+
+    // TEST: WORKING
+    // console.log(name);
+
+    // CREATE ACTIVE HIKES
+    // createActiveHikeCard(image, name, distance, hikeID, summary, conditions);
+
+  };
+});
+
+// SEARCH BUTTON LISTENER
+$("#search-results").on("click", ".hike-submit", function (e) {
+  e.preventDefault();
+  console.log("I've been clicked");
+
+  var joinHikeID = parseInt($(this).attr("data-id"));
+  var hikeKey = "200435031-6aa58562b036efd25371d400543a5981";
+  var joinHikeQuery = `https://www.hikingproject.com/data/get-trails-by-id?ids=${joinHikeID}&key=${hikeKey}`
+
+  $.ajax({
+    url: joinHikeQuery,
+    method: "GET"
+  }).then(function (response) {
+
+    var joinResult = response.trails;
+    console.log(joinResult);
+
+    var hikeIDJ = joinResult[0].id;
+    var imageJ = joinResult[0].imgSmallMed;
+    var nameJ = joinResult[0].name;
+    var distanceJ = joinResult[0].length;
+    var summaryJ = joinResult[0].summary;
+    var conditionsJ = joinResult[0].conditionDetails;
+
+    var newHike = {
+      hikeID: hikeIDJ,
+      image: imageJ,
+      name: nameJ,
+      distance: distanceJ,
+      summary: summaryJ,
+      conditions: conditionsJ,
+      date: hikeDate,
+      time: hikeTime,
+      // ALLOWS US TO DELETE IT ON A SWITCH FLIP TO FALSE
+      // KEEP A LISTENER FOR THIS ACTIVE AND CHANGE WHEN FLIPPED
+      active: true
+      // BOOM 
+      // database.ref(this/active).set(false) ETC
+      // ANOTHER LATE NIGHT THOUGHT
+    }
+    console.log(newHike);
+    // var joinKey = database.ref().child("join-a-hike/")
+    database.ref(`join-a-hike/`).push(newHike);
+    // database.ref(THIS USER).push(newHike);
+    // save to favorites
+    // thought for presentation: make some fake accounts and fill with fake data
+
+
+  });
+  // appends the chosen hike to the favorites page and to the current hikes page
+  // save to the database
+});
+
 // API calls
+var citySearch;
+
 function masterAPI() {
 
   // GEOCODER QUERY AND VARIABLE BUILDER
-  // var citySearch = $("#city-name");
-  // console.log(citySearch).val().trim();
-  // var splitCity = citySearch.split(" ");
-  // var geoCity = splitCity.join("+");
-  var geoCity = "Salt+Lake+City"
+  console.log(citySearch);
+
+  var splitCity = citySearch.split(" ");
+  var geoCity = splitCity.join("+");
+  // var geoCity = "Salt+Lake+City"
   var geoKey = "AIzaSyCRZmQJcBVO85oD5CSKZSc80BAtfvqD9HU";
   var geoQuery = `https://maps.googleapis.com/maps/api/geocode/json?address=${geoCity},+UT&key=${geoKey}`;
 
@@ -76,30 +170,32 @@ function masterAPI() {
         var hikeID = hikeResult[i].id;
 
         // FUNCTION TO CREATE DIV IS CALLED
-        createHikes(hikeID, image, name, distance, summary, conditions);
+        createHikes(image, name, distance, hikeID, summary, conditions);
 
       }
     })
   });
 };
 
+var hikeDate;
+var hikeTime;
 // ON CLICK LISTENER FOR 'SEARCH'
 $("#search-hike").on("click", function (e) {
+  citySearch = $("#city-name").val().trim();
   $("#search-results").show();
   e.preventDefault();
   masterAPI();
-  var hikeDate = $("#hike-date").val().trim();
-  var hikeTime = $("#hike-time").val().trim();
+  hikeDate = $("#hike-date").val().trim();
+  hikeTime = $("#hike-time").val().trim();
   console.log(hikeDate);
   console.log(hikeTime);
 });
 
 // FUNCTION TO DYNAMICALLY CREATE THE HIKES
-function createHikes(hikeID, image, name, distance, summary, conditions) {
+function createHikes(image, name, distance, hikeID, summary, conditions) {
 
   // CREATES UNIQUE ID FOR THE HIKE
   var li = $("<li>");
-  li.attr("hike-data", hikeID)
 
   var divHeader = $("<div>");
   divHeader.addClass("row collapsible-header");
@@ -123,7 +219,8 @@ function createHikes(hikeID, image, name, distance, summary, conditions) {
   var hikeBtn = $("<button>");
   hikeBtn.addClass("btn orange accent-3")
   hikeBtn.attr("type", "submit");
-  hikeBtn.attr("id", "hike-submit");
+  hikeBtn.attr("data-id", hikeID);
+  hikeBtn.attr("class", "hike-submit");
   hikeBtn.text("Add Hike");
 
   divBtn.append(hikeBtn);
@@ -160,10 +257,6 @@ function createHikes(hikeID, image, name, distance, summary, conditions) {
   // var timeOfHike
 
 };
-
-// $("#hike-submit").on("click", function () {
-// appends the chosen hike to the favorites page and to the current hikes page
-// save to the database
 
 // NOTE: -- "auth.currentUser.uid" -- this points you to the currently signed in user
 
@@ -281,5 +374,5 @@ $("#logout").on("click", function (e) {
   });
 });
 
-  //--------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------
 // Possibilities to expand: Include a feature to add hike event to Google calendar 
