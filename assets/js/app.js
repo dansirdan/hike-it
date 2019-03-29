@@ -96,59 +96,88 @@ $("#search-hike").on("click", function (e) {
 
 // FUNCTION TO DYNAMICALLY CREATE THE HIKES
 function createHikes(hikeID, image, name, distance, summary, conditions) {
+  
+  // card
+  var card = $("<div>").addClass("card").attr("hike-data", hikeID) // CREATES UNIQUE ID FOR THE HIKE
 
-  // CREATES UNIQUE ID FOR THE HIKE
-  var li = $("<li>");
-  li.attr("hike-data", hikeID)
+  var imgDiv = $("<div>").addClass("card-image");
+  var img = $("<img>").addClass("result-img").attr("src", image).attr("alt", image);
+  var btn = $("<a>").addClass("btn-floating halfway-fab waves-effect waves-light teal");
+  var icon = $("<i>").addClass("material-icons hike-submit").text("add");
+  var add = btn.append(icon);
 
-  var divHeader = $("<div>");
-  divHeader.addClass("row collapsible-header");
+  imgDiv.append(img, add);
 
-  var hikeImage = $("<img>");
-  hikeImage.addClass("result-img col s3");
-  hikeImage.attr("src", image);
-  hikeImage.attr("alt", image);
+  var cardContent = $("<div>").addClass("card-content");
+  var title = $("<span>").addClass("card-title result-name").text(name);
+  var sum = $("<p>").addClass("result-summery").text(summary);
 
-  var hikeTitle = $("<h4>");
-  hikeTitle.addClass("result-name col s6");
-  hikeTitle.text(name);
+  cardContent.append(title, sum);
 
-  var p1 = $("<p>");
-  p1.addClass("result-distance col s3");
-  p1.text(`Distance: ${distance} miles`);
+  var cardFooter = $("<div>").addClass("card-action");
+  var cond = $("<p>").addClass("result-conditions").text(conditions);
+  var dist = $("<p>").addClass("result-distance").text(`${distance} Miles`);
 
-  var divBtn = $("<div>")
-  divBtn.addClass("col s3");
+  cardFooter.append(cond, dist);
 
-  var hikeBtn = $("<button>");
-  hikeBtn.addClass("btn orange accent-3")
-  hikeBtn.attr("type", "submit");
-  hikeBtn.attr("id", "hike-submit");
-  hikeBtn.text("Add Hike");
+  card.append(imgDiv, cardContent, cardFooter);
 
-  divBtn.append(hikeBtn);
-  divHeader.append(hikeImage, hikeTitle, p1, divBtn);
+  $("#search-results").append(card);
 
-  var divBody = $("<div>");
-  divBody.addClass("row summery collapsible-body");
+  // ***********************************************************************
 
-  var divSummary = $("<div>");
-  divSummary.addClass("col s5");
 
-  var p2 = $("<p>");
+  // var li = $("<li>");
+  // li.attr("hike-data", hikeID)
 
-  p2.addClass("result-summery");
-  p2.text(summary);
+  // var divHeader = $("<div>");
+  // divHeader.addClass("row collapsible-header");
 
-  var p3 = $("<p>");
-  p3.text(`Conditions: ${conditions}`);
+  // var hikeImage = $("<img>");
+  // hikeImage.addClass("result-img col s3");
+  // hikeImage.attr("src", image);
+  // hikeImage.attr("alt", image);
 
-  divSummary.append(p3, p2);
-  divBody.append(divSummary);
+  // var hikeTitle = $("<h4>");
+  // hikeTitle.addClass("result-name col s6");
+  // hikeTitle.text(name);
 
-  var HikeCard = li.append(divHeader, divBody);
+  // var p1 = $("<p>");
+  // p1.addClass("result-distance col s3");
+  // p1.text(`Distance: ${distance} miles`);
 
-  $("#search-results").append(HikeCard);
+  // var divBtn = $("<div>")
+  // divBtn.addClass("col s3");
+
+  // var hikeBtn = $("<button>");
+  // hikeBtn.addClass("btn orange accent-3")
+  // hikeBtn.attr("type", "submit");
+  // hikeBtn.attr("id", "hike-submit");
+  // hikeBtn.text("Add Hike");
+
+  // divBtn.append(hikeBtn);
+  // divHeader.append(hikeImage, hikeTitle, p1, divBtn);
+
+  // var divBody = $("<div>");
+  // divBody.addClass("row summery collapsible-body");
+
+  // var divSummary = $("<div>");
+  // divSummary.addClass("col s5");
+
+  // var p2 = $("<p>");
+
+  // p2.addClass("result-summery");
+  // p2.text(summary);
+
+  // var p3 = $("<p>");
+  // p3.text(`Conditions: ${conditions}`);
+
+  // divSummary.append(p3, p2);
+  // divBody.append(divSummary);
+
+  // var HikeCard = li.append(divHeader, divBody);
+
+  // $("#search-results").append(HikeCard);
 
   // var divWeather = $("<div>");
   // divWeather.addClass("col s4");

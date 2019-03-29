@@ -470,3 +470,7 @@
 .text-center {
   text-align: center;
 }
+
+.result-distance {
+   color: #aaa;
+}
