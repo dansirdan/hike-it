@@ -1,6 +1,7 @@
+$("#search-results").hide();
+
 M.AutoInit();
 // FIREBASE CONFIG
-
 var config = {
   apiKey: "AIzaSyD6vRPaTQwhxm4Zs-oa7Rw8eyS2mnnCR84",
   authDomain: "hikeit-34330.firebaseapp.com",
@@ -29,32 +30,36 @@ connectedRef.on("value", function (snapshot) {
 function masterAPI() {
 
   // GEOCODER QUERY AND VARIABLE BUILDER
-  var GEOcity = $("#city-name");
-  var GEOkey = "AIzaSyCRZmQJcBVO85oD5CSKZSc80BAtfvqD9HU";
-  var GEOquery = `https://maps.googleapis.com/maps/api/geocode/json?address=${GEOcity},+UT&key=${GEOkey}`;
+  // var citySearch = $("#city-name");
+  // console.log(citySearch).val().trim();
+  // var splitCity = citySearch.split(" ");
+  // var geoCity = splitCity.join("+");
+  var geoCity = "Salt+Lake+City"
+  var geoKey = "AIzaSyCRZmQJcBVO85oD5CSKZSc80BAtfvqD9HU";
+  var geoQuery = `https://maps.googleapis.com/maps/api/geocode/json?address=${geoCity},+UT&key=${geoKey}`;
 
   // AJAX CALL FOR GEOCODER
   $.ajax({
-    url: GEOquery,
+    url: geoQuery,
     method: "GET"
   }).then(function (response) {
 
-    var GEOresult = response.results;
-    console.log(GEOresult);
+    var geoResult = response.results;
+    console.log(geoResult);
 
     // GRAB THE LATITUDE AND LONGITUDE
-    var cityLat = GEOresult[0].geometry.location.lat;
-    var cityLon = GEOresult[0].geometry.location.lng;
+    var cityLat = geoResult[0].geometry.location.lat;
+    var cityLon = geoResult[0].geometry.location.lng;
     console.log(cityLat);
     console.log(cityLon);
 
     // HIKE PROJECT API KEY AND QUERY BUILDER
-    var HIKEkey = "200435031-6aa58562b036efd25371d400543a5981";
-    var HIKEquery = `https://www.hikingproject.com/data/get-trails?lat=${cityLat}&lon=${cityLon}&key=${HIKEkey}`;
+    var hikeKey = "200435031-6aa58562b036efd25371d400543a5981";
+    var hikeQuery = `https://www.hikingproject.com/data/get-trails?lat=${cityLat}&lon=${cityLon}&key=${hikeKey}`;
 
     // AJAX CALL FOR THE HIKE PROJECT
     $.ajax({
-      url: HIKEquery,
+      url: hikeQuery,
       method: "GET"
     }).then(function (response) {
 
@@ -67,10 +72,11 @@ function masterAPI() {
         var name = hikeResult[i].name;
         var distance = hikeResult[i].length;
         var summary = hikeResult[i].summary;
-        var conditions = hikeResult[i].conditionDetails
+        var conditions = hikeResult[i].conditionDetails;
+        var hikeID = hikeResult[i].id;
 
         // FUNCTION TO CREATE DIV IS CALLED
-        createHikes(image, name, distance, summary, conditions);
+        createHikes(hikeID, image, name, distance, summary, conditions);
 
       }
     })
@@ -79,17 +85,21 @@ function masterAPI() {
 
 // ON CLICK LISTENER FOR 'SEARCH'
 $("#search-hike").on("click", function (e) {
-  preventDefault(e);
+  $("#search-results").show();
+  e.preventDefault();
   masterAPI();
+  var hikeDate = $("#hike-date").val().trim();
+  var hikeTime = $("#hike-time").val().trim();
+  console.log(hikeDate);
+  console.log(hikeTime);
 });
 
 // FUNCTION TO DYNAMICALLY CREATE THE HIKES
-function createHikes(image, name, distance, summary, conditions) {
+function createHikes(hikeID, image, name, distance, summary, conditions) {
 
-  // var ul = $("<ul>")
-  // ul.addClass("result collapsible expandable")
-
+  // CREATES UNIQUE ID FOR THE HIKE
   var li = $("<li>");
+  li.attr("hike-data", hikeID)
 
   var divHeader = $("<div>");
   divHeader.addClass("row collapsible-header");
@@ -126,13 +136,14 @@ function createHikes(image, name, distance, summary, conditions) {
   divSummary.addClass("col s5");
 
   var p2 = $("<p>");
+
   p2.addClass("result-summery");
   p2.text(summary);
 
   var p3 = $("<p>");
   p3.text(`Conditions: ${conditions}`);
 
-  divSummary.append(p2, p3);
+  divSummary.append(p3, p2);
   divBody.append(divSummary);
 
   var HikeCard = li.append(divHeader, divBody);
