@@ -158,7 +158,6 @@ function createHikes(hikeID, image, name, distance, summary, conditions) {
 
   // var dateOfHike; 
   // var timeOfHike
-
 };
 
 // $("#hike-submit").on("click", function () {
