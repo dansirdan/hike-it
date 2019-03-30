@@ -110,11 +110,10 @@ $("#search-results").on("click", ".hike-submit", function (e) {
     console.log(newHike);
     // var joinKey = database.ref().child("join-a-hike/")
     database.ref(`join-a-hike/`).push(newHike);
-    // database.ref(THIS USER).push(newHike);
-    // save to favorites
+    database.ref('users/' + auth.currentUser.uid).push(newHike);
+    console.log(`users/${auth.currentUser.uid}`).push(newHike);
+
     // thought for presentation: make some fake accounts and fill with fake data
-
-
   });
   // appends the chosen hike to the favorites page and to the current hikes page
   // save to the database
@@ -173,7 +172,6 @@ function masterAPI() {
 
         // FUNCTION TO CREATE DIV IS CALLED
         createHikes(hikeID, image, name, distance, summary, conditions);
-
       }
     })
   });
@@ -301,7 +299,6 @@ $("#reg-btn").on("click", function (e) {
     console.log(credentials)
     database.ref('users/' + credentials.user.uid).set({
       username: username
-
     });
   });
 
