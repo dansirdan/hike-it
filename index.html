@@ -24,7 +24,7 @@
     <nav class="teal logged-in" style="display: none">
       <div class="container">
         <div class="nav-wrapper">
-          <a href="#!" class="brand-logo"><i class="material-icons">landscape</i>Hike it</a>
+          <a href="#!" class="brand-logo">Hike it</a>
           <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
             <li>
@@ -59,56 +59,56 @@
     </li>
   </ul>
   <br>
-    <div class="materialContainer">
+  <div class="materialContainer">
 
-      <div class="logged-out" style="display: none">
+    <div class="logged-out" style="display: none">
 
-        <div class="box">
+      <div class="box">
 
-          <div class="title">LOGIN</div>
+        <div class="title">LOGIN</div>
 
-          <div class="input">
-            <label for="email">Email</label>
-            <input type="text" name="email" id="email">
-            <span class="spin"></span>
-          </div>
-
-          <div class="input">
-            <label for="pass">Password</label>
-            <input type="password" name="pass" id="pass">
-            <span class="spin"></span>
-          </div>
-
-          <div class="button login">
-            <button type="submit" id="login-btn"><span>GO</span> <i class="fa fa-check"></i></button>
-          </div>
-
-          <a href="" class="pass-forgot">Forgot your password?</a>
-
+        <div class="input">
+          <label for="email">Email</label>
+          <input type="text" name="email" id="email">
+          <span class="spin"></span>
         </div>
 
-        <div class="overbox">
-          <div class="material-button alt-2"><span class="shape"></span></div>
+        <div class="input">
+          <label for="pass">Password</label>
+          <input type="password" name="pass" id="pass">
+          <span class="spin"></span>
+        </div>
 
-          <div class="title">REGISTER</div>
+        <div class="button login">
+          <button type="submit" id="login-btn"><span>GO</span> <i class="fa fa-check"></i></button>
+        </div>
 
-          <div class="input">
-            <label for="regname">Username</label>
-            <input type="text" name="regname" id="regname">
-            <span class="spin"></span>
-          </div>
+        <a href="" class="pass-forgot">Forgot your password?</a>
 
-          <div class="input">
-            <label for="regemail">Email</label>
-            <input type="text" name="regemail" id="regemail">
-            <span class="spin"></span>
-          </div>
+      </div>
 
-          <div class="input">
-            <label for="regpass">Password</label>
-            <input type="password" name="regpass" id="regpass">
-            <span class="spin"></span>
-          </div>
+      <div class="overbox">
+        <div class="material-button alt-2"><span class="shape"></span></div>
+
+        <div class="title">REGISTER</div>
+
+        <div class="input">
+          <label for="regname">Username</label>
+          <input type="text" name="regname" id="regname">
+          <span class="spin"></span>
+        </div>
+
+        <div class="input">
+          <label for="regemail">Email</label>
+          <input type="text" name="regemail" id="regemail">
+          <span class="spin"></span>
+        </div>
+
+        <div class="input">
+          <label for="regpass">Password</label>
+          <input type="password" name="regpass" id="regpass">
+          <span class="spin"></span>
+        </div>
 
         <div class="button">
           <button type="submit" id="reg-btn"><span>NEXT</span></button>
@@ -117,7 +117,7 @@
     </div>
   </div>
 
-  <!--  -->
+  <!-- Banner -->
   <section class="section center logged-in">
     <div class="container">
       <div class='row banner'>
@@ -130,69 +130,16 @@
   </section>
   <section class="section center logged-in">
     <div class="container">
+      <div class="col s12 cards-container" id="favorite-hikes"></div>
 
-      <div>
-        <ul class="result collapsible expandable">
-          <li>
-            <div class="row collapsible-header">
-              <!-- img -->
-              <img class="result-img col s1" src="https://cdn-files.apstatic.com/hike/7005382_sqsmall_1435421346.jpg"
-                alt="result-img">
-              <!-- name -->
-              <h4 class="result-name col s5">Bear Peak</h4>
-              <!-- day and time -->
-              <p>Day/time</p>
-              <!-- distance -->
-              <p class="result-distance col s3">Distance: <span>5.7</span></p>
-              <!-- difficulty -->
-              <p class="result-difficulty col s3">Difficulty: <span>blueBlack</span></p>
-            </div>
+    </div>
+  </section>
 
-            <div class="row summery collapsible-body">
-              <div class="col s5">
-                <p id="result-summery">A must-do hike for Boulder locals and visitors alike!</p>
-                <p><strong>Conditions: </strong><span id="result-conditions">Muddy, Snowy, Icy - start is muddy up to
-                    Mesa\nchanges to
-                    slush covered
-                    ice\nhigher up is ice and snowpack\ndefinitely
-                    recommend using microspikes</span></p>
-              </div>
-              <div class="col s4">
-                <p>WEATHER</p>
-              </div>
-              <div class="col s1">
-                <i class="material-icons small teal-text">location_on</i>
-
-              </div>
-
-              <div class="row summery collapsible-body">
-                <div class="col s5">
-                  <p id="result-summery">A must-do hike for Boulder locals and visitors alike!</p>
-                  <p><strong>Conditions: </strong><span id="result-conditions">Muddy, Snowy, Icy - start is muddy up to
-                      Mesa\nchanges to
-                      slush covered
-                      ice\nhigher up is ice and snowpack\ndefinitely
-                      recommend using microspikes</span></p>
-                </div>
-                <div class="col s4">
-                  <p>WEATHER</p>
-                </div>
-                <div class="col s1">
-                  <i class="material-icons small teal-text">location_on</i>
-                </div>
-
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- JavaScript -->
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
-    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-    <script type='text/javascript' src='assets/js/app.js'></script>
-    <script type='text/javascript' src='assets/js/ui.js'></script>
-  </body>
+  <!-- JavaScript -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+  <script type='text/javascript' src='assets/js/app.js'></script>
+  <script type='text/javascript' src='assets/js/ui.js'></script>
+</body>
 
 </html>
