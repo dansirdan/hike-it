@@ -31,12 +31,11 @@
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <!-- Web Navbar -->
             <ul class="right hide-on-med-and-down">
-              <li>
-                <a href="social.html"><i class="fas fa-user-friends"></i> Join A Hike</a>
-              </li>
-              <!-- this page -->
               <li class="active">
                 <a href="index.html"><i class="fas fa-hiking"></i> My Hikes</a>
+              </li>
+              <li>
+                <a href="social.html"><i class="fas fa-user-friends"></i> Join A Hike</a>
               </li>
               <li>
                 <a href="search.html"><i class="fas fa-search"></i> Search</a>
@@ -50,19 +49,26 @@
       </nav>
     </div>
     <!-- SIDENAV -->
-    <ul class="sidenav" id="mobile-demo">
-      <!-- this page -->
+    <!-- final order -->
+    <ul class="teal sidenav" id="mobile-demo">
+      <li>
+        <div class="user-view">
+          <div class="background">
+            <img src="images/">
+          </div>
+        </div>
+      </li>
       <li class="active">
-        <a href="index.html">Hike it</a>
+        <a href="index.html"><i class="fas fa-hiking"></i> My Hikes</a>
       </li>
       <li>
-        <a href="social.html">Join A Hike</a>
+        <a href="social.html"><i class="fas fa-user-friends"></i> Join A Hike</a>
       </li>
       <li>
-        <a href="search.html">Search</a>
+        <a href="search.html"><i class="fas fa-search"></i> Search</a>
       </li>
       <li>
-        <a href="index.html" id="logout">Logout</a>
+        <a href="index.html" id="logout" class="waves-effect waves-light btn yellow darken-4">Logout</a>
       </li>
     </ul>
     <br>

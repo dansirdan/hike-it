@@ -26,15 +26,14 @@
             <a href="#!" class="brand-logo"><span id="logo"><i class="material-icons">landscape</i>Hike it</span></a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
+              <li class="active">
+                <a href="search.html"><i class="fas fa-search"></i> Search</a>
+              </li>
               <li>
                 <a href="social.html"><i class="fas fa-user-friends"></i> Join A Hike</a>
               </li>
               <li>
                 <a href="index.html"><i class="fas fa-hiking"></i> My Hikes</a>
-              </li>
-              <!-- this page -->
-              <li class="active">
-                <a href="search.html"><i class="fas fa-search"></i> Search</a>
               </li>
               <li>
                 <a href="index.html" id="logout" class="waves-effect waves-light btn yellow darken-4">Logout</a>
@@ -45,87 +44,62 @@
       </nav>
     </div>
     <!-- SIDENAV -->
-    <ul class="sidenav" id="mobile-demo">
-      <li>
-        <a href="social.html">Upcoming Hikes</a>
-      </li>
-      <li>
-        <a href="index.html">Hike it</a>
-      </li>
-      <!-- this page -->
+    <ul class="teal sidenav" id="mobile-demo">
       <li class="active">
-        <a href="search.html">Search</a>
+        <a href="search.html"><i class="fas fa-search"></i> Search</a>
       </li>
       <li>
-        <a href="index.html" id="logout">Logout</a>
+        <a href="social.html"><i class="fas fa-user-friends"></i> Join A Hike</a>
+      </li>
+      <li>
+        <a href="index.html"><i class="fas fa-hiking"></i> My Hikes</a>
+      </li>
+      <li>
+        <a href="index.html" id="logout" class="waves-effect waves-light btn yellow darken-4">Logout</a>
       </li>
     </ul>
     <br>
 
-    <<<<<<< HEAD <!-- Info Submission Panel -->
-      <section class="section center">
-        <div class="container">
-          <div class='row banner'>
-            <h4>Search Trails</h4>
-            <form>
-              <div class="input-field col s12">
-                <div class="input-field col s4">
-                  <input type="text" class="validate autocomplete" autocomplete="off" id="city-name">
-                  <label for="">City</label>
-                </div>
-                <div class="input-field col s4">
-                  <input id="hike-date" type="text" class="datepicker">
-                  <label for="hike-date">Date</label>
-                </div>
-                <div class="input-field col s4">
-                  <input id="hike-time" type="text" class="timepicker">
-                  <label for="hike-time">Time</label>
-                </div>
-                <button class="btn pink accent-3" type="submit" id="search-hike">Search</button>
-                =======
-                <!-- Info Submission Panel -->
-                <section class="section center">
-                  <div class="container">
-                    <div class='row banner'>
-                      <h4>Search Trails</h4>
-                      <form>
-                        <div class="input-field col s12">
-                          <div class="input-field col s4">
-                            <input type="text" class="validate autocomplete" autocomplete="off" id="city-name">
-                            <label for="">City</label>
-                          </div>
-                          <div class="input-field col s4">
-                            <input id="hike-date" type="text" class="datepicker">
-                            <label for="hike-date">Date</label>
-                          </div>
-                          <div class="input-field col s4">
-                            <input id="hike-time" type="text" class="timepicker">
-                            <label for="hike-time">Time</label>
-                            >>>>>>> cc3abda89b0dd717472adfe296f9d09aebfb9804
-                          </div>
-                      </form>
+    <!-- Info Submission Panel -->
+    <section class="section center">
+      <div class="container">
+        <div class='row banner'>
+          <h4>Search Trails</h4>
+          <form>
+            <div class="input-field col s12">
+              <div class="input-field col s4">
+                <input type="text" class="validate autocomplete" autocomplete="off" id="city-name">
+                <label for="">City</label>
+              </div>
+              <div class="input-field col s4">
+                <input id="hike-date" type="text" class="datepicker">
+                <label for="hike-date">Date</label>
+              </div>
+              <div class="input-field col s4">
+                <input id="hike-time" type="text" class="timepicker">
+                <label for="hike-time">Time</label>
+              </div>
+              <button class="btn pink accent-3" type="submit" id="search-hike">Search</button>
+              <!-- EVERTHING BELOW IS HIDDEN UNTIL SEARCH IS CLICKED -->
+
+              <!-- result- list of ten hikes that include: -->
+              <!-- <section class="section section-icons grey lighten-4 center"> -->
+              <section class="section center">
+                <div class="container">
+                  <div class="row">
+                    <div class="col s12 cards-container" id="search-results">
+                      <!-- this div created dynamically using jquery -->
+
+                      <!-- APPEND "#search-results" -->
                     </div>
-                </section>
-                <!-- EVERTHING BELOW IS HIDDEN UNTIL SEARCH IS CLICKED -->
+                  </div>
+              </section>
 
-                <!-- result- list of ten hikes that include: -->
-                <!-- <section class="section section-icons grey lighten-4 center"> -->
-                <section class="section center">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col s12 cards-container" id="search-results">
-                        <!-- this div created dynamically using jquery -->
-
-                        <!-- APPEND "#search-results" -->
-                      </div>
-                    </div>
-                </section>
-
-                <!-- JavaScript -->
-                <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
-                <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-                <script type='text/javascript' src='assets/js/app.js'></script>
-                <script type='text/javascript' src='assets/js/ui.js'></script>
+              <!-- JavaScript -->
+              <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
+              <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+              <script type='text/javascript' src='assets/js/app.js'></script>
+              <script type='text/javascript' src='assets/js/ui.js'></script>
   </body>
 
 </html>
