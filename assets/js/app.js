@@ -62,7 +62,7 @@ joinHike.once("value", function (snap) {
     // console.log(name);
 
     // CREATE ACTIVE HIKES
-    // createActiveHikeCard(hikeID, simage, name, distance, summary, conditions);
+    createHikes($("#active-hikes"), hikeID, image, name, distance, summary, conditions);
 
   };
 });
@@ -111,7 +111,7 @@ $("#search-results").on("click", ".hike-submit", function (e) {
     // var joinKey = database.ref().child("join-a-hike/")
     database.ref(`join-a-hike/`).push(newHike);
     database.ref('users/' + auth.currentUser.uid).push(newHike);
-    console.log(`users/${auth.currentUser.uid}`).push(newHike);
+    // console.log(`users/${auth.currentUser.uid}`).push(newHike);
 
     // thought for presentation: make some fake accounts and fill with fake data
   });
@@ -171,7 +171,7 @@ function masterAPI() {
         var hikeID = hikeResult[i].id;
 
         // FUNCTION TO CREATE DIV IS CALLED
-        createHikes(hikeID, image, name, distance, summary, conditions);
+        createHikes($("#search-results"), hikeID, image, name, distance, summary, conditions);
       }
     })
   });
@@ -192,7 +192,7 @@ $("#search-hike").on("click", function (e) {
 });
 
 // FUNCTION TO DYNAMICALLY CREATE THE HIKES
-function createHikes(hikeID, image, name, distance, summary, conditions) {
+function createHikes(hook, hikeID, image, name, distance, summary, conditions) {
 
   // card
   var card = $("<div>").addClass("card").attr("hike-data", hikeID) // CREATES UNIQUE ID FOR THE HIKE
@@ -219,7 +219,7 @@ function createHikes(hikeID, image, name, distance, summary, conditions) {
   card.append(imgDiv, cardContent, cardFooter);
 
 
-  $("#search-results").append(card);
+  $(hook).append(card);
 };
 
 // NOTE: -- "auth.currentUser.uid" -- this points you to the currently signed in user
