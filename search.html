@@ -23,17 +23,23 @@
       <nav class="teal logged-in" style="display: none">
         <div class="container">
           <div class="nav-wrapper">
-            <a href="#!" class="brand-logo"><span id="logo"><i class="material-icons">landscape</i>Hike it</span></a>
+            <a href="index.html" class="brand-logo"><i class="material-icons">landscape</i>Hike it</a>
+            <!-- image for navbar needs to be 64(height) -->
+            <!-- <a href="https://placeholder.com" class="brand-logo"><img src="https://via.placeholder.com/200x64"
+                alt=""></a> -->
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-              <li class="active">
+              <li>
                 <a href="search.html"><i class="fas fa-search"></i> Search</a>
               </li>
-              <li>
+              <li class="active">
                 <a href="social.html"><i class="fas fa-user-friends"></i> Join A Hike</a>
               </li>
               <li>
                 <a href="index.html"><i class="fas fa-hiking"></i> My Hikes</a>
+              </li>
+              <li>
+                <a href="chat.html"><i class="fas fa-comments"></i> Forum</a>
               </li>
               <li>
                 <a href="index.html" id="logout" class="waves-effect waves-light btn yellow darken-4">Logout</a>
@@ -43,19 +49,32 @@
         </div>
       </nav>
     </div>
-    <!-- SIDENAV -->
     <ul class="teal sidenav" id="mobile-demo">
+      <li>
+        <div>
+          <a href="https://placeholder.com"><img src="https://via.placeholder.com/300x80" alt=""></a>
+        </div>
+      </li>
+      <li>
+        <a href="search.html"><i class="fas fa-search" style="color: white"></i><span class="white-text">
+            Search</span></a>
+      </li>
       <li class="active">
-        <a href="search.html"><i class="fas fa-search"></i> Search</a>
+        <a href="social.html"><i class="fas fa-user-friends" style="color: white"></i><span class="white-text"> Join A
+            Hike</span></a>
       </li>
       <li>
-        <a href="social.html"><i class="fas fa-user-friends"></i> Join A Hike</a>
+        <a href="index.html"><i class="fas fa-hiking" style="color: white"></i><span class="white-text"> My
+            Hikes</span></a>
       </li>
       <li>
-        <a href="index.html"><i class="fas fa-hiking"></i> My Hikes</a>
+        <a href="chat.html"><i class="fas fa-comments" style="color: white"></i><span class="white-text">
+            Forum</span></a>
       </li>
+      <br>
       <li>
-        <a href="index.html" id="logout" class="waves-effect waves-light btn yellow darken-4">Logout</a>
+        <a href="index.html" id="logout" class="waves-effect waves-light btn yellow darken-4"
+          style="color: white">Logout</a>
       </li>
     </ul>
     <br>

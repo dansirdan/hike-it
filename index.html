@@ -27,18 +27,23 @@
       <nav class="teal logged-in" style="display: none">
         <div class="container">
           <div class="nav-wrapper">
-            <a href="#!" class="brand-logo"><i class="material-icons">landscape</i>HikeIt!</a>
+            <a href="index.html" class="brand-logo"><i class="material-icons">landscape</i>Hike it</a>
+            <!-- image for navbar needs to be 64(height) -->
+            <!-- <a href="https://placeholder.com" class="brand-logo"><img src="https://via.placeholder.com/200x64"
+                alt=""></a> -->
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-            <!-- Web Navbar -->
             <ul class="right hide-on-med-and-down">
-              <li class="active">
-                <a href="index.html"><i class="fas fa-hiking"></i> My Hikes</a>
-              </li>
               <li>
+                <a href="search.html"><i class="fas fa-search"></i> Search</a>
+              </li>
+              <li class="active">
                 <a href="social.html"><i class="fas fa-user-friends"></i> Join A Hike</a>
               </li>
               <li>
-                <a href="search.html"><i class="fas fa-search"></i> Search</a>
+                <a href="index.html"><i class="fas fa-hiking"></i> My Hikes</a>
+              </li>
+              <li>
+                <a href="chat.html"><i class="fas fa-comments"></i> Forum</a>
               </li>
               <li>
                 <a href="index.html" id="logout" class="waves-effect waves-light btn yellow darken-4">Logout</a>
@@ -48,27 +53,32 @@
         </div>
       </nav>
     </div>
-    <!-- SIDENAV -->
-    <!-- final order -->
     <ul class="teal sidenav" id="mobile-demo">
       <li>
-        <div class="user-view">
-          <div class="background">
-            <img src="images/">
-          </div>
+        <div>
+          <a href="https://placeholder.com"><img src="https://via.placeholder.com/300x80" alt=""></a>
         </div>
       </li>
+      <li>
+        <a href="search.html"><i class="fas fa-search" style="color: white"></i><span class="white-text">
+            Search</span></a>
+      </li>
       <li class="active">
-        <a href="index.html"><i class="fas fa-hiking"></i> My Hikes</a>
+        <a href="social.html"><i class="fas fa-user-friends" style="color: white"></i><span class="white-text"> Join A
+            Hike</span></a>
       </li>
       <li>
-        <a href="social.html"><i class="fas fa-user-friends"></i> Join A Hike</a>
+        <a href="index.html"><i class="fas fa-hiking" style="color: white"></i><span class="white-text"> My
+            Hikes</span></a>
       </li>
       <li>
-        <a href="search.html"><i class="fas fa-search"></i> Search</a>
+        <a href="chat.html"><i class="fas fa-comments" style="color: white"></i><span class="white-text">
+            Forum</span></a>
       </li>
+      <br>
       <li>
-        <a href="index.html" id="logout" class="waves-effect waves-light btn yellow darken-4">Logout</a>
+        <a href="index.html" id="logout" class="waves-effect waves-light btn yellow darken-4"
+          style="color: white">Logout</a>
       </li>
     </ul>
     <br>
@@ -130,7 +140,7 @@
       </div>
     </div>
 
-    <!--  -->
+    <!-- Banner -->
     <section class="section center logged-in">
       <div class="container">
         <div class='row banner'>
@@ -144,65 +154,10 @@
     </section>
     <section class="section center logged-in">
       <div class="container">
+        <div class="col s12 cards-container" id="favorite-hikes"></div>
 
-        <div>
-          <ul class="result collapsible expandable">
-            <li>
-              <div class="row collapsible-header">
-                <!-- img -->
-                <img class="result-img col s1" src="https://cdn-files.apstatic.com/hike/7005382_sqsmall_1435421346.jpg"
-                  alt="result-img">
-                <!-- name -->
-                <h4 class="result-name col s5">Bear Peak</h4>
-                <!-- day and time -->
-                <p>Day/time</p>
-                <!-- distance -->
-                <p class="result-distance col s3">Distance: <span>5.7</span></p>
-                <!-- difficulty -->
-                <p class="result-difficulty col s3">Difficulty: <span>blueBlack</span></p>
-              </div>
-
-              <div class="row summery collapsible-body">
-                <div class="col s5">
-                  <p id="result-summery">A must-do hike for Boulder locals and visitors alike!</p>
-                  <p><strong>Conditions: </strong><span id="result-conditions">Muddy, Snowy, Icy - start is muddy up to
-                      Mesa\nchanges to
-                      slush covered
-                      ice\nhigher up is ice and snowpack\ndefinitely
-                      recommend using microspikes</span></p>
-                </div>
-                <div class="col s4">
-                  <p>WEATHER</p>
-                </div>
-                <div class="col s1">
-                  <i class="material-icons small teal-text">location_on</i>
-
-                </div>
-
-                <div class="row summery collapsible-body">
-                  <div class="col s5">
-                    <p id="result-summery">A must-do hike for Boulder locals and visitors alike!</p>
-                    <p><strong>Conditions: </strong><span id="result-conditions">Muddy, Snowy, Icy - start is muddy up
-                        to
-                        Mesa\nchanges to
-                        slush covered
-                        ice\nhigher up is ice and snowpack\ndefinitely
-                        recommend using microspikes</span></p>
-                  </div>
-                  <div class="col s4">
-                    <p>WEATHER</p>
-                  </div>
-                  <div class="col s1">
-                    <i class="material-icons small teal-text">location_on</i>
-                  </div>
-
-                </div>
-            </li>
-          </ul>
-        </div>
       </div>
     </section>
-
     <!-- JavaScript -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
