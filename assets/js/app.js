@@ -18,6 +18,8 @@ var auth = firebase.auth();
 var joinHike = database.ref("join-a-hike/");
 var connectionsRef = database.ref("/connections");
 var connectedRef = database.ref(".info/connected");
+var username = ""
+
 
 // CONNECTION LISTENER
 connectedRef.on("value", function (snapshot) {
@@ -39,12 +41,18 @@ joinHike.once("value", function (snap) {
 
   // FOR EACH LOOPS THROUGH THE ARRAY OF DATA
   snap.forEach(function (childSnap) {
+    console.log(snap.child())
 
+    outOfDate(childSnap);
     var childData = childSnap.val();
     activeHikeArr.push(childData);
   });
 
+
+
+
   console.log(activeHikeArr);
+
 
   // ADDS ALL ACTIVE HIKE CARDS TO THE PAGE ONCE (REFRESH HACK)
   for (let i = 0; i < activeHikeArr.length; i++) {
@@ -110,7 +118,7 @@ $("#search-results").on("click", ".hike-submit", function (e) {
     console.log(newHike);
     // var joinKey = database.ref().child("join-a-hike/")
     database.ref(`join-a-hike/`).push(newHike);
-    database.ref('users/' + auth.currentUser.uid).push(newHike);
+    database.ref('users/' + username + "/favorites").push(newHike);
 
     // thought for presentation: make some fake accounts and fill with fake data
   });
@@ -124,7 +132,7 @@ var citySearch;
 function masterAPI() {
 
   // GEOCODER QUERY AND VARIABLE BUILDER
-  console.log(citySearch);
+  // console.log(citySearch);
 
   var splitCity = citySearch.split(" ");
   var geoCity = splitCity.join("+");
@@ -139,13 +147,13 @@ function masterAPI() {
   }).then(function (response) {
 
     var geoResult = response.results;
-    console.log(geoResult);
+    // console.log(geoResult);
 
     // GRAB THE LATITUDE AND LONGITUDE
     var cityLat = geoResult[0].geometry.location.lat;
     var cityLon = geoResult[0].geometry.location.lng;
-    console.log(cityLat);
-    console.log(cityLon);
+    // console.log(cityLat);
+    // console.log(cityLon);
 
     // HIKE PROJECT API KEY AND QUERY BUILDER
     var hikeKey = "200435031-6aa58562b036efd25371d400543a5981";
@@ -158,7 +166,7 @@ function masterAPI() {
     }).then(function (response) {
 
       var hikeResult = response.trails;
-      console.log(hikeResult);
+      // console.log(hikeResult);
 
       // FOR LOOP -- DYNAMICALLY CREATE 10 COLLAPSEABLE DIVS WITH THE HIK INFORMATION
       for (let i = 0; i < 10; i++) {
@@ -190,21 +198,29 @@ $("#search-hike").on("click", function (e) {
   console.log(hikeTime);
 });
 
-function outOfDate(snap) { 
+function outOfDate(snap) {
 
-  // database.ref(`join-a-hike/`);
-  // database.ref('users/' + auth.currentUser.uid);
+  // joinHike = database.ref(`join-a-hike/`);
+  // user = database.ref(`users/${auth.currentUser.uid}`);
 
-  var key = snap.key;
+  var item = snap.val();
 
-  var expires = moment(`${childData.date} ${childData.time}`, "X")
+  var expires = moment(`${item.date} ${item.time}`, "X")
   var check = moment().unix();
-  console.log(expires)
-  console.log(check)
+
+  // console.log(snap.val())
+  // console.log(expires)
+  // console.log(check)
+  // console.log(snap.val().active)
+  // console.log(snap.key)
+  // console.log(joinHike.child(snap.key))
 
   if (expires < check) {
-    console.log(childData.name + " removed")
-    database.ref("join-a-hike/" + key).remove()
+    console.log(item.name + " removed")
+    // joinHike.child(snap.key).remove()
+    // joinHike.child(snap.key).update({
+    //   active: false
+    // });
   }
 }
 
@@ -303,16 +319,13 @@ $("#reg-btn").on("click", function (e) {
   console.log("registered");
 
   // user info from inputs
-  const username = $("#regname").val().trim();
+  username = $("#regname").val().trim();
   const email = $("#regemail").val().trim();
   const password = $("#regpass").val().trim();
 
   // user registration
   auth.createUserWithEmailAndPassword(email, password).then(function (credentials) {
-    console.log(credentials)
-    database.ref('users/' + credentials.user.uid).set({
-      username: username
-    });
+    console.log(credentials);
   });
 
   $("#regname, regemail, #regpass").val("");
@@ -331,6 +344,7 @@ $("#logout").on("click", function (e) {
 auth.onAuthStateChanged(function (user) {
   // console.log(user);
   if (user) {
+    // joinHike.once("value", function (snap) { }
     $(".logged-in").show();
     $(".logged-out").hide();
   } else {
