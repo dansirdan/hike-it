@@ -1,216 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <title>hiki It</title>
-  <link href="https://fonts.googleapis.com/css?family=BioRhyme" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8">
+    <title>HikeIt!</title>
+    <link href="https://fonts.googleapis.com/css?family=BioRhyme" rel="stylesheet">
 
-  <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!-- firebase -->
-  <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <link rel='stylesheet' href='assets/css/style.css'>
-</head>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- firebase -->
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel='stylesheet' href='assets/css/style.css'>
+  </head>
 
-<body>
-  <div class="navbar-fixed">
-    <nav class="teal logged-in" style="display: none">
+  <body>
+    <div class="navbar-fixed">
+      <nav class="teal logged-in" style="display: none">
+        <div class="container">
+          <div class="nav-wrapper">
+            <a href="#!" class="brand-logo"><i class="material-icons">landscape</i>Hike it</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+              <li class="active">
+                <a href="social.html">Join A Hike</a>
+              </li>
+              <li>
+                <a href="index.html">My Hikes</a>
+              </li>
+              <li>
+                <a href="search.html">Search</a>
+              </li>
+              <li>
+                <a href="index.html" id="logout" class="waves-effect waves-light btn yellow darken-4">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <ul class="sidenav" id="mobile-demo">
+      <li>
+        <a href="social.html">Upcoming Hikes</a>
+      </li>
+      <li>
+        <a href="index.html">Hike it</a>
+      </li>
+      <li>
+        <a href="search.html">Search</a>
+      </li>
+      <li>
+        <a href="index.html" id="logout">Logout</a>
+      </li>
+    </ul>
+    <br>
+
+    <!--  -->
+    <section class="section center">
       <div class="container">
-        <div class="nav-wrapper">
-          <a href="#!" class="brand-logo"><i class="material-icons">landscape</i>Hike it</a>
-          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-          <ul class="right hide-on-med-and-down">
-            <li>
-              <a href="social.html">Upcoming Hikes</a>
-            </li>
-            <li>
-              <a href="index.html">My Hikes</a>
-            </li>
-            <li>
-              <a href="search.html">Search</a>
-            </li>
-            <li>
-              <a href="index.html" id="logout">Logout</a>
-            </li>
-          </ul>
+        <div class='row banner'>
+
+          <h4>Hike it, together!</h4>
+          <p>Explore Utah's beautiful landscape with other outdoor enthusiasts.</p>
+          <p>Join an upcoming hike, chat with fellow hikers on the message board, and enjoy adventuring through Utah's
+            stunning
+            wilderness.</p>
         </div>
       </div>
-    </nav>
-  </div>
-  <ul class="sidenav" id="mobile-demo">
-    <li>
-      <a href="social.html">Upcoming Hikes</a>
-    </li>
-    <li>
-      <a href="index.html">Hike it</a>
-    </li>
-    <li>
-      <a href="search.html">Search</a>
-    </li>
-    <li>
-      <a href="index.html" id="logout">Logout</a>
-    </li>
-  </ul>
-  <br>
+    </section>
+    <!-- EVERTHING BELOW IS HIDDEN UNTIL SEARCH IS CLICKED -->
 
-  <!--  -->
-  <section class="section center">
-    <div class="container">
-      <div class='row banner'>
+    <!-- result- list of ten hikes that include: -->
+    <!-- <section class="section section-icons grey lighten-4 center"> -->
+    <section class="section center">
+      <div class="container">
+        <div class="row">
+          <div id="banner-results">
 
-        <h4>Hike it, together!</h4>
-        <p>Explore Utah's beautiful landscape with other outdoor enthusiasts.</p>
-        <p>Join an upcoming hike, chat with fellow hikers on the message board, and enjoy adventuring through Utah's
-          stunning
-          wilderness.</p>
-      </div>
-    </div>
-  </section>
-  <!-- EVERTHING BELOW IS HIDDEN UNTIL SEARCH IS CLICKED -->
-
-  <!-- result- list of ten hikes that include: -->
-  <!-- <section class="section section-icons grey lighten-4 center"> -->
-  <section class="section center">
-    <div class="container">
-      <div class="row">
-        <div id="banner-results">
-
-          <!-- this div created dynamically using jquery -->
-          <ul class="result collapsible expandable">
-            <li>
-              <div class="row collapsible-header">
-                <!-- img -->
-                <img class="result-img col s1" src="https://cdn.apstatic.com/img/diff/green.svg" alt="result-img">
-                <!-- name -->
-                <h4 class="result-name col s5">Bear Peak</h4>
-                <!-- distance -->
-                <p class="result-distance col s3">Distance: <span>5.7</span></p>
-                <!-- difficulty -->
-                <div class="col s3">
-                  <button type="submit" class="btn orange accent-3" id="hike-submit">Add Hike</button>
-                </div>
-              </div>
-
-              <div class="row summery collapsible-body">
-                <div class="col s5">
-                  <p id="result-summery">A must-do hike for Boulder locals and visitors alike!</p>
-                  <p><strong>Conditions:</strong><span id="result-conditions">Muddy, Snowy, Icy - start is muddy up to
-                      Mesa\nchanges to
-                      slush covered
-                      ice\nhigher up is ice and snowpack\ndefinitely
-                      recommend using microspikes</span></p>
-                </div>
-                <div class="col s4">
-                  <p>Weather API results</p>
-                </div>
-                <div class="col s1">
-                  <i class="material-icons small teal-text">location_on</i>
+            <!-- this div created dynamically using jquery -->
+            <ul class="result collapsible expandable">
+              <li>
+                <div class="row collapsible-header">
+                  <!-- img -->
+                  <img class="result-img col s1" src="https://cdn.apstatic.com/img/diff/green.svg" alt="result-img">
+                  <!-- name -->
+                  <h4 class="result-name col s5">Bear Peak</h4>
+                  <!-- distance -->
+                  <p class="result-distance col s3">Distance: <span>5.7</span></p>
+                  <!-- difficulty -->
+                  <div class="col s3">
+                    <button type="submit" class="btn orange accent-3" id="hike-submit">Add Hike</button>
+                  </div>
                 </div>
 
-              </div>
-            </li>
-          </ul>
+                <div class="row summery collapsible-body">
+                  <div class="col s5">
+                    <p id="result-summery">A must-do hike for Boulder locals and visitors alike!</p>
+                    <p><strong>Conditions:</strong><span id="result-conditions">Muddy, Snowy, Icy - start is muddy up to
+                        Mesa\nchanges to
+                        slush covered
+                        ice\nhigher up is ice and snowpack\ndefinitely
+                        recommend using microspikes</span></p>
+                  </div>
+                  <div class="col s4">
+                    <p>Weather API results</p>
+                  </div>
+                  <div class="col s1">
+                    <i class="material-icons small teal-text">location_on</i>
+                  </div>
 
-          <!-- this div created dynamically using jquery -->
-          <ul class="result collapsible expandable">
-            <li>
-              <div class="row collapsible-header">
-                <!-- img -->
-                <img class="result-img col s1" src="https://cdn-files.apstatic.com/hike/7005382_sqsmall_1435421346.jpg"
-                  alt="result-img">
-                <!-- name -->
-                <h4 class="result-name col s5">Bear Peak</h4>
-                <!-- distance -->
-                <p class="result-distance col s3"><span>5.7</span> Miles</p>
-                <!-- difficulty -->
-                <p class="result-difficulty col s3">Difficulty: <span>blueBlack</span></p>
-              </div>
-
-              <div class="row summery collapsible-body">
-                <div class="col s5">
-                  <p id="result-summery">A must-do hike for Boulder locals and visitors alike!</p>
-                  <p><strong>Conditions:</strong><span id="result-conditions">Muddy, Snowy, Icy - start is muddy up to
-                      Mesa\nchanges to
-                      slush covered
-                      ice\nhigher up is ice and snowpack\ndefinitely
-                      recommend using microspikes</span></p>
                 </div>
-                <div class="col s4">
-                  <p>Weather API results</p>
+              </li>
+            </ul>
+
+            <!-- this div created dynamically using jquery -->
+            <ul class="result collapsible expandable">
+              <li>
+                <div class="row collapsible-header">
+                  <!-- img -->
+                  <img class="result-img col s1"
+                    src="https://cdn-files.apstatic.com/hike/7005382_sqsmall_1435421346.jpg" alt="result-img">
+                  <!-- name -->
+                  <h4 class="result-name col s5">Bear Peak</h4>
+                  <!-- distance -->
+                  <p class="result-distance col s3"><span>5.7</span> Miles</p>
+                  <!-- difficulty -->
+                  <p class="result-difficulty col s3">Difficulty: <span>blueBlack</span></p>
                 </div>
-                <div class="col s3">
-                  <button type="submit" class="btn orange accent-3" id="hike-submit">Add Hike</button>
+
+                <div class="row summery collapsible-body">
+                  <div class="col s5">
+                    <p id="result-summery">A must-do hike for Boulder locals and visitors alike!</p>
+                    <p><strong>Conditions:</strong><span id="result-conditions">Muddy, Snowy, Icy - start is muddy up to
+                        Mesa\nchanges to
+                        slush covered
+                        ice\nhigher up is ice and snowpack\ndefinitely
+                        recommend using microspikes</span></p>
+                  </div>
+                  <div class="col s4">
+                    <p>Weather API results</p>
+                  </div>
+                  <div class="col s3">
+                    <button type="submit" class="btn orange accent-3" id="hike-submit">Add Hike</button>
+                  </div>
                 </div>
-              </div>
-            </li>
-          </ul>
+              </li>
+            </ul>
 
-          <!-- this div created dynamically using jquery -->
-          <ul class="result collapsible expandable">
-            <li>
-              <div class="row collapsible-header">
-                <!-- img -->
-                <img class="result-img col s2" src="https://cdn-files.apstatic.com/hike/7005382_small_1435421346.jpg"
-                  alt="result-img">
-                <!-- name -->
-                <h4 class="result-name col s5">Bear Peak</h4>
-                <!-- distance -->
-                <p class="result-distance col s2">Distance: <span>5.7</span></p>
-                <!-- difficulty -->
-                <p class="result-difficulty col s3">Difficulty: <span>blueBlack</span></p>
-              </div>
-
-              <div class="row summery collapsible-body">
-                <div class="col s5">
-                  <p id="result-summery">A must-do hike for Boulder locals and visitors alike!</p>
-                  <p><strong>Conditions:</strong><span id="result-conditions">Muddy, Snowy, Icy - start is muddy up to
-                      Mesa\nchanges to slush covered ice\nhigher up is ice and snowpack\ndefinitelyrecommend using
-                      microspikes</span></p>
+            <!-- this div created dynamically using jquery -->
+            <ul class="result collapsible expandable">
+              <li>
+                <div class="row collapsible-header">
+                  <!-- img -->
+                  <img class="result-img col s2" src="https://cdn-files.apstatic.com/hike/7005382_small_1435421346.jpg"
+                    alt="result-img">
+                  <!-- name -->
+                  <h4 class="result-name col s5">Bear Peak</h4>
+                  <!-- distance -->
+                  <p class="result-distance col s2">Distance: <span>5.7</span></p>
+                  <!-- difficulty -->
+                  <p class="result-difficulty col s3">Difficulty: <span>blueBlack</span></p>
                 </div>
-                <div class="col s4">
-                  <p>Weather API results</p>
+
+                <div class="row summery collapsible-body">
+                  <div class="col s5">
+                    <p id="result-summery">A must-do hike for Boulder locals and visitors alike!</p>
+                    <p><strong>Conditions:</strong><span id="result-conditions">Muddy, Snowy, Icy - start is muddy up to
+                        Mesa\nchanges to slush covered ice\nhigher up is ice and snowpack\ndefinitelyrecommend using
+                        microspikes</span></p>
+                  </div>
+                  <div class="col s4">
+                    <p>Weather API results</p>
+                  </div>
+                  <div class="col s3">
+                    <button type="submit" class="btn orange accent-3" id="hike-submit">Add Hike</button>
+                  </div>
                 </div>
-                <div class="col s3">
-                  <button type="submit" class="btn orange accent-3" id="hike-submit">Add Hike</button>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
+              </li>
+            </ul>
+          </div>
 
-      </div>
-    </div>
-    </div>
-  </section>
-
-  <!-- BRANDON THIS IS FOR YOU!!!! -->
-  <section>
-    <div id="chat-container">
-      <a class="waves-effect waves-light btn modal-trigger" href="#chat"><i class="material-icons">chat_bubble</i></a>
-
-      <!-- Modal Structure -->
-
-      <div id="chat" class="modal bottom-sheet">
-        <div class="modal-content">
-          <h4>Modal Header</h4>
-          <p>A bunch of text</p>
-        </div>
-        <div class="modal-footer">
-          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
         </div>
       </div>
-    </div>
-  </section>
+      </div>
+    </section>
 
-  <!-- JavaScript -->
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
-  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-  <script type='text/javascript' src='assets/js/app.js'></script>
-  <script type='text/javascript' src='assets/js/ui.js'></script>
-</body>
+    <!-- BRANDON THIS IS FOR YOU!!!! -->
+    <section>
+      <div id="chat-container">
+        <a class="waves-effect waves-light btn modal-trigger" href="#chat"><i class="material-icons">chat_bubble</i></a>
+
+        <!-- Modal Structure -->
+
+        <div id="chat" class="modal bottom-sheet">
+          <div class="modal-content">
+            <h4>Modal Header</h4>
+            <p>A bunch of text</p>
+          </div>
+          <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <script type='text/javascript' src='assets/js/app.js'></script>
+    <script type='text/javascript' src='assets/js/ui.js'></script>
+  </body>
 
 </html>

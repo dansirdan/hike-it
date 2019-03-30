@@ -2,63 +2,65 @@
 <html lang="en">
 
 
-<head>
-  <meta charset="UTF-8">
-  <title>Hike It</title>
-  <link href="https://fonts.googleapis.com/css?family=BioRhyme" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8">
+    <title>HikeIt!</title>
+    <link href="https://fonts.googleapis.com/css?family=BioRhyme" rel="stylesheet">
 
-  <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!-- firebase -->
-  <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <link rel='stylesheet' href='assets/css/style.css'>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- firebase -->
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel='stylesheet' href='assets/css/style.css'>
 
 
-</head>
+  </head>
 
-<body>
-  <div class="navbar-fixed">
-    <nav class="teal logged-in" style="display: none">
-      <div class="container">
-        <div class="nav-wrapper">
-          <a href="#!" class="brand-logo"><i class="material-icons">landscape</i>Hike it</a>
-          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-          <ul class="right hide-on-med-and-down">
-            <li>
-              <a href="social.html">Upcoming Hikes</a>
-            </li>
-            <li>
-              <a href="index.html">My Hikes</a>
-            </li>
-            <li>
-              <a href="search.html">Search</a>
-            </li>
-            <li>
-              <a href="index.html" id="logout">Logout</a>
-            </li>
-          </ul>
+  <body>
+    <div class="navbar-fixed">
+      <nav class="teal logged-in" style="display: none">
+        <div class="container">
+          <div class="nav-wrapper">
+            <a href="#!" class="brand-logo"><i class="material-icons">landscape</i>HikeIt!</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <!-- Web Navbar -->
+            <ul class="right hide-on-med-and-down">
+              <li>
+                <a href="social.html">Join A Hike</a>
+              </li>
+              <li class="active">
+                <a href="index.html">My Hikes</a>
+              </li>
+              <li>
+                <a href="search.html">Search</a>
+              </li>
+              <li>
+                <a href="index.html" id="logout" class="waves-effect waves-light btn yellow darken-4">Logout</a>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </nav>
-  </div>
-  <ul class="sidenav" id="mobile-demo">
-    <li>
-      <a href="social.html">Upcoming Hikes</a>
-    </li>
-    <li>
-      <a href="index.html">Hike it</a>
-    </li>
-    <li>
-      <a href="search.html">Search</a>
-    </li>
-    <li>
-      <a href="index.html" id="logout">Logout</a>
-    </li>
-  </ul>
-  <br>
+      </nav>
+    </div>
+    <!-- Mobile Navbar -->
+    <ul class="sidenav" id="mobile-demo">
+      <li>
+        <a href="index.html">Hike it</a>
+      </li>
+      <li>
+        <a href="social.html">Join A Hike</a>
+      </li>
+      <li>
+        <a href="search.html">Search</a>
+      </li>
+      <li>
+        <a href="index.html" id="logout">Logout</a>
+      </li>
+    </ul>
+    <br>
     <div class="materialContainer">
 
       <div class="logged-out" style="display: none">
@@ -110,59 +112,43 @@
             <span class="spin"></span>
           </div>
 
-        <div class="button">
-          <button type="submit" id="reg-btn"><span>NEXT</span></button>
+          <div class="button">
+            <button type="submit" id="reg-btn"><span>NEXT</span></button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!--  -->
-  <section class="section center logged-in">
-    <div class="container">
-      <div class='row banner'>
+    <!--  -->
+    <section class="section center logged-in">
+      <div class="container">
+        <div class='row banner'>
 
-        <h4>A header</h4>
-        <p>I'm terrible at writing content. Something should be writting here</p>
+          <h4>Your Saved Hikes</h4>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus velit mollitia quia porro ullam doloremque
+            deleniti ipsum?</p>
 
+        </div>
       </div>
-    </div>
-  </section>
-  <section class="section center logged-in">
-    <div class="container">
+    </section>
+    <section class="section center logged-in">
+      <div class="container">
 
-      <div>
-        <ul class="result collapsible expandable">
-          <li>
-            <div class="row collapsible-header">
-              <!-- img -->
-              <img class="result-img col s1" src="https://cdn-files.apstatic.com/hike/7005382_sqsmall_1435421346.jpg"
-                alt="result-img">
-              <!-- name -->
-              <h4 class="result-name col s5">Bear Peak</h4>
-              <!-- day and time -->
-              <p>Day/time</p>
-              <!-- distance -->
-              <p class="result-distance col s3">Distance: <span>5.7</span></p>
-              <!-- difficulty -->
-              <p class="result-difficulty col s3">Difficulty: <span>blueBlack</span></p>
-            </div>
-
-            <div class="row summery collapsible-body">
-              <div class="col s5">
-                <p id="result-summery">A must-do hike for Boulder locals and visitors alike!</p>
-                <p><strong>Conditions: </strong><span id="result-conditions">Muddy, Snowy, Icy - start is muddy up to
-                    Mesa\nchanges to
-                    slush covered
-                    ice\nhigher up is ice and snowpack\ndefinitely
-                    recommend using microspikes</span></p>
-              </div>
-              <div class="col s4">
-                <p>WEATHER</p>
-              </div>
-              <div class="col s1">
-                <i class="material-icons small teal-text">location_on</i>
-
+        <div>
+          <ul class="result collapsible expandable">
+            <li>
+              <div class="row collapsible-header">
+                <!-- img -->
+                <img class="result-img col s1" src="https://cdn-files.apstatic.com/hike/7005382_sqsmall_1435421346.jpg"
+                  alt="result-img">
+                <!-- name -->
+                <h4 class="result-name col s5">Bear Peak</h4>
+                <!-- day and time -->
+                <p>Day/time</p>
+                <!-- distance -->
+                <p class="result-distance col s3">Distance: <span>5.7</span></p>
+                <!-- difficulty -->
+                <p class="result-difficulty col s3">Difficulty: <span>blueBlack</span></p>
               </div>
 
               <div class="row summery collapsible-body">
@@ -179,9 +165,27 @@
                 </div>
                 <div class="col s1">
                   <i class="material-icons small teal-text">location_on</i>
+
                 </div>
 
-              </div>
+                <div class="row summery collapsible-body">
+                  <div class="col s5">
+                    <p id="result-summery">A must-do hike for Boulder locals and visitors alike!</p>
+                    <p><strong>Conditions: </strong><span id="result-conditions">Muddy, Snowy, Icy - start is muddy up
+                        to
+                        Mesa\nchanges to
+                        slush covered
+                        ice\nhigher up is ice and snowpack\ndefinitely
+                        recommend using microspikes</span></p>
+                  </div>
+                  <div class="col s4">
+                    <p>WEATHER</p>
+                  </div>
+                  <div class="col s1">
+                    <i class="material-icons small teal-text">location_on</i>
+                  </div>
+
+                </div>
             </li>
           </ul>
         </div>

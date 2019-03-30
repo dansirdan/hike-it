@@ -1,109 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <title>hiki It</title>
-  <link href="https://fonts.googleapis.com/css?family=BioRhyme" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8">
+    <title>HikeIt!</title>
+    <link href="https://fonts.googleapis.com/css?family=BioRhyme" rel="stylesheet">
 
-  <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!-- firebase -->
-  <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <link rel='stylesheet' href='assets/css/style.css'>
-</head>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- firebase -->
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel='stylesheet' href='assets/css/style.css'>
+  </head>
 
-<body>
-  <div class="navbar-fixed">
-    <nav class="teal logged-in" style="display: none">
-      <div class="container">
-        <div class="nav-wrapper">
-          <a href="#!" class="brand-logo"><span id="logo"><i class="material-icons">landscape</i>Hike it</span></a>
-          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-          <ul class="right hide-on-med-and-down">
-            <li>
-              <a href="social.html">Upcoming Hikes</a>
-            </li>
-            <li>
-              <a href="index.html">My Hikes</a>
-            </li>
-            <li>
-              <a href="search.html">Search</a>
-            </li>
-            <li>
-              <a href="index.html" id="logout">Logout</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </div>
-  <ul class="sidenav" id="mobile-demo">
-    <li>
-      <a href="social.html">Upcoming Hikes</a>
-    </li>
-    <li>
-      <a href="index.html">Hike it</a>
-    </li>
-    <li>
-      <a href="search.html">Search</a>
-    </li>
-    <li>
-      <a href="index.html" id="logout">Logout</a>
-    </li>
-  </ul>
-  <br>
-
-  <!-- Info Submission Panel -->
-  <section class="section center">
-    <div class="container">
-      <div class='row banner'>
-        <h4>Search Trails</h4>
-        <form>
-          <div class="input-field col s12">
-            <div class="input-field col s4">
-              <input type="text" class="validate autocomplete" autocomplete="off" id="city-name">   
-              <label for="">City</label>
-            </div>
-            <div class="input-field col s4">
-              <input id="hike-date" type="text" class="datepicker">
-              <label for="hike-date">Date</label>
-            </div>
-            <div class="input-field col s4">
-              <input id="hike-time" type="text" class="timepicker">
-              <label for="hike-time">Time</label>
-            </div>
-            <button class="btn pink accent-3" type="submit" id="search-hike">Search</button>
+  <body>
+    <div class="navbar-fixed">
+      <nav class="teal logged-in" style="display: none">
+        <div class="container">
+          <div class="nav-wrapper">
+            <a href="#!" class="brand-logo"><span id="logo"><i class="material-icons">landscape</i>Hike it</span></a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+              <li>
+                <a href="social.html">Join A Hike</a>
+              </li>
+              <li>
+                <a href="index.html">My Hikes</a>
+              </li>
+              <li class="active">
+                <a href="search.html">Search</a>
+              </li>
+              <li>
+                <a href="index.html" id="logout" class="waves-effect waves-light btn yellow darken-4">Logout</a>
+              </li>
+            </ul>
           </div>
-        </form>
-      </div>
-  </section>
-  <!-- EVERTHING BELOW IS HIDDEN UNTIL SEARCH IS CLICKED -->
+        </div>
+      </nav>
+    </div>
+    <ul class="sidenav" id="mobile-demo">
+      <li>
+        <a href="social.html">Upcoming Hikes</a>
+      </li>
+      <li>
+        <a href="index.html">Hike it</a>
+      </li>
+      <li>
+        <a href="search.html">Search</a>
+      </li>
+      <li>
+        <a href="index.html" id="logout">Logout</a>
+      </li>
+    </ul>
+    <br>
 
-  <!-- result- list of ten hikes that include: -->
-  <!-- <section class="section section-icons grey lighten-4 center"> -->
-  <section class="section center">
-    <div class="container">
-      <div class="row">
-        <div>
-          <ul class="result collapsible" id="search-results">
-            <!-- this div created dynamically using jquery -->
+    <!-- Info Submission Panel -->
+    <section class="section center">
+      <div class="container">
+        <div class='row banner'>
+          <h4>Search Trails</h4>
+          <form>
+            <div class="input-field col s12">
+              <div class="input-field col s4">
+                <input type="text" class="validate autocomplete" autocomplete="off" id="city-name">
+                <label for="">City</label>
+              </div>
+              <div class="input-field col s4">
+                <input id="hike-date" type="text" class="datepicker">
+                <label for="hike-date">Date</label>
+              </div>
+              <div class="input-field col s4">
+                <input id="hike-time" type="text" class="timepicker">
+                <label for="hike-time">Time</label>
+              </div>
+              <button class="btn pink accent-3" type="submit" id="search-hike">Search</button>
+            </div>
+          </form>
+        </div>
+    </section>
+    <!-- EVERTHING BELOW IS HIDDEN UNTIL SEARCH IS CLICKED -->
 
-            <!-- APPEND "#search-results" -->
-          </ul>
+    <!-- result- list of ten hikes that include: -->
+    <!-- <section class="section section-icons grey lighten-4 center"> -->
+    <section class="section center">
+      <div class="container">
+        <div class="row">
+          <div>
+            <ul class="result collapsible" id="search-results">
+              <!-- this div created dynamically using jquery -->
+
+              <!-- APPEND "#search-results" -->
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- JavaScript -->
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
-  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-  <script type='text/javascript' src='assets/js/app.js'></script>
-  <script type='text/javascript' src='assets/js/ui.js'></script>
-</body>
+    <!-- JavaScript -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <script type='text/javascript' src='assets/js/app.js'></script>
+    <script type='text/javascript' src='assets/js/ui.js'></script>
+  </body>
 
 </html>
