@@ -29,10 +29,10 @@
                 alt=""></a> -->
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-              <li>
+              <li class="active">
                 <a href="search.html"><i class="fas fa-search"></i> Search</a>
               </li>
-              <li class="active">
+              <li>
                 <a href="social.html"><i class="fas fa-user-friends"></i> Join A Hike</a>
               </li>
               <li>
@@ -55,11 +55,11 @@
           <a href="https://placeholder.com"><img src="https://via.placeholder.com/300x80" alt=""></a>
         </div>
       </li>
-      <li>
+      <li class="active">
         <a href="search.html"><i class="fas fa-search" style="color: white"></i><span class="white-text">
             Search</span></a>
       </li>
-      <li class="active">
+      <li>
         <a href="social.html"><i class="fas fa-user-friends" style="color: white"></i><span class="white-text"> Join A
             Hike</span></a>
       </li>
@@ -99,26 +99,32 @@
                 <label for="hike-time">Time</label>
               </div>
               <button class="btn pink accent-3" type="submit" id="search-hike">Search</button>
-              <!-- EVERTHING BELOW IS HIDDEN UNTIL SEARCH IS CLICKED -->
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
 
-              <!-- result- list of ten hikes that include: -->
-              <!-- <section class="section section-icons grey lighten-4 center"> -->
-              <section class="section center">
-                <div class="container">
-                  <div class="row">
-                    <div class="col s12 cards-container" id="search-results">
-                      <!-- this div created dynamically using jquery -->
+    <!-- EVERTHING BELOW IS HIDDEN UNTIL SEARCH IS CLICKED -->
 
-                      <!-- APPEND "#search-results" -->
-                    </div>
-                  </div>
-              </section>
+    <!-- result- list of ten hikes that include: -->
+    <!-- <section class="section section-icons grey lighten-4 center"> -->
+    <section class="section center">
+      <div class="container">
+        <div class="row">
+          <div class="col s12 cards-container" id="search-results">
+            <!-- this div created dynamically using jquery -->
 
-              <!-- JavaScript -->
-              <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
-              <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-              <script type='text/javascript' src='assets/js/app.js'></script>
-              <script type='text/javascript' src='assets/js/ui.js'></script>
+            <!-- APPEND "#search-results" -->
+          </div>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <script type='text/javascript' src='assets/js/app.js'></script>
+    <script type='text/javascript' src='assets/js/ui.js'></script>
   </body>
 
 </html>
