@@ -36,13 +36,13 @@ joinHike.once("value", function (snap) {
   // EMPTY THE ARRAY LOCALLY TO PULL IN FROM FIREBASE
   activeHikeArr = [];
 
+
   // FOR EACH LOOPS THROUGH THE ARRAY OF DATA
   snap.forEach(function (childSnap) {
+
     var childData = childSnap.val();
     activeHikeArr.push(childData);
-
-    console.log(childSnap.key);
-  })
+  });
 
   console.log(activeHikeArr);
 
@@ -63,9 +63,9 @@ joinHike.once("value", function (snap) {
 
     // CREATE ACTIVE HIKES
     createHikes($("#active-hikes"), hikeID, image, name, distance, summary, conditions);
-
   };
 });
+
 
 // SEARCH BUTTON LISTENER
 $("#search-results").on("click", ".hike-submit", function (e) {
@@ -111,7 +111,6 @@ $("#search-results").on("click", ".hike-submit", function (e) {
     // var joinKey = database.ref().child("join-a-hike/")
     database.ref(`join-a-hike/`).push(newHike);
     database.ref('users/' + auth.currentUser.uid).push(newHike);
-    // console.log(`users/${auth.currentUser.uid}`).push(newHike);
 
     // thought for presentation: make some fake accounts and fill with fake data
   });
@@ -191,6 +190,24 @@ $("#search-hike").on("click", function (e) {
   console.log(hikeTime);
 });
 
+function outOfDate(snap) { 
+
+  // database.ref(`join-a-hike/`);
+  // database.ref('users/' + auth.currentUser.uid);
+
+  var key = snap.key;
+
+  var expires = moment(`${childData.date} ${childData.time}`, "X")
+  var check = moment().unix();
+  console.log(expires)
+  console.log(check)
+
+  if (expires < check) {
+    console.log(childData.name + " removed")
+    database.ref("join-a-hike/" + key).remove()
+  }
+}
+
 // FUNCTION TO DYNAMICALLY CREATE THE HIKES
 function createHikes(hook, hikeID, image, name, distance, summary, conditions) {
 
@@ -217,7 +234,6 @@ function createHikes(hook, hikeID, image, name, distance, summary, conditions) {
 
   cardFooter.append(cond, dist);
   card.append(imgDiv, cardContent, cardFooter);
-
 
   $(hook).append(card);
 };
