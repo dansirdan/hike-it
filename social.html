@@ -9,11 +9,13 @@
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel='stylesheet' href='assets/css/style.css'>
     <!-- firebase -->
     <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <link rel='stylesheet' href='assets/css/style.css'>
   </head>
 
   <body>
@@ -24,14 +26,15 @@
             <a href="#!" class="brand-logo"><i class="material-icons">landscape</i>Hike it</a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
+              <!-- this page -->
               <li class="active">
-                <a href="social.html">Join A Hike</a>
+                <a href="social.html"><i class="fas fa-user-friends"></i> Join A Hike</a>
               </li>
               <li>
-                <a href="index.html">My Hikes</a>
+                <a href="index.html"><i class="fas fa-hiking"></i> My Hikes</a>
               </li>
               <li>
-                <a href="search.html">Search</a>
+                <a href="search.html"><i class="fas fa-search"></i> Search</a>
               </li>
               <li>
                 <a href="index.html" id="logout" class="waves-effect waves-light btn yellow darken-4">Logout</a>
@@ -41,8 +44,10 @@
         </div>
       </nav>
     </div>
+    <!-- SIDENAV -->
     <ul class="sidenav" id="mobile-demo">
-      <li>
+      <!-- this page -->
+      <li class="active">
         <a href="social.html">Upcoming Hikes</a>
       </li>
       <li>
