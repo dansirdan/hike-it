@@ -1,368 +1,358 @@
-$("#search-results").hide();
+$(document).ready(function () {
 
-M.AutoInit();
-// FIREBASE CONFIG
-var config = {
-  apiKey: "AIzaSyD6vRPaTQwhxm4Zs-oa7Rw8eyS2mnnCR84",
-  authDomain: "hikeit-34330.firebaseapp.com",
-  databaseURL: "https://hikeit-34330.firebaseio.com",
-  projectId: "hikeit-34330",
-  storageBucket: "",
-  messagingSenderId: "956706165596"
-};
-firebase.initializeApp(config);
+  $("#search-results").hide();
 
-// DATABASE VARIABLES
-var database = firebase.database();
-var auth = firebase.auth();
-var joinHike = database.ref("join-a-hike/");
-var connectionsRef = database.ref("/connections");
-var connectedRef = database.ref(".info/connected");
-var username = ""
-
-
-// CONNECTION LISTENER
-connectedRef.on("value", function (snapshot) {
-  if (snapshot.val()) {
-    var con = connectionsRef.push(true);
-    con.onDisconnect().remove();
+  M.AutoInit();
+  // FIREBASE CONFIG
+  var config = {
+    apiKey: "AIzaSyD6vRPaTQwhxm4Zs-oa7Rw8eyS2mnnCR84",
+    authDomain: "hikeit-34330.firebaseapp.com",
+    databaseURL: "https://hikeit-34330.firebaseio.com",
+    projectId: "hikeit-34330",
+    storageBucket: "",
+    messagingSenderId: "956706165596"
   };
-});
+  firebase.initializeApp(config);
 
-// NEEDED FOR JOINHIKE
-var activeHikeArr = [];
+  // DATABASE VARIABLES
+  var database = firebase.database();
+  var auth = firebase.auth();
+  var joinHike = database.ref("join-a-hike/");
+  var connectionsRef = database.ref("/connections");
+  var connectedRef = database.ref(".info/connected");
+  var username;
+  var favoritesRef = database.ref(`users/${username}/favorites/`);
 
-// DATABASE REFERENCE TO PUSH ACTIVE HIKES TO PAGE ON LOAD
-joinHike.once("value", function (snap) {
+  // CONNECTION LISTENER
+  connectedRef.on("value", function (snapshot) {
+    if (snapshot.val()) {
+      var con = connectionsRef.push(true);
+      con.onDisconnect().remove();
+    };
+  });
 
-  // EMPTY THE ARRAY LOCALLY TO PULL IN FROM FIREBASE
-  activeHikeArr = [];
+  // NEEDED FOR JOINHIKE
+  var activeHikeArr = [];
 
+  // DATABASE REFERENCE TO PUSH ACTIVE HIKES TO PAGE ON LOAD
+  joinHike.once("value", function (snap) {
 
-  // FOR EACH LOOPS THROUGH THE ARRAY OF DATA
-  snap.forEach(function (childSnap) {
-    console.log(snap.child())
+    // EMPTY THE ARRAY LOCALLY TO PULL IN FROM FIREBASE
+    activeHikeArr = [];
 
-    outOfDate(childSnap);
-    var childData = childSnap.val();
-    activeHikeArr.push(childData);
+    // FOR EACH LOOPS THROUGH THE ARRAY OF DATA
+    snap.forEach(function (childSnap) {
+
+      var childData = childSnap.val();
+      activeHikeArr.push(childData);
+    });
+
+    console.log(activeHikeArr);
+
+    // ADDS ALL ACTIVE HIKE CARDS TO THE PAGE ONCE (REFRESH HACK)
+    for (let i = 0; i < activeHikeArr.length; i++) {
+      // image = activeHikeArr[i].image;
+      hikeID = activeHikeArr[i].hikeID;
+      image = activeHikeArr[i].image;
+      name = activeHikeArr[i].name;
+      distance = activeHikeArr[i].distance;
+      summary = activeHikeArr[i].summary;
+      conditions = activeHikeArr[i].conditions;
+      date = activeHikeArr[i].date;
+      time = activeHikeArr[i].time;
+
+      // TEST: WORKING
+      // console.log(name);
+
+      // CREATE ACTIVE HIKES
+      createHikes($("#active-hikes"), hikeID, image, name, distance, summary, conditions);
+    };
+  });
+
+  var myHikeArr = [];
+  // DATABASE REFERENCE TO PUSH MY HIKES TO PAGE ON LOAD
+  favoritesRef.once("value", function (snap) {
+
+    // EMPTY THE ARRAY LOCALLY TO PULL IN FROM FIREBASE
+    myHikeArr = [];
+
+    // FOR EACH LOOPS THROUGH THE ARRAY OF DATA
+    snap.forEach(function (childSnap) {
+      var myHikeData = childSnap.val();
+      console.log(myHikeData);
+      myHikeArr.push(myHikeData);
+    });
+
+    // console.log(myHikeArr);
+
+    // ADDS ALL ACTIVE HIKE CARDS TO THE PAGE ONCE (REFRESH HACK)
+    for (let i = 0; i < myHikeArr.length; i++) {
+      // image = activeHikeArr[i].image;
+      hikeID = myHikeArr[i].hikeID;
+      image = myHikeArr[i].image;
+      name = myHikeArr[i].name;
+      distance = myHikeArr[i].distance;
+      summary = myHikeArr[i].summary;
+      conditions = myHikeArr[i].conditions;
+      date = myHikeArr[i].date;
+      time = myHikeArr[i].time;
+
+      // TEST: WORKING
+      // console.log(name);
+
+      // CREATE ACTIVE HIKES
+      createHikes($("#favorite-hikes"), hikeID, image, name, distance, summary, conditions);
+    };
   });
 
 
+  // SEARCH BUTTON LISTENER
+  $("#search-results").on("click", ".hike-submit", function (e) {
+    e.preventDefault();
+    console.log("I've been clicked");
 
-
-  console.log(activeHikeArr);
-
-
-  // ADDS ALL ACTIVE HIKE CARDS TO THE PAGE ONCE (REFRESH HACK)
-  for (let i = 0; i < activeHikeArr.length; i++) {
-    // image = activeHikeArr[i].image;
-    hikeID = activeHikeArr[i].hikeID;
-    image = activeHikeArr[i].image;
-    name = activeHikeArr[i].name;
-    distance = activeHikeArr[i].distance;
-    summary = activeHikeArr[i].summary;
-    conditions = activeHikeArr[i].conditions;
-    date = activeHikeArr[i].date;
-    time = activeHikeArr[i].time;
-
-    // TEST: WORKING
-    // console.log(name);
-
-    // CREATE ACTIVE HIKES
-    createHikes($("#active-hikes"), hikeID, image, name, distance, summary, conditions);
-  };
-});
-
-
-// SEARCH BUTTON LISTENER
-$("#search-results").on("click", ".hike-submit", function (e) {
-  e.preventDefault();
-  console.log("I've been clicked");
-
-  var joinHikeID = parseInt($(this).attr("data-id"));
-  var hikeKey = "200435031-6aa58562b036efd25371d400543a5981";
-  var joinHikeQuery = `https://www.hikingproject.com/data/get-trails-by-id?ids=${joinHikeID}&key=${hikeKey}`
-
-  $.ajax({
-    url: joinHikeQuery,
-    method: "GET"
-  }).then(function (response) {
-
-    var joinResult = response.trails;
-    console.log(joinResult);
-
-    var hikeIDJ = joinResult[0].id;
-    var imageJ = joinResult[0].imgSmallMed;
-    var nameJ = joinResult[0].name;
-    var distanceJ = joinResult[0].length;
-    var summaryJ = joinResult[0].summary;
-    var conditionsJ = joinResult[0].conditionDetails;
-
-    var newHike = {
-      hikeID: hikeIDJ,
-      image: imageJ,
-      name: nameJ,
-      distance: distanceJ,
-      summary: summaryJ,
-      conditions: conditionsJ,
-      date: hikeDate,
-      time: hikeTime,
-      // ALLOWS US TO DELETE IT ON A SWITCH FLIP TO FALSE
-      // KEEP A LISTENER FOR THIS ACTIVE AND CHANGE WHEN FLIPPED
-      active: true
-      // BOOM 
-      // database.ref(this/active).set(false) ETC
-      // ANOTHER LATE NIGHT THOUGHT
-    }
-    console.log(newHike);
-    // var joinKey = database.ref().child("join-a-hike/")
-    database.ref(`join-a-hike/`).push(newHike);
-    database.ref('users/' + username + "/favorites").push(newHike);
-
-    // thought for presentation: make some fake accounts and fill with fake data
-  });
-  // appends the chosen hike to the favorites page and to the current hikes page
-  // save to the database
-});
-
-// API calls
-var citySearch;
-
-function masterAPI() {
-
-  // GEOCODER QUERY AND VARIABLE BUILDER
-  // console.log(citySearch);
-
-  var splitCity = citySearch.split(" ");
-  var geoCity = splitCity.join("+");
-  // var geoCity = "Salt+Lake+City"
-  var geoKey = "AIzaSyCRZmQJcBVO85oD5CSKZSc80BAtfvqD9HU";
-  var geoQuery = `https://maps.googleapis.com/maps/api/geocode/json?address=${geoCity},+UT&key=${geoKey}`;
-
-  // AJAX CALL FOR GEOCODER
-  $.ajax({
-    url: geoQuery,
-    method: "GET"
-  }).then(function (response) {
-
-    var geoResult = response.results;
-    // console.log(geoResult);
-
-    // GRAB THE LATITUDE AND LONGITUDE
-    var cityLat = geoResult[0].geometry.location.lat;
-    var cityLon = geoResult[0].geometry.location.lng;
-    // console.log(cityLat);
-    // console.log(cityLon);
-
-    // HIKE PROJECT API KEY AND QUERY BUILDER
+    var joinHikeID = parseInt($(this).attr("data-id"));
     var hikeKey = "200435031-6aa58562b036efd25371d400543a5981";
-    var hikeQuery = `https://www.hikingproject.com/data/get-trails?lat=${cityLat}&lon=${cityLon}&key=${hikeKey}`;
+    var joinHikeQuery = `https://www.hikingproject.com/data/get-trails-by-id?ids=${joinHikeID}&key=${hikeKey}`
 
-    // AJAX CALL FOR THE HIKE PROJECT
     $.ajax({
-      url: hikeQuery,
+      url: joinHikeQuery,
       method: "GET"
     }).then(function (response) {
 
-      var hikeResult = response.trails;
-      // console.log(hikeResult);
+      var joinResult = response.trails;
+      console.log(joinResult);
 
-      // FOR LOOP -- DYNAMICALLY CREATE 10 COLLAPSEABLE DIVS WITH THE HIK INFORMATION
-      for (let i = 0; i < 10; i++) {
-        var image = hikeResult[i].imgSmallMed;
-        var name = hikeResult[i].name;
-        var distance = hikeResult[i].length;
-        var summary = hikeResult[i].summary;
-        var conditions = hikeResult[i].conditionDetails;
-        var hikeID = hikeResult[i].id;
+      var hikeIDJ = joinResult[0].id;
+      var imageJ = joinResult[0].imgSmallMed;
+      var nameJ = joinResult[0].name;
+      var distanceJ = joinResult[0].length;
+      var summaryJ = joinResult[0].summary;
+      var conditionsJ = joinResult[0].conditionDetails;
 
-        // FUNCTION TO CREATE DIV IS CALLED
-        createHikes($("#search-results"), hikeID, image, name, distance, summary, conditions);
+      var newHike = {
+        hikeID: hikeIDJ,
+        image: imageJ,
+        name: nameJ,
+        distance: distanceJ,
+        summary: summaryJ,
+        conditions: conditionsJ,
+        date: hikeDate,
+        time: hikeTime,
+        // ALLOWS US TO DELETE IT ON A SWITCH FLIP TO FALSE
+        // KEEP A LISTENER FOR THIS ACTIVE AND CHANGE WHEN FLIPPED
+        active: true
+        // BOOM 
+        // database.ref(this/active).set(false) ETC
+        // ANOTHER LATE NIGHT THOUGHT
       }
-    })
+      console.log(newHike);
+      // var joinKey = database.ref().child("join-a-hike/")
+      database.ref(`join-a-hike/`).push(newHike);
+      database.ref('users/' + username + '/favorites').push(newHike);
+
+      // thought for presentation: make some fake accounts and fill with fake data
+    });
+    // appends the chosen hike to the favorites page and to the current hikes page
+    // save to the database
   });
-};
 
-var hikeDate;
-var hikeTime;
-// ON CLICK LISTENER FOR 'SEARCH'
-$("#search-hike").on("click", function (e) {
-  citySearch = $("#city-name").val().trim();
-  $("#search-results").show();
-  e.preventDefault();
-  masterAPI();
-  hikeDate = $("#hike-date").val().trim();
-  hikeTime = $("#hike-time").val().trim();
-  console.log(hikeDate);
-  console.log(hikeTime);
-});
+  // API calls
+  var citySearch;
 
-function outOfDate(snap) {
+  function masterAPI() {
 
-  // joinHike = database.ref(`join-a-hike/`);
-  // user = database.ref(`users/${auth.currentUser.uid}`);
+    // GEOCODER QUERY AND VARIABLE BUILDER
+    console.log(citySearch);
 
-  var item = snap.val();
+    var splitCity = citySearch.split(" ");
+    var geoCity = splitCity.join("+");
+    // var geoCity = "Salt+Lake+City"
+    var geoKey = "AIzaSyCRZmQJcBVO85oD5CSKZSc80BAtfvqD9HU";
+    var geoQuery = `https://maps.googleapis.com/maps/api/geocode/json?address=${geoCity},+UT&key=${geoKey}`;
 
-  var expires = moment(`${item.date} ${item.time}`, "X")
-  var check = moment().unix();
+    // AJAX CALL FOR GEOCODER
+    $.ajax({
+      url: geoQuery,
+      method: "GET"
+    }).then(function (response) {
 
-  // console.log(snap.val())
-  // console.log(expires)
-  // console.log(check)
-  // console.log(snap.val().active)
-  // console.log(snap.key)
-  // console.log(joinHike.child(snap.key))
+      var geoResult = response.results;
+      console.log(geoResult);
 
-  if (expires < check) {
-    console.log(item.name + " removed")
-    // joinHike.child(snap.key).remove()
-    // joinHike.child(snap.key).update({
-    //   active: false
-    // });
+      // GRAB THE LATITUDE AND LONGITUDE
+      var cityLat = geoResult[0].geometry.location.lat;
+      var cityLon = geoResult[0].geometry.location.lng;
+      console.log(cityLat);
+      console.log(cityLon);
+
+      // HIKE PROJECT API KEY AND QUERY BUILDER
+      var hikeKey = "200435031-6aa58562b036efd25371d400543a5981";
+      var hikeQuery = `https://www.hikingproject.com/data/get-trails?lat=${cityLat}&lon=${cityLon}&key=${hikeKey}`;
+
+      // AJAX CALL FOR THE HIKE PROJECT
+      $.ajax({
+        url: hikeQuery,
+        method: "GET"
+      }).then(function (response) {
+
+        var hikeResult = response.trails;
+        console.log(hikeResult);
+
+        // FOR LOOP -- DYNAMICALLY CREATE 10 COLLAPSEABLE DIVS WITH THE HIK INFORMATION
+        for (let i = 0; i < 10; i++) {
+          var image = hikeResult[i].imgSmallMed;
+          var name = hikeResult[i].name;
+          var distance = hikeResult[i].length;
+          var summary = hikeResult[i].summary;
+          var conditions = hikeResult[i].conditionDetails;
+          var hikeID = hikeResult[i].id;
+
+          // FUNCTION TO CREATE DIV IS CALLED
+          createHikes($("#search-results"), hikeID, image, name, distance, summary, conditions);
+        }
+      })
+    });
+  };
+
+  var hikeDate;
+  var hikeTime;
+  // ON CLICK LISTENER FOR 'SEARCH'
+  $("#search-hike").on("click", function (e) {
+    citySearch = $("#city-name").val().trim();
+    $("#search-results").show();
+    e.preventDefault();
+    masterAPI();
+    hikeDate = $("#hike-date").val().trim();
+    hikeTime = $("#hike-time").val().trim();
+    console.log(hikeDate);
+    console.log(hikeTime);
+  });
+
+  function outOfDate(snap) {
+
+    // database.ref(`join-a-hike/`);
+    // database.ref('users/' + auth.currentUser.uid);
+
+    var key = snap.key;
+
+    var expires = moment(`${childData.date} ${childData.time}`, "X")
+    var check = moment().unix();
+    console.log(expires)
+    console.log(check)
+
+    if (expires < check) {
+      console.log(childData.name + " removed")
+      database.ref("join-a-hike/" + key).remove()
+    }
   }
-}
 
-// FUNCTION TO DYNAMICALLY CREATE THE HIKES
-function createHikes(hook, hikeID, image, name, distance, summary, conditions) {
+  // FUNCTION TO DYNAMICALLY CREATE THE HIKES
+  function createHikes(hook, hikeID, image, name, distance, summary, conditions) {
 
-  // card
-  var card = $("<div>").addClass("card").attr("hike-data", hikeID) // CREATES UNIQUE ID FOR THE HIKE
+    // card
+    var card = $("<div>").addClass("card").attr("hike-data", hikeID) // CREATES UNIQUE ID FOR THE HIKE
 
-  var imgDiv = $("<div>").addClass("card-image");
-  var img = $("<img>").addClass("result-img").attr("src", image).attr("alt", image);
-  var btn = $("<a>").addClass("btn-floating halfway-fab waves-effect waves-light teal hike-submit").attr("data-id", hikeID);
-  var icon = $("<i>").addClass("material-icons").text("add");
-  var add = btn.append(icon);
+    var imgDiv = $("<div>").addClass("card-image");
+    var img = $("<img>").addClass("result-img").attr("src", image).attr("alt", image);
+    var btn = $("<a>").addClass("btn-floating halfway-fab waves-effect waves-light teal hike-submit").attr("data-id", hikeID);
+    var icon = $("<i>").addClass("material-icons").text("add");
+    var add = btn.append(icon);
 
-  imgDiv.append(img, add);
+    imgDiv.append(img, add);
 
-  var cardContent = $("<div>").addClass("card-content");
-  var title = $("<span>").addClass("card-title result-name").text(name);
-  var sum = $("<p>").addClass("result-summery").text(summary);
+    var cardContent = $("<div>").addClass("card-content");
+    var title = $("<span>").addClass("card-title result-name").text(name);
+    var sum = $("<p>").addClass("result-summery").text(summary);
 
-  cardContent.append(title, sum);
+    cardContent.append(title, sum);
 
-  var cardFooter = $("<div>").addClass("card-action");
-  var cond = $("<p>").addClass("result-conditions").text(conditions);
-  var dist = $("<p>").addClass("result-distance").text(`${distance} Miles`);
+    var cardFooter = $("<div>").addClass("card-action");
+    var cond = $("<p>").addClass("result-conditions").text(conditions);
+    var dist = $("<p>").addClass("result-distance").text(`${distance} Miles`);
 
-  cardFooter.append(cond, dist);
-  card.append(imgDiv, cardContent, cardFooter);
+    cardFooter.append(cond, dist);
+    card.append(imgDiv, cardContent, cardFooter);
 
-  $(hook).append(card);
-};
+    $(hook).append(card);
+  };
 
-// **************** CHAT FUNCTION:start ***********************
-//   var user = firebase.auth().signInAnonymously();
-//   firebase.auth().onAuthStateChanged(function (user) {
-//       if (user) {
-//           // User is signed in.
-//           var isAnonymous = user.isAnonymous;
-//           user_id = user.uid;
-//       } else {
-//           // User is signed out.
-//       }
-//   });
+  // LOG IN ON CLICK
+  $("#login-btn").on("click", function (e) {
+    e.preventDefault();
+    console.log("logged in");
 
-//   // get firebase database reference...
-//   var db_ref = firebase.database().ref('/');
-//   db_ref.on('child_added', function (data) {
-//       var type;
-//       if (data.val().user_id == user_id) {
-//           type = "sent";
-//       } else {
-//           type = "replies";
-//       }
-//       $('<li class="' + type + '"><p>' + data.val().message + '</p></li>').appendTo($(
-//           '.messages ul'));
-//       $('.message-input input').val(null);
-//       $('.contact.active .preview').html('<span>You: </span>' + data.val().message);
-//       $(".messages").animate({
-//           scrollTop: $(".messages")[0].scrollHeight
-//       }, 0);
-//   });
+    // user info from inputs
+    const email = $("#email").val().trim();
+    const password = $("#pass").val().trim();
 
-//   function writeUserData(message) {
-//       db_ref.push({
-//           user_id: user_id,
-//           message: message
-//       });
-//   }
-// **************** CHAT FUNCTION:end ***********************    
+    // user login
+    auth.signInWithEmailAndPassword(email, password).then(function (credentials) {
+      console.log(credentials)
 
-// LOG IN ON CLICK
-$("#login-btn").on("click", function (e) {
-  e.preventDefault();
-  console.log("logged in");
+    }).catch(function (error) {
+      console.log(error)
+    });
 
-  // user info from inputs
-  const email = $("#email").val().trim();
-  const password = $("#pass").val().trim();
+    $("#email, #pass").val("");
 
-  // user login
-  auth.signInWithEmailAndPassword(email, password).then(function (credentials) {
-    console.log(credentials)
-
-  }).catch(function (error) {
-    console.log(error)
   });
 
-  $("#email, #pass").val("");
+  // CREATE ACCOUNT ON CLICK
+  $("#reg-btn").on("click", function (e) {
+    e.preventDefault();
+    console.log("registered");
 
-});
+    // user info from inputs
+    username = $("#regname").val().trim();
+    const email = $("#regemail").val().trim();
+    const password = $("#regpass").val().trim();
 
-// CREATE ACCOUNT ON CLICK
-$("#reg-btn").on("click", function (e) {
-  e.preventDefault();
-  console.log("registered");
+    // user registration
+    auth.createUserWithEmailAndPassword(email, password).then(function (credentials) {
 
-  // user info from inputs
-  username = $("#regname").val().trim();
-  const email = $("#regemail").val().trim();
-  const password = $("#regpass").val().trim();
+      database.ref(credentials.user.uid).set({
+        favorites: null
+      });
+      // console.log(credentials);
+    });
 
-  // user registration
-  auth.createUserWithEmailAndPassword(email, password).then(function (credentials) {
-    console.log(credentials);
+    // RESETS THE INPUTS
+    $("#regname, #regemail, #regpass").val("");
   });
 
-  $("#regname, regemail, #regpass").val("");
-});
+  $("#logout").on("click", function (e) {
+    e.stopPropagation();
 
-$("#logout").on("click", function (e) {
-  e.stopPropagation();
-
-  auth.signOut().then(function () {
-    console.log("logged out");
-  }).catch(function (error) {
-    console.log(error);
+    auth.signOut().then(function () {
+      console.log("logged out");
+    }).catch(function (error) {
+      console.log(error);
+    });
   });
-});
 
-auth.onAuthStateChanged(function (user) {
-  // console.log(user);
-  if (user) {
-    // joinHike.once("value", function (snap) { }
-    $(".logged-in").show();
-    $(".logged-out").hide();
-  } else {
-    console.log("not logged in")
-    $(".logged-in").hide();
-    $(".logged-out").show();
-  }
-});
-
-$("#logout").on("click", function (e) {
-  e.stopPropagation();
-
-  auth.signOut().then(function () {
-    console.log("logged out");
-  }).catch(function (error) {
-    console.log(error);
+  auth.onAuthStateChanged(function (user) {
+    // console.log(user);
+    if (user) {
+      $(".logged-in").show();
+      $(".logged-out").hide();
+    } else {
+      console.log("not logged in")
+      $(".logged-in").hide();
+      $(".logged-out").show();
+    }
   });
-});
 
-//--------------------------------------------------------------------------------------------
-// Possibilities to expand: Include a feature to add hike event to Google calendar 
+  $("#logout").on("click", function (e) {
+    e.stopPropagation();
+
+    auth.signOut().then(function () {
+      console.log("logged out");
+    }).catch(function (error) {
+      console.log(error);
+    });
+  });
+
+  //--------------------------------------------------------------------------------------------
+  // Possibilities to expand: Include a feature to add hike event to Google calendar 
+});
