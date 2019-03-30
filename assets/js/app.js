@@ -190,11 +190,7 @@ $("#search-hike").on("click", function (e) {
   console.log(hikeTime);
 });
 
-<<<<<<< HEAD
 function outOfDate(snap) {
-=======
-function outOfDate(snap) { 
->>>>>>> d1e5c205b9ef4b42bf68c48b7087f2a1271d976c
 
   // database.ref(`join-a-hike/`);
   // database.ref('users/' + auth.currentUser.uid);
