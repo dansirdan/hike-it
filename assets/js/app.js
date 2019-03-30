@@ -222,9 +222,6 @@ function createHikes(hook, hikeID, image, name, distance, summary, conditions) {
   $(hook).append(card);
 };
 
-// NOTE: -- "auth.currentUser.uid" -- this points you to the currently signed in user
-
-
 // **************** CHAT FUNCTION:start ***********************
 //   var user = firebase.auth().signInAnonymously();
 //   firebase.auth().onAuthStateChanged(function (user) {
