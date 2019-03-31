@@ -340,7 +340,7 @@ $(document).ready(function () {
 
   var outOfDate = function (ref, data, val) {
     var expires = moment();
-    var check = moment(val.date);
+    var check = moment(val.date, "MMMM Do YYYY, h:mm a");
 
     if (expires > check) {
       // console.log(val.name + " out of date");
