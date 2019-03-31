@@ -74,11 +74,13 @@ $(document).ready(function () {
   var myHikeArr = [];
   // DATABASE REFERENCE TO PUSH MY HIKES TO PAGE ON LOAD
   favoritesRef.once("value", function (snap) {
+
     // EMPTY THE ARRAY LOCALLY TO PULL IN FROM FIREBASE
     myHikeArr = [];
 
     // FOR EACH LOOPS THROUGH THE ARRAY OF DATA
     snap.forEach(function (childSnap) {
+      // outOfDate(childSnap)
       var myHikeData = childSnap.val();
       // console.log(myHikeData);
       myHikeArr.push(myHikeData);
@@ -224,8 +226,8 @@ $(document).ready(function () {
     masterAPI();
     hikeDate = $("#hike-date").val().trim();
     hikeTime = $("#hike-time").val().trim();
-    console.log(hikeDate);
-    console.log(hikeTime);
+    // console.log(hikeDate);
+    // console.log(hikeTime);
   });
 
   function outOfDate(snap) {
@@ -235,10 +237,10 @@ $(document).ready(function () {
 
     var key = snap.key;
 
-    var expires = moment(`${childData.date} ${childData.time}`, "X")
+    var expires = moment(`${snap.date} ${snap.time}`, "X")
     var check = moment().unix();
-    console.log(expires)
-    console.log(check)
+    // console.log(expires)
+    // console.log(check)
 
     if (expires < check) {
       console.log(childData.name + " removed")

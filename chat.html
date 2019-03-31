@@ -295,7 +295,6 @@
   <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
   <script>
     // Initialize Firebase
-
     var config = {
       apiKey: "AIzaSyD6vRPaTQwhxm4Zs-oa7Rw8eyS2mnnCR84",
       authDomain: "hikeit-34330.firebaseapp.com",
@@ -312,7 +311,6 @@
         // User is signed in.
         var isAnonymous = user.isAnonymous;
         user_id = user.uid;
-        username = user.dispayName;
       } else {
         // User is signed out.
       }
@@ -338,12 +336,12 @@
     });
     function writeUserData(message) {
       db_ref.push({
-        username: username,
         user_id: user_id,
         message: message
       });
     }
   </script>
+
 
 
 
