@@ -465,3 +465,10 @@
    .card {
       border: 14px solid #fff;
    }
+
+   .date {
+      margin: 1rem 0 -1rem;
+      color: teal;
+      font-size: .8rem;
+      font-weight: 200;
+   }
