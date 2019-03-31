@@ -404,15 +404,6 @@
       outline: none;
    }
 
-   .collapsible-header {
-      margin-bottom: 0;
-   }
-
-   .collapsible-body {
-      background-color: #f5f5f5;
-
-   }
-
    .banner {
       background-color: rgba(245, 245, 245, .7);
       max-width: 1200;
@@ -422,7 +413,7 @@
    }
 
    .cards-container {
-      column-break-inside: avoid;
+      -webkit-column-break-inside: avoid;
    }
 
    .cards-container .card {
