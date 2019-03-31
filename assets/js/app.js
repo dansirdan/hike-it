@@ -20,8 +20,11 @@ $(document).ready(function () {
   var joinHike = database.ref("join-a-hike/");
   var connectionsRef = database.ref("/connections");
   var connectedRef = database.ref(".info/connected");
+  var usersRef = database.ref("users/");
+
   var username;
-  var favoritesRef = database.ref(`users/${username}/favorites/`);
+  var hikeDate;
+  var hikeTime;
 
   // CONNECTION LISTENER
   connectedRef.on("value", function (snapshot) {
@@ -39,47 +42,50 @@ $(document).ready(function () {
 
     // EMPTY THE ARRAY LOCALLY TO PULL IN FROM FIREBASE
     activeHikeArr = [];
-
     // FOR EACH LOOPS THROUGH THE ARRAY OF DATA
     snap.forEach(function (childSnap) {
 
       var childData = childSnap.val();
       activeHikeArr.push(childData);
+
+      // outOfDate(childData).remove()
+      // console.log(outOfDate(childData))
     });
 
     console.log(activeHikeArr);
 
     // ADDS ALL ACTIVE HIKE CARDS TO THE PAGE ONCE (REFRESH HACK)
     for (let i = 0; i < activeHikeArr.length; i++) {
-      // image = activeHikeArr[i].image;
+
       hikeID = activeHikeArr[i].hikeID;
       image = activeHikeArr[i].image;
       name = activeHikeArr[i].name;
       distance = activeHikeArr[i].distance;
       summary = activeHikeArr[i].summary;
       conditions = activeHikeArr[i].conditions;
-      date = activeHikeArr[i].date;
-      time = activeHikeArr[i].time;
-
-      // TEST: WORKING
-      // console.log(name);
+      date = activeHikeArr[i].date
 
       // CREATE ACTIVE HIKES
-      createHikes($("#active-hikes"), hikeID, image, name, distance, summary, conditions);
+      createHikes($("#active-hikes"), hikeID, image, name, distance, summary, conditions, date);
     };
   });
 
   var myHikeArr = [];
+
   // DATABASE REFERENCE TO PUSH MY HIKES TO PAGE ON LOAD
-  favoritesRef.once("value", function (snap) {
+
+  // favoritesRef.once("value", function (snap) {
+  usersRef.once("value", function (snap) {
 
     // EMPTY THE ARRAY LOCALLY TO PULL IN FROM FIREBASE
+    var hikes = snap.child(username)
     myHikeArr = [];
-
     // FOR EACH LOOPS THROUGH THE ARRAY OF DATA
-    snap.forEach(function (childSnap) {
+
+    hikes.forEach(function (childSnap) {
+
       var myHikeData = childSnap.val();
-      console.log(myHikeData);
+
       myHikeArr.push(myHikeData);
     });
 
@@ -94,14 +100,13 @@ $(document).ready(function () {
       distance = myHikeArr[i].distance;
       summary = myHikeArr[i].summary;
       conditions = myHikeArr[i].conditions;
-      date = myHikeArr[i].date;
-      time = myHikeArr[i].time;
+      date = myHikeArr[i].date
 
       // TEST: WORKING
       // console.log(name);
 
       // CREATE ACTIVE HIKES
-      createHikes($("#favorite-hikes"), hikeID, image, name, distance, summary, conditions);
+      createHikes($("#favorite-hikes"), hikeID, image, name, distance, summary, conditions, date);
     };
   });
 
@@ -137,8 +142,7 @@ $(document).ready(function () {
         distance: distanceJ,
         summary: summaryJ,
         conditions: conditionsJ,
-        date: hikeDate,
-        time: hikeTime,
+        date: `${hikeDate}, ${hikeTime}`,
         // ALLOWS US TO DELETE IT ON A SWITCH FLIP TO FALSE
         // KEEP A LISTENER FOR THIS ACTIVE AND CHANGE WHEN FLIPPED
         active: true
@@ -147,10 +151,11 @@ $(document).ready(function () {
         // ANOTHER LATE NIGHT THOUGHT
       }
       console.log(newHike);
+      // console.log(date)
       // var joinKey = database.ref().child("join-a-hike/")
       database.ref(`join-a-hike/`).push(newHike);
-      database.ref('users/' + username + '/favorites').push(newHike);
-
+      database.ref('users/' + username).push(newHike);
+      console.log(username + " username on push")
       // thought for presentation: make some fake accounts and fill with fake data
     });
     // appends the chosen hike to the favorites page and to the current hikes page
@@ -215,8 +220,6 @@ $(document).ready(function () {
     });
   };
 
-  var hikeDate;
-  var hikeTime;
   // ON CLICK LISTENER FOR 'SEARCH'
   $("#search-hike").on("click", function (e) {
     citySearch = $("#city-name").val().trim();
@@ -225,30 +228,12 @@ $(document).ready(function () {
     masterAPI();
     hikeDate = $("#hike-date").val().trim();
     hikeTime = $("#hike-time").val().trim();
-    console.log(hikeDate);
-    console.log(hikeTime);
+    // console.log(hikeDate);
+    // console.log(hikeTime);
   });
 
-  function outOfDate(snap) {
-
-    // database.ref(`join-a-hike/`);
-    // database.ref('users/' + auth.currentUser.uid);
-
-    var key = snap.key;
-
-    var expires = moment(`${childData.date} ${childData.time}`, "X")
-    var check = moment().unix();
-    console.log(expires)
-    console.log(check)
-
-    if (expires < check) {
-      console.log(childData.name + " removed")
-      database.ref("join-a-hike/" + key).remove()
-    }
-  }
-
   // FUNCTION TO DYNAMICALLY CREATE THE HIKES
-  function createHikes(hook, hikeID, image, name, distance, summary, conditions) {
+  function createHikes(hook, hikeID, image, name, distance, summary, conditions, date) {
 
     // card
     var card = $("<div>").addClass("card").attr("hike-data", hikeID) // CREATES UNIQUE ID FOR THE HIKE
@@ -262,10 +247,11 @@ $(document).ready(function () {
     imgDiv.append(img, add);
 
     var cardContent = $("<div>").addClass("card-content");
+    var day = $("<p>").addClass("date").text(date);
     var title = $("<span>").addClass("card-title result-name").text(name);
     var sum = $("<p>").addClass("result-summery").text(summary);
 
-    cardContent.append(title, sum);
+    cardContent.append(day, title, sum);
 
     var cardFooter = $("<div>").addClass("card-action");
     var cond = $("<p>").addClass("result-conditions").text(conditions);
@@ -304,18 +290,18 @@ $(document).ready(function () {
     console.log("registered");
 
     // user info from inputs
-    username = $("#regname").val().trim();
+    const username = $("#regname").val().trim();
     const email = $("#regemail").val().trim();
     const password = $("#regpass").val().trim();
 
     // user registration
     auth.createUserWithEmailAndPassword(email, password).then(function (credentials) {
 
-      database.ref(credentials.user.uid).set({
-        favorites: null
+      auth.currentUser.updateProfile({
+        displayName: username
       });
 
-      // console.log(credentials);
+      console.log(credentials);
     });
 
     // RESETS THE INPUTS
@@ -335,6 +321,7 @@ $(document).ready(function () {
   auth.onAuthStateChanged(function (user) {
     // console.log(user);
     if (user) {
+      username = user.displayName;
       $(".logged-in").show();
       $(".logged-out").hide();
     } else {
@@ -353,6 +340,19 @@ $(document).ready(function () {
       console.log(error);
     });
   });
+
+  // var outOfDate = function (data) {
+  //   // console.log("outOfDate fired " + data.date)
+
+  //   var expires = moment()
+  //   var check = moment(data.date)
+
+  //   if (expires > check) {
+  //     console.log(data.name + " out of date")
+  //   }
+  //   return data
+  // }
+
 
   //--------------------------------------------------------------------------------------------
   // Possibilities to expand: Include a feature to add hike event to Google calendar 
