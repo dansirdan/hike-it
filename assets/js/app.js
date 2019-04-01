@@ -288,11 +288,21 @@ $(document).ready(function () {
     e.preventDefault();
     console.log("registered");
 
+
     // user info from inputs
     const username = $("#regname").val().trim();
     const email = $("#regemail").val().trim();
     const password = $("#regpass").val().trim();
 
+    if (!username) {
+      // console.log("no username")
+      $(".register").addClass("shake").delay(1000).queue(function (next) {
+        $(this).removeClass("shake")
+        $("#regname").focus()
+        next();
+      });
+      return
+    }
     // user registration
     auth.createUserWithEmailAndPassword(email, password).then(function (credentials) {
 
