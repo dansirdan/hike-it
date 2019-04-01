@@ -303,15 +303,17 @@ $(document).ready(function () {
         next();
       });
       return
-    } else if (!email) {
-      // console.log("no email")
-      $(".register").addClass("shake").delay(1000).queue(function (next) {
-        $(this).removeClass("shake")
-        $("#regemail").focus()
-        next();
-      });
-      return
-    } else if (!password) {
+    }
+    // else if (!email) {
+    //   // console.log("no email")
+    //   $(".register").addClass("shake").delay(1000).queue(function (next) {
+    //     $(this).removeClass("shake")
+    //     $("#regemail").focus()
+    //     next();
+    //   });
+    //   return
+    // } 
+    else if (!password) {
       // console.log("no username")
       $(".register").addClass("shake").delay(1000).queue(function (next) {
         $(this).removeClass("shake")
