@@ -110,7 +110,7 @@ $(document).ready(function () {
 
 
   // HIKE SUBMIT BUTTON LISTENER
-  $("#search-results").on("click", ".hike-submit", function (e) {
+  $("#search-results, #active-hikes").on("click", ".hike-submit", function (e) {
     e.preventDefault();
     console.log("I've been clicked");
 
@@ -222,6 +222,7 @@ $(document).ready(function () {
 
   // ON CLICK LISTENER FOR 'SEARCH'
   $("#search-hike").on("click", function (e) {
+    $("#search-results").empty();
     citySearch = $("#city-name").val().trim();
     $("#search-results").show();
     e.preventDefault();
@@ -299,6 +300,22 @@ $(document).ready(function () {
       $(".register").addClass("shake").delay(1000).queue(function (next) {
         $(this).removeClass("shake")
         $("#regname").focus()
+        next();
+      });
+      return
+    } else if (!email) {
+      // console.log("no email")
+      $(".register").addClass("shake").delay(1000).queue(function (next) {
+        $(this).removeClass("shake")
+        $("#regemail").focus()
+        next();
+      });
+      return
+    } else if (!password) {
+      // console.log("no username")
+      $(".register").addClass("shake").delay(1000).queue(function (next) {
+        $(this).removeClass("shake")
+        $("#regpass").focus()
         next();
       });
       return
