@@ -2,7 +2,7 @@
 <html>
 
 <head>
-
+  <title>HikeIt!</title>
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -12,8 +12,14 @@
   <!-- Latest compiled JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,300' rel='stylesheet' type='text/css'>
-
-  <script>try { Typekit.load({ async: true }); } catch (e) { }</script>
+  <link rel="icon" href="assets/images/favicon (4).ico" type="image/ico">
+  <script>
+    try {
+      Typekit.load({
+        async: true
+      });
+    } catch (e) {}
+  </script>
   <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'>
   <link rel='stylesheet prefetch'
     href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
@@ -53,7 +59,7 @@
 
     #frame .content {
       float: right;
-      width: 60%;
+      width: 100%;
       height: 100%;
       overflow: hidden;
       position: relative;
@@ -270,8 +276,11 @@
 
 
   <script>
-    $(".messages").animate({ scrollTop: $(document).height() }, "fast");
+    $(".messages").animate({
+      scrollTop: $(document).height()
+    }, "fast");
     var user_id;
+
     function newMessage() {
 
       message = $(".message-input input").val();
@@ -318,27 +327,30 @@
   </script>
 
   <script>
-
     // get firebase database reference...
-    var db_ref = firebase.database().ref('/chat');
+    var db_ref = firebase.database().ref('/chat/');
     db_ref.on('child_added', function (data) {
       var type;
       if (data.val().user_id == user_id) {
         type = "sent";
-      }
-      else {
+      } else {
         type = "replies";
       }
       $('<li class="' + type + '"><p>' + data.val().message + '</p></li>').appendTo($('.messages ul'));
       $('.message-input input').val(null);
       $('.contact.active .preview').html('<span>You: </span>' + data.val().message);
-      $(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight }, 0);
+      $(".messages").animate({
+        scrollTop: $(".messages")[0].scrollHeight
+      }, 0);
     });
+
     function writeUserData(message) {
-      db_ref.push({
+      var msgKey = firebase.database().ref().child("/chat/").push().key;
+
+      firebase.database().ref("/chat/" + msgKey).set({
         user_id: user_id,
         message: message
-      });
+      })
     }
   </script>
 

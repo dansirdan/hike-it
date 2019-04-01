@@ -109,7 +109,7 @@ $(document).ready(function () {
   });
 
 
-  // SEARCH BUTTON LISTENER
+  // HIKE SUBMIT BUTTON LISTENER
   $("#search-results").on("click", ".hike-submit", function (e) {
     e.preventDefault();
     console.log("I've been clicked");
@@ -154,6 +154,8 @@ $(document).ready(function () {
       database.ref(`join-a-hike/`).push(newHike);
       database.ref(`users/${username}`).push(newHike);
       console.log(username + " username on push")
+      // reloads the search
+      location.reload();
       // thought for presentation: make some fake accounts and fill with fake data
     });
     // appends the chosen hike to the favorites page and to the current hikes page
@@ -344,7 +346,9 @@ $(document).ready(function () {
 
     if (expires > check) {
       // console.log(val.name + " out of date");
-      ref.child(data.key).update({ active: false });
+      ref.child(data.key).update({
+        active: false
+      });
     }
     return data
   }
