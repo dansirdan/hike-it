@@ -288,11 +288,21 @@ $(document).ready(function () {
     e.preventDefault();
     console.log("registered");
 
+
     // user info from inputs
     const username = $("#regname").val().trim();
     const email = $("#regemail").val().trim();
     const password = $("#regpass").val().trim();
 
+    if (!username) {
+      // console.log("no username")
+      $(".register").addClass("shake").delay(1000).queue(function (next) {
+        $(this).removeClass("shake")
+        $("#regname").focus()
+        next();
+      });
+      return
+    }
     // user registration
     auth.createUserWithEmailAndPassword(email, password).then(function (credentials) {
 
@@ -342,7 +352,7 @@ $(document).ready(function () {
 
   var outOfDate = function (ref, data, val) {
     var expires = moment();
-    var check = moment(val.date);
+    var check = moment(val.date, "MMMM Do YYYY, h:mm a");
 
     if (expires > check) {
       // console.log(val.name + " out of date");
