@@ -2,7 +2,7 @@
 <html>
 
   <head>
-
+    <title>HikeIt!</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -13,7 +13,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,300' rel='stylesheet'
       type='text/css'>
-
+    <link rel="icon" href="assets/images/favicon (4).ico" type="image/ico">
     <script>
       try {
         Typekit.load({
@@ -61,7 +61,7 @@
 
       #frame .content {
         float: right;
-        width: 60%;
+        width: 100%;
         height: 100%;
         overflow: hidden;
         position: relative;
@@ -256,39 +256,26 @@
 
   <body>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-sm">
-          <a href="index.html"> <button type="button" class="btn btn-dark">Back</button>
-          </a>
+
+    <div id="frame">
+      <div class="content">
+        <div class="contact-profile">
+          <p style="margin-left: 40%;">Group Chat </p>
+
         </div>
+        <div class="messages" id="chatBox">
+          <ul>
 
-      </div>
-      <div class="row">
-        <div id="frame">
-          <div class="content">
-            <div class="contact-profile">
-              <p style="margin-left: 40%;">Group Chat </p>
-
-            </div>
-            <div class="messages" id="chatBox">
-              <ul>
-
-              </ul>
-            </div>
-            <div class="message-input">
-              <div class="wrap">
-                <input type="text" placeholder="Write your message..." />
-                <button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-              </div>
-            </div>
+          </ul>
+        </div>
+        <div class="message-input">
+          <div class="wrap">
+            <input type="text" placeholder="Write your message..." />
+            <button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
           </div>
         </div>
       </div>
     </div>
-
-
-
 
 
     <script>
@@ -321,7 +308,6 @@
     <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
     <script>
       // Initialize Firebase
-
       var config = {
         apiKey: "AIzaSyD6vRPaTQwhxm4Zs-oa7Rw8eyS2mnnCR84",
         authDomain: "hikeit-34330.firebaseapp.com",
@@ -347,7 +333,7 @@
 
     <script>
       // get firebase database reference...
-      var db_ref = firebase.database().ref('/');
+      var db_ref = firebase.database().ref('/chat/');
       db_ref.on('child_added', function (data) {
         var type;
         if (data.val().user_id == user_id) {
@@ -364,14 +350,18 @@
       });
 
       function writeUserData(message) {
-        db_ref.push({
+        var msgKey = firebase.database().ref().child("/chat/").push().key;
+
+        firebase.database().ref("/chat/" + msgKey).set({
           user_id: user_id,
           message: message
-        });
+        })
       }
 
     </script>
 
-  </body>
 
-</html>
+
+    </script>
+
+    <<<<<<< HEAD </body> </html>=======</body> </html>>>>>>>> 2ce22edffef5ad7dabd71d4aa0a5818fda9a883e

@@ -12,16 +12,10 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
       integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel='stylesheet' href='assets/css/style.css'>
+    <link rel="icon" href="assets/images/favicon (4).ico" type="image/ico">
     <!-- firebase -->
     <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
     <!-- Compiled and minified JavaScript -->
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,300' rel='stylesheet'
-      type='text/css'>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </head>
 
@@ -36,7 +30,7 @@
                 alt=""></a> -->
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-              <li class="active">
+              <li>
                 <a href="search.html"><i class="fas fa-search"></i> Search</a>
               </li>
               <li>
@@ -57,12 +51,12 @@
       </nav>
     </div>
     <ul class="teal sidenav" id="mobile-demo">
+      <!-- <li>
+      <div>
+        <a href="https://placeholder.com"><img src="https://via.placeholder.com/300x80" alt=""></a>
+      </div>
+    </li> -->
       <li>
-        <div>
-          <a href="https://placeholder.com"><img src="https://via.placeholder.com/300x80" alt=""></a>
-        </div>
-      </li>
-      <li class="active">
         <a href="search.html"><i class="fas fa-search" style="color: white"></i><span class="white-text">
             Search</span></a>
       </li>
@@ -90,7 +84,7 @@
     <section class="section center">
       <div class="container">
         <div class='row banner'>
-          <h4>Search Trails</h4>
+          <h4>Search Utah Trails</h4>
           <form>
             <div class="input-field col s12">
               <div class="input-field col s4">
@@ -98,11 +92,11 @@
                 <label for="">City</label>
               </div>
               <div class="input-field col s4">
-                <input id="hike-date" type="text" class="datepicker">
+                <input id="hike-date" type="text" class="datepicker" required>
                 <label for="hike-date">Date</label>
               </div>
               <div class="input-field col s4">
-                <input id="hike-time" type="text" class="timepicker">
+                <input id="hike-time" type="text" class="timepicker" required>
                 <label for="hike-time">Time</label>
               </div>
               <button class="btn pink accent-3" type="submit" id="search-hike">Search</button>
@@ -112,9 +106,7 @@
       </div>
     </section>
 
-    <!-- EVERTHING BELOW IS HIDDEN UNTIL SEARCH IS CLICKED -->
-
-    <!-- result- list of ten hikes that include: -->
+    <!-- RESULT: LIST OF 10 HIKES THAT INCLUDE -->
     <!-- <section class="section section-icons grey lighten-4 center"> -->
     <section class="section center">
       <div class="container">

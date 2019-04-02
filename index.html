@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
   <head>
     <meta charset="UTF-8">
     <title>HikeIt!</title>
@@ -13,13 +12,11 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
       integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel='stylesheet' href='assets/css/style.css'>
+    <link rel="icon" href="assets/images/favicon (4).ico" type="image/ico">
     <!-- firebase -->
     <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
-
-
   </head>
 
   <body>
@@ -29,7 +26,8 @@
           <div class="nav-wrapper">
             <a href="index.html" class="brand-logo"><i class="material-icons">landscape</i>Hike it</a>
             <!-- image for navbar needs to be 64(height) -->
-            <a class="brand-logo"><img src="assets/images/HikeIt-phone_logo-teal-wht.jpeg" alt="hikeit-logo"></a>
+            <!-- <a href="https://placeholder.com" class="brand-logo"><img src="https://via.placeholder.com/200x64"
+                alt=""></a> -->
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
               <li>
@@ -38,7 +36,7 @@
               <li>
                 <a href="social.html"><i class="fas fa-user-friends"></i> Join A Hike</a>
               </li>
-              <li class="active">
+              <li>
                 <a href="index.html"><i class="fas fa-hiking"></i> My Hikes</a>
               </li>
               <li>
@@ -53,11 +51,11 @@
       </nav>
     </div>
     <ul class="teal sidenav" id="mobile-demo">
-      <li>
-        <div>
-          <a><img src="assets/images/HikeIt-phone_logo-teal-wht_300.jpeg" alt="hikeit-logo_sidnav"></a>
-        </div>
-      </li>
+      <!-- <li>
+      <div>
+        <a href="https://placeholder.com"><img src="https://via.placeholder.com/300x80" alt=""></a>
+      </div>
+    </li> -->
       <li>
         <a href="search.html"><i class="fas fa-search" style="color: white"></i><span class="white-text">
             Search</span></a>
@@ -66,7 +64,7 @@
         <a href="social.html"><i class="fas fa-user-friends" style="color: white"></i><span class="white-text"> Join A
             Hike</span></a>
       </li>
-      <li class="active">
+      <li>
         <a href="index.html"><i class="fas fa-hiking" style="color: white"></i><span class="white-text"> My
             Hikes</span></a>
       </li>
@@ -114,27 +112,29 @@
 
           <div class="title">REGISTER</div>
 
-          <div class="input">
-            <label for="regname">Username</label>
-            <input type="text" name="regname" id="regname">
-            <span class="spin"></span>
-          </div>
+          <form>
+            <div class="input register">
+              <label for="regname">Username</label>
+              <input type="text" name="regname" id="regname">
+              <span class="spin"></span>
+            </div>
 
-          <div class="input">
-            <label for="regemail">Email</label>
-            <input type="text" name="regemail" id="regemail">
-            <span class="spin"></span>
-          </div>
+            <div class="input">
+              <label for="regemail">Email</label>
+              <input type="text" name="regemail" id="regemail">
+              <span class="spin"></span>
+            </div>
 
-          <div class="input">
-            <label for="regpass">Password</label>
-            <input type="password" name="regpass" id="regpass">
-            <span class="spin"></span>
-          </div>
+            <div class="input">
+              <label for="regpass">Password</label>
+              <input type="password" name="regpass" id="regpass">
+              <span class="spin"></span>
+            </div>
 
-          <div class="button">
-            <button type="submit" id="reg-btn"><span>NEXT</span></button>
-          </div>
+            <div class="button">
+              <button type="submit" id="reg-btn"><span>NEXT</span></button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -145,8 +145,12 @@
         <div class='row banner'>
 
           <h4>Your Saved Hikes</h4>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus velit mollitia quia porro ullam doloremque
-            deleniti ipsum?</p>
+          <p>Here you will find all of the hikes you have created and the ones you have joined.</p>
+          <p>Make sure to check out the forum and organize your next group hike.</p>
+          <br>
+          <p>Checking trail conditions? All conditions are current, just check back the day of your hike to see the
+            latest
+            conditions updated on the hike card below!</p>
 
         </div>
       </div>
@@ -159,6 +163,7 @@
     </section>
     <!-- JavaScript -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     <script type='text/javascript' src='assets/js/app.js'></script>
     <script type='text/javascript' src='assets/js/ui.js'></script>
