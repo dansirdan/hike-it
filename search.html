@@ -26,11 +26,11 @@
           <div class="nav-wrapper">
             <a href="index.html" class="brand-logo"><i class="material-icons">landscape</i>Hike it</a>
             <!-- image for navbar needs to be 64(height) -->
-            <!-- <a href="https://placeholder.com" class="brand-logo"><img src="https://via.placeholder.com/200x64"
-                alt=""></a> -->
+            <a class="brand-logo"><img src="assets/images/HikeIt-phone_logo-teal-wht.jpeg" alt="hikeit-logo"></a>
+
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-              <li>
+              <li class="active">
                 <a href="search.html"><i class="fas fa-search"></i> Search</a>
               </li>
               <li>
@@ -51,12 +51,12 @@
       </nav>
     </div>
     <ul class="teal sidenav" id="mobile-demo">
-      <!-- <li>
-      <div>
-        <a href="https://placeholder.com"><img src="https://via.placeholder.com/300x80" alt=""></a>
-      </div>
-    </li> -->
       <li>
+        <div>
+          <a><img src="assets/images/HikeIt-phone_logo-teal-wht_300.jpeg" alt=""></a>
+        </div>
+      </li>
+      <li class="active">
         <a href="search.html"><i class="fas fa-search" style="color: white"></i><span class="white-text">
             Search</span></a>
       </li>
@@ -89,15 +89,15 @@
             <div class="input-field col s12">
               <div class="input-field col s4">
                 <input type="text" class="validate autocomplete" autocomplete="off" id="city-name">
-                <label for="">City</label>
+                <label for=""><i class="fas fa-city"></i> City</label>
               </div>
               <div class="input-field col s4">
                 <input id="hike-date" type="text" class="datepicker" required>
-                <label for="hike-date">Date</label>
+                <label for="hike-date"><i class="fas fa-calendar-alt"></i> Date</label>
               </div>
               <div class="input-field col s4">
                 <input id="hike-time" type="text" class="timepicker" required>
-                <label for="hike-time">Time</label>
+                <label for="hike-time"><i class="fas fa-clock"></i> Time</label>
               </div>
               <button class="btn pink accent-3" type="submit" id="search-hike">Search</button>
             </div>
