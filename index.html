@@ -1,172 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <title>HikeIt!</title>
-    <link href="https://fonts.googleapis.com/css?family=BioRhyme" rel="stylesheet">
+<head>
+  <meta charset="UTF-8">
+  <title>HikeIt!</title>
+  <link href="https://fonts.googleapis.com/css?family=BioRhyme" rel="stylesheet">
 
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link rel='stylesheet' href='assets/css/style.css'>
-    <link rel="icon" href="assets/images/favicon (4).ico" type="image/ico">
-    <!-- firebase -->
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  </head>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <link rel='stylesheet' href='assets/css/style.css'>
+  <link rel="icon" href="assets/images/favicon (4).ico" type="image/ico">
+  <!-- firebase -->
+  <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase.js"></script>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
 
-  <body>
-    <div class="navbar-fixed">
-      <nav class="teal logged-in" style="display: none">
-        <div class="container">
-          <div class="nav-wrapper">
-            <a href="index.html" class="brand-logo"><i class="material-icons">landscape</i>Hike it</a>
-            <!-- image for navbar needs to be 64(height) -->
-            <a class="brand-logo"><img src="assets/images/HikeIt-phone_logo-teal-wht.jpeg" alt="hikeit-logo"></a>
-            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-            <ul class="right hide-on-med-and-down">
-              <li>
-                <a href="search.html"><i class="fas fa-search"></i> Search</a>
-              </li>
-              <li>
-                <a href="social.html"><i class="fas fa-user-friends"></i> Join A Hike</a>
-              </li>
-              <li class="active">
-                <a href="index.html"><i class="fas fa-hiking"></i> My Hikes</a>
-              </li>
-              <li>
-                <a href="chat.html"><i class="fas fa-comments"></i> Forum</a>
-              </li>
-              <li>
-                <a href="index.html" id="logout" class="waves-effect waves-light btn yellow darken-4">Logout</a>
-              </li>
-            </ul>
-          </div>
+<body>
+  <div class="navbar-fixed">
+    <nav class="teal logged-in" style="display: none">
+      <div class="container">
+        <div class="nav-wrapper">
+          <a href="index.html" class="brand-logo"><i class="material-icons">landscape</i>Hike it</a>
+          <!-- image for navbar needs to be 64(height) -->
+          <a class="brand-logo"><img src="assets/images/HikeIt-phone_logo-teal-wht.jpeg" alt="hikeit-logo"></a>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul class="right hide-on-med-and-down">
+            <li>
+              <a href="search.html"><i class="fas fa-search"></i> Search</a>
+            </li>
+            <li>
+              <a href="social.html"><i class="fas fa-user-friends"></i> Join A Hike</a>
+            </li>
+            <li class="active">
+              <a href="index.html"><i class="fas fa-hiking"></i> My Hikes</a>
+            </li>
+            <li>
+              <a href="chat.html"><i class="fas fa-comments"></i> Forum</a>
+            </li>
+            <li>
+              <a href="index.html" id="logout" class="waves-effect waves-light btn yellow darken-4">Logout</a>
+            </li>
+          </ul>
         </div>
-      </nav>
-    </div>
-    <ul class="teal sidenav" id="mobile-demo">
-      <li>
-        <div>
-          <a><img src="assets/images/HikeIt-phone_logo-teal-wht_300.jpeg" alt=""></a>
-        </div>
-      </li>
-      <li>
-        <a href="search.html"><i class="fas fa-search" style="color: white"></i><span class="white-text">
-            Search</span></a>
-      </li>
-      <li>
-        <a href="social.html"><i class="fas fa-user-friends" style="color: white"></i><span class="white-text"> Join A
-            Hike</span></a>
-      </li>
-      <li class="active">
-        <a href="index.html"><i class="fas fa-hiking" style="color: white"></i><span class="white-text"> My
-            Hikes</span></a>
-      </li>
-      <li>
-        <a href="chat.html"><i class="fas fa-comments" style="color: white"></i><span class="white-text">
-            Forum</span></a>
-      </li>
-      <br>
-      <li>
-        <a href="index.html" id="logout" class="waves-effect waves-light btn yellow darken-4"
-          style="color: white">Logout</a>
-      </li>
-    </ul>
+      </div>
+    </nav>
+  </div>
+  <ul class="teal sidenav" id="mobile-demo">
+    <li>
+      <div>
+        <a><img src="assets/images/HikeIt-phone_logo-teal-wht_300.jpeg" alt=""></a>
+      </div>
+    </li>
+    <li>
+      <a href="search.html"><i class="fas fa-search" style="color: white"></i><span class="white-text">
+          Search</span></a>
+    </li>
+    <li>
+      <a href="social.html"><i class="fas fa-user-friends" style="color: white"></i><span class="white-text"> Join A
+          Hike</span></a>
+    </li>
+    <li class="active">
+      <a href="index.html"><i class="fas fa-hiking" style="color: white"></i><span class="white-text"> My
+          Hikes</span></a>
+    </li>
+    <li>
+      <a href="chat.html"><i class="fas fa-comments" style="color: white"></i><span class="white-text">
+          Forum</span></a>
+    </li>
     <br>
-    <div class="materialContainer">
+    <li>
+      <a href="index.html" id="logout" class="waves-effect waves-light btn yellow darken-4"
+        style="color: white">Logout</a>
+    </li>
+  </ul>
+  <br>
+  <div class="materialContainer">
 
-      <div class="logged-out" style="display: none">
+    <div class="logged-out" style="display: none">
 
-        <div class="box">
+      <div class="box">
 
-          <div class="title">LOGIN</div>
+        <div class="title">LOGIN</div>
 
-          <div class="input">
-            <label for="email">Email</label>
-            <input type="text" name="email" id="email">
+        <div class="input">
+          <label for="email">Email</label>
+          <input type="text" name="email" id="email">
+          <span class="spin"></span>
+        </div>
+
+        <div class="input">
+          <label for="pass">Password</label>
+          <input type="password" name="pass" id="pass">
+          <span class="spin"></span>
+        </div>
+
+        <div class="button login">
+          <button type="submit" id="login-btn"><span>GO</span> <i class="fa fa-check"></i></button>
+        </div>
+
+        <a href="" class="pass-forgot">Forgot your password?</a>
+
+      </div>
+
+      <div class="overbox">
+        <div class="material-button alt-2"><span class="shape"></span></div>
+
+        <div class="title">REGISTER</div>
+
+        <form>
+          <div class="input register">
+            <label for="regname">Username</label>
+            <input type="text" name="regname" id="regname">
             <span class="spin"></span>
           </div>
 
           <div class="input">
-            <label for="pass">Password</label>
-            <input type="password" name="pass" id="pass">
+            <label for="regemail">Email</label>
+            <input type="text" name="regemail" id="regemail">
             <span class="spin"></span>
           </div>
 
-          <div class="button login">
-            <button type="submit" id="login-btn"><span>GO</span> <i class="fa fa-check"></i></button>
+          <div class="input">
+            <label for="regpass">Password</label>
+            <input type="password" name="regpass" id="regpass">
+            <span class="spin"></span>
           </div>
 
-          <a href="" class="pass-forgot">Forgot your password?</a>
-
-        </div>
-
-        <div class="overbox">
-          <div class="material-button alt-2"><span class="shape"></span></div>
-
-          <div class="title">REGISTER</div>
-
-          <form>
-            <div class="input register">
-              <label for="regname">Username</label>
-              <input type="text" name="regname" id="regname">
-              <span class="spin"></span>
-            </div>
-
-            <div class="input">
-              <label for="regemail">Email</label>
-              <input type="text" name="regemail" id="regemail">
-              <span class="spin"></span>
-            </div>
-
-            <div class="input">
-              <label for="regpass">Password</label>
-              <input type="password" name="regpass" id="regpass">
-              <span class="spin"></span>
-            </div>
-
-            <div class="button">
-              <button type="submit" id="reg-btn"><span>NEXT</span></button>
-            </div>
-          </form>
-        </div>
+          <div class="button">
+            <button type="submit" id="reg-btn"><span>NEXT</span></button>
+          </div>
+        </form>
       </div>
     </div>
+  </div>
 
-    <!-- Banner -->
-    <section class="section center logged-in">
-      <div class="container">
-        <div class='row banner'>
+  <!-- Banner -->
+  <section class="section center logged-in">
+    <div class="container">
+      <div class='row banner'>
 
-          <h4>Your Saved Hikes</h4>
-          <p>Here you will find all of the hikes you have created and the ones you have joined.</p>
-          <p>Make sure to check out the forum and organize your next group hike.</p>
-          <br>
-          <p>Checking trail conditions? All conditions are current, just check back the day of your hike to see the
-            latest
-            conditions updated on the hike card below!</p>
-
-        </div>
-      </div>
-    </section>
-    <section class="section center logged-in">
-      <div class="container">
-        <div class="col s12 cards-container" id="favorite-hikes"></div>
+        <h4>Your Saved Hikes</h4>
+        <p>Here you will find all of the hikes you have created and the ones you have joined.</p>
+        <p>Make sure to check out the forum and organize your next group hike.</p>
+        <br>
+        <p>Checking trail conditions? All conditions are current, just check back the day of your hike to see the
+          latest
+          conditions updated on the hike card below!</p>
 
       </div>
-    </section>
-    <!-- JavaScript -->
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
-    <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-    <script type='text/javascript' src='assets/js/app.js'></script>
-    <script type='text/javascript' src='assets/js/ui.js'></script>
-  </body>
+    </div>
+  </section>
+  <section class="section center logged-in">
+    <div class="container">
+      <div class="col s12 cards-container" id="favorite-hikes"></div>
+
+    </div>
+  </section>
+  <!-- JavaScript -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script type='text/javascript' src='assets/js/app.js'></script>
+  <script type='text/javascript' src='assets/js/ui.js'></script>
+</body>
 
 </html>
 <!-- BELOW: Author credit for a couple of the icons used in the logo (include in footer when prudent) -->
