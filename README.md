@@ -1,5 +1,5 @@
 # HikeIt! 
-## - a social exploration of Utah's Hiking Trails
+### - a social exploration of Utah's Hiking Trails
 Finding a hike can be difficult if you don't know where to look or who to ask. Because Utah has so many trails its easy to get lost on where you wanna go. Users can search by city and find hikes in their immediate vicinity. Users can even join hikes that have been created by other registered users.
 
 ## Using the App
