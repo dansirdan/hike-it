@@ -1,3 +1,14 @@
+nav i.material-icons {
+   display: inline;
+   font-size: 1rem;
+}
+nav li {
+   height: 64px;
+}
+.brand-logo {
+   height: 64px
+}
+
 .box input,
 .box input:focus,
 .overbox input,
