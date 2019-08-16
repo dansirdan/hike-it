@@ -19,10 +19,10 @@ https://dansirdan.github.io/hike-it/
 
 ### Development Team:
 
-Jessica Bramwell
-Hayder Achir
-Brandon Conover
-& Dan Mont-Eton
+- Jessica Bramwell
+- Hayder Achir
+- Brandon Conover
+- Dan Mont-Eton
 
 ### Technologies Used
 - Firebase Data & Authentication
@@ -41,4 +41,4 @@ Brandon Conover
 <img src="./assets/images/join.JPG" alt="join">
 
 #### Search
-<img src="./assets/images/search.JPG" alt="search">
+<img src="./assets/images/search.png" alt="search">
