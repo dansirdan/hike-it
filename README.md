@@ -1,5 +1,5 @@
 # HikeIt! 
-##- a social exploration of Utah's Hiking Trails
+## - a social exploration of Utah's Hiking Trails
 Finding a hike can be difficult if you don't know where to look or who to ask. Because Utah has so many trails its easy to get lost on where you wanna go. Users can search by city and find hikes in their immediate vicinity. Users can even join hikes that have been created by other registered users.
 
 ## Using the App
@@ -14,7 +14,7 @@ Chat with the community on our chat page and plan your next adventure!
 ### Logging Out
 Users may log out anytime, with sessions if a user does not log out, they will be relogged in upon visiting the site again.
 
-###deployed at:
+### deployed at:
 https://dansirdan.github.io/hike-it/
 
 ### Development Team:
@@ -26,7 +26,7 @@ https://dansirdan.github.io/hike-it/
 
 ### Technologies Used
 - Firebase Data & Authentication
-- HTML
+- HTML/CSS
 - Geolocation API
 - The Hiking Project API (sponsored by REI)
 - Font Awesome
