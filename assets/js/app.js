@@ -240,7 +240,7 @@ $(document).ready(function () {
 
     var imgDiv = $("<div>").addClass("card-image");
     var img = $("<img>").addClass("result-img").attr("src", image).attr("alt", image);
-    var btn = $("<a>").addClass("btn-floating halfway-fab waves-effect waves-light blue darken-4 hike-submit").attr("data-id", hikeID);
+    var btn = $("<a>").addClass("btn-floating halfway-fab waves-effect waves-light yellow darken-4 hike-submit").attr("data-id", hikeID);
     var icon = $("<i>").addClass("material-icons").text("add");
     var add = btn.append(icon);
 
